@@ -7,6 +7,9 @@ import { IoLogInSharp } from "react-icons/io5";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import { useState } from "react";
 
+import { PulseLoader } from "react-spinners";
+import { useNavigate } from "react-router-dom";
+
 // Props with react ts
 // interface Props {
 //   title: string;
@@ -15,10 +18,25 @@ import { useState } from "react";
 
 const LoginPage: React.FC = () => {
   const [passwordVisible, setPasswordVisible] = useState(false); //state menyimpan perubahan icon password
+  const [onClickLogin, setOnClickLogin] = useState(false);
+  const navigate = useNavigate();
 
+  // handle password icon
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
+
+  // Handle login
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    setOnClickLogin(true); //tampilkan loader
+
+    setTimeout(() => {
+      setOnClickLogin(false);
+      navigate("/dashboard");
+    }, 2000);
+  };
+
   return (
     <>
       <img
@@ -74,7 +92,7 @@ const LoginPage: React.FC = () => {
 
             <div className="relative z-10 w-full h-[0.1px] bg-slate-400 my-4"></div>
 
-            <form>
+            <form onSubmit={handleLogin}>
               {/* Input NPK */}
               <div className="mb-4">
                 <label
@@ -141,9 +159,18 @@ const LoginPage: React.FC = () => {
               <button
                 type="submit"
                 className="w-full flex flex-row items-center justify-center gap-1 px-4 py-2 text-white bg-green-600 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 duration-150"
+                disabled={onClickLogin}
               >
-                <IoLogInSharp className="w-7 h-7 text-white" />
-                <p className="font-poppins font-medium tracking-wide">Login</p>
+                {onClickLogin ? (
+                  <PulseLoader color="#ffffff" size={10} margin={3} className="py-[6px]" />
+                ) : (
+                  <>
+                    <IoLogInSharp className="w-7 h-7 text-white" />
+                    <p className="font-poppins font-medium tracking-wide">
+                      Login
+                    </p>
+                  </>
+                )}
               </button>
             </form>
           </div>
