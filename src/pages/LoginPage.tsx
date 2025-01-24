@@ -162,7 +162,12 @@ const LoginPage: React.FC = () => {
                 disabled={onClickLogin}
               >
                 {onClickLogin ? (
-                  <PulseLoader color="#ffffff" size={10} margin={3} className="py-[6px]" />
+                  <PulseLoader
+                    color="#ffffff"
+                    size={10}
+                    margin={3}
+                    className="py-[6px]"
+                  />
                 ) : (
                   <>
                     <IoLogInSharp className="w-7 h-7 text-white" />
