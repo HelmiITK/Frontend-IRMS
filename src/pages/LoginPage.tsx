@@ -102,6 +102,7 @@ const LoginPage: React.FC = () => {
                   NPK
                 </label>
                 <input
+                  required
                   type="text"
                   id="npk"
                   placeholder="Masukkan NPK Anda"
@@ -118,6 +119,7 @@ const LoginPage: React.FC = () => {
                   Password
                 </label>
                 <input
+                  required
                   type={passwordVisible ? "text" : "password"} // Toggle input type
                   id="password"
                   placeholder="Masukkan Password Anda"

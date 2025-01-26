@@ -25,6 +25,8 @@ import { IoNotificationsSharp } from "react-icons/io5";
 import { HiClipboardList } from "react-icons/hi";
 import { IoMdAddCircle } from "react-icons/io";
 import { IoWarning } from "react-icons/io5";
+import { MdLogout } from "react-icons/md";
+import { FiUser } from "react-icons/fi";
 
 import { useNavigate } from "react-router-dom";
 import LogoKPI from "../assets/KPI_logo_2.png";
@@ -33,6 +35,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { HiSpeakerphone } from "react-icons/hi";
 import LiveClockComponent from "./LiveClockComponent";
 import { FaClock } from "react-icons/fa6";
+import Flag from "react-world-flags";
 
 const drawerWidth = 255;
 
@@ -123,7 +126,12 @@ const Drawer = styled(MuiDrawer, {
 export default function SideNav() {
   const theme = useTheme();
   const [open, setOpen] = useState(true);
-  const settings = [{ title: "Profile" }, { title: "Logout", color: "#f00" }];
+  const [language, setLanguage] = useState("ID");
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const settings = [
+    { title: "Profile", icon: <FiUser />, color: "#000" },
+    { title: "Logout", icon: <MdLogout />, color: "#f00" },
+  ];
   const navigate = useNavigate();
 
   const handleDrawerOpen = () => {
@@ -142,6 +150,17 @@ export default function SideNav() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const handleLanguageChange = (lang: string) => {
+    setLanguage(lang);
+    setIsDropdownOpen(false);
+
+    console.log(`Bahasa dipilih: ${lang}`);
+  };
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen((prev) => !prev);
   };
 
   const menuSidebar1 = [
@@ -216,42 +235,99 @@ export default function SideNav() {
           >
             <MenuIcon />
           </IconButton>
+          {/* header nav  */}
           <h1 className="text-white font-montserrat text-xl font-semibold text-start">
             PT KPI
           </h1>
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <FaUserCircle className="w-8 h-8 text-white" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "40px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting, index) => (
-                <MenuItem key={index} onClick={handleCloseUserMenu}>
-                  <Typography
-                    sx={{ textAlign: "center", color: `${setting.color}` }}
+
+          <div className="flex items-center gap-4">
+            {/* language switcher */}
+            <div className="dropdown dropdown-bottom dropdown-end">
+              <div
+                tabIndex={0}
+                role="button"
+                className=" m-2"
+                onClick={toggleDropdown}
+              >
+                🌐 {language == "ID" ? "ID" : "EN"}
+              </div>
+              {isDropdownOpen && (
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content menu bg-base-100 rounded-md p-1 w-20 shadow-md text-black"
+                >
+                  <li>
+                    <div
+                      className="py-2 px-2"
+                      onClick={() => handleLanguageChange("ID")}
+                    >
+                      <Flag
+                        code="ID"
+                        style={{ width: 25 }}
+                        className="bg-black p-[1px]"
+                      />
+                      <a>ID</a>
+                    </div>
+                  </li>
+                  <li>
+                    <div
+                      className="py-2 px-2"
+                      onClick={() => handleLanguageChange("EN")}
+                    >
+                      <Flag
+                        code="us"
+                        style={{ width: 25 }}
+                        className="bg-black p-[1px]"
+                      />
+                      <a>EN</a>
+                    </div>
+                  </li>
+                </ul>
+              )}
+            </div>
+
+            {/* profile  */}
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <FaUserCircle className="w-8 h-8 text-white" />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: "40px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                {settings.map((setting, index) => (
+                  <MenuItem
+                    key={index}
+                    onClick={handleCloseUserMenu}
+                    className="flex gap-2"
                   >
-                    {setting.title}
-                  </Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
+                    <Typography sx={{ color: setting.color }}>
+                      {setting.icon}
+                    </Typography>
+                    <Typography
+                      sx={{ textAlign: "center", color: setting.color }}
+                    >
+                      {setting.title}
+                    </Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
+          </div>
         </Toolbar>
       </AppBar>
 
