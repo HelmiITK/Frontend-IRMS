@@ -63,9 +63,9 @@ const LoginPage: React.FC = () => {
           <TypeAnimation
             sequence={[
               1000,
-              "Selamat Datang Di Aplikasi👋",
+              "Selamat Datang Di Aplikasi IRMS👋",
               1000,
-              "Semangat Bekerja Untuk Anak Di Rumah",
+              "Semangat Bekerja Keselamatan Tetap Dijaga",
               () => {
                 console.log("Sequence completed");
               },

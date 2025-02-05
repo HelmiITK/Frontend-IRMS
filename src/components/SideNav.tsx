@@ -14,10 +14,6 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
 
 import { IoSpeedometerSharp } from "react-icons/io5";
 import { FaUsers } from "react-icons/fa6";
@@ -25,19 +21,18 @@ import { IoNotificationsSharp } from "react-icons/io5";
 import { HiClipboardList } from "react-icons/hi";
 import { IoMdAddCircle } from "react-icons/io";
 import { IoWarning } from "react-icons/io5";
-import { MdLogout } from "react-icons/md";
-import { FiUser } from "react-icons/fi";
 
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import LogoKPI from "../assets/KPI_logo_2.png";
 import { useState } from "react";
-import { FaUserCircle } from "react-icons/fa";
 import { HiSpeakerphone } from "react-icons/hi";
-import LiveClockComponent from "./LiveClockComponent";
 import { FaClock } from "react-icons/fa6";
-import Flag from "react-world-flags";
+import FullScreenComponent from "./SideNavComponent/FullScreenComponent";
+import LiveClockComponent from "./SideNavComponent/LiveClockComponent";
+import ProfileComponent from "./SideNavComponent/ProfileComponent";
+import LanguageSwitcherComponent from "./SideNavComponent/LanguageSwitcherComponent";
 
-const drawerWidth = 255;
+const drawerWidth = 275;
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: drawerWidth,
@@ -81,7 +76,7 @@ const AppBar = styled(MuiAppBar, {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  backgroundColor: "green",
+  backgroundColor: "#1D8000",
   variants: [
     {
       props: ({ open }) => open,
@@ -126,13 +121,9 @@ const Drawer = styled(MuiDrawer, {
 export default function SideNav() {
   const theme = useTheme();
   const [open, setOpen] = useState(true);
-  const [language, setLanguage] = useState("ID");
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const settings = [
-    { title: "Profile", icon: <FiUser />, color: "#000" },
-    { title: "Logout", icon: <MdLogout />, color: "#f00" },
-  ];
+
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -140,27 +131,6 @@ export default function SideNav() {
 
   const handleDrawerClose = () => {
     setOpen(false);
-  };
-
-  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
-
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-
-  const handleLanguageChange = (lang: string) => {
-    setLanguage(lang);
-    setIsDropdownOpen(false);
-
-    console.log(`Bahasa dipilih: ${lang}`);
-  };
-
-  const toggleDropdown = () => {
-    setIsDropdownOpen((prev) => !prev);
   };
 
   const menuSidebar1 = [
@@ -217,10 +187,12 @@ export default function SideNav() {
     },
   ];
   return (
+    // sidenav by MaterialUI
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar className="flex flex-row justify-between items-start">
+          {/* Hamburger menu */}
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -235,98 +207,32 @@ export default function SideNav() {
           >
             <MenuIcon />
           </IconButton>
-          {/* header nav  */}
-          <h1 className="text-white font-montserrat text-xl font-semibold text-start">
-            PT KPI
-          </h1>
-
-          <div className="flex items-center gap-4">
-            {/* language switcher */}
-            <div className="dropdown dropdown-bottom dropdown-end">
-              <div
-                tabIndex={0}
-                role="button"
-                className=" m-2"
-                onClick={toggleDropdown}
-              >
-                🌐 {language == "ID" ? "ID" : "EN"}
-              </div>
-              {isDropdownOpen && (
-                <ul
-                  tabIndex={0}
-                  className="dropdown-content menu bg-base-100 rounded-md p-1 w-20 shadow-md text-black"
-                >
-                  <li>
-                    <div
-                      className="py-2 px-2"
-                      onClick={() => handleLanguageChange("ID")}
-                    >
-                      <Flag
-                        code="ID"
-                        style={{ width: 25 }}
-                        className="bg-black p-[1px]"
-                      />
-                      <a>ID</a>
-                    </div>
-                  </li>
-                  <li>
-                    <div
-                      className="py-2 px-2"
-                      onClick={() => handleLanguageChange("EN")}
-                    >
-                      <Flag
-                        code="us"
-                        style={{ width: 25 }}
-                        className="bg-black p-[1px]"
-                      />
-                      <a>EN</a>
-                    </div>
-                  </li>
-                </ul>
-              )}
+          {/* left header nav  */}
+          {!open ? (
+            <div className="flex flex-row items-center gap-2">
+              <img
+                src={LogoKPI}
+                alt="logo"
+                className="w-8 h-8 border rounded-full shadow-lg"
+              />
+              <h1 className="text-white font-montserrat text-xl font-semibold text-start">
+                PT KPI
+              </h1>
             </div>
+          ) : (
+            <>
+              <div className="text-transparent"></div>
+            </>
+          )}
 
+          {/* right nav link */}
+          <div className="flex items-center gap-4">
+            {/* language switcher by daisyUI*/}
+            <LanguageSwitcherComponent />
+            {/* fullscreen  */}
+            <FullScreenComponent />
             {/* profile  */}
-            <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <FaUserCircle className="w-8 h-8 text-white" />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: "40px" }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                {settings.map((setting, index) => (
-                  <MenuItem
-                    key={index}
-                    onClick={handleCloseUserMenu}
-                    className="flex gap-2"
-                  >
-                    <Typography sx={{ color: setting.color }}>
-                      {setting.icon}
-                    </Typography>
-                    <Typography
-                      sx={{ textAlign: "center", color: setting.color }}
-                    >
-                      {setting.title}
-                    </Typography>
-                  </MenuItem>
-                ))}
-              </Menu>
-            </Box>
+            <ProfileComponent />
           </div>
         </Toolbar>
       </AppBar>
@@ -345,8 +251,12 @@ export default function SideNav() {
         {/* header */}
         <div className="flex flex-row justify-between items-center">
           <div className="flex flex-row items-center ml-2 gap-2 py-2">
-            <img src={LogoKPI} alt="logo kpi" className="w-8 h-8" />
-            <p className="font-montserrat text-xs font-semibold text-green-700">
+            <img
+              src={LogoKPI}
+              alt="logo kpi"
+              className="w-8 h-8 shadow-lg rounded-full"
+            />
+            <p className="font-montserrat text-sm font-semibold text-primary">
               PT Kaltim Parna Industri
             </p>
           </div>
@@ -382,14 +292,21 @@ export default function SideNav() {
                   {
                     minHeight: 48,
                     px: 2.5,
+                    backgroundColor:
+                      location.pathname === item.route
+                        ? "#1D8000"
+                        : "transparent", // Highlight active route
+                    color: location.pathname === item.route ? "white" : "black", // Change text color
+                    "&:hover": {
+                      backgroundColor:
+                        location.pathname === item.route
+                          ? "#1D8000"
+                          : "#f4f4f4", // Hover effect for active route
+                    },
                   },
                   open
-                    ? {
-                        justifyContent: "initial",
-                      }
-                    : {
-                        justifyContent: "center",
-                      },
+                    ? { justifyContent: "initial" }
+                    : { justifyContent: "center" },
                 ]}
               >
                 <ListItemIcon
@@ -397,6 +314,8 @@ export default function SideNav() {
                     {
                       minWidth: 0,
                       justifyContent: "center",
+                      color:
+                        location.pathname === item.route ? "white" : "black", // Set icon color to white if active
                     },
                     open
                       ? {
@@ -410,9 +329,11 @@ export default function SideNav() {
                   {item.icon}
                 </ListItemIcon>
                 <h1
-                  className={`text-sm text-black ${
-                    open ? "opacity-100" : "hidden"
-                  }`}
+                  className={`text-sm ${
+                    location.pathname === item.route
+                      ? "text-white"
+                      : "text-black"
+                  } ${open ? "opacity-100" : "hidden"}`}
                 >
                   {item.label}
                 </h1>
@@ -436,14 +357,19 @@ export default function SideNav() {
                 {
                   minHeight: 48,
                   px: 2.5,
+                  backgroundColor:
+                    location.pathname === item.route
+                      ? "#1D8000"
+                      : "transparent", // Highlight active route
+                  color: location.pathname === item.route ? "white" : "black", // Change text color
+                  "&:hover": {
+                    backgroundColor:
+                      location.pathname === item.route ? "#1D8000" : "#f4f4f4", // Hover effect for active route
+                  },
                 },
                 open
-                  ? {
-                      justifyContent: "initial",
-                    }
-                  : {
-                      justifyContent: "center",
-                    },
+                  ? { justifyContent: "initial" }
+                  : { justifyContent: "center" },
               ]}
             >
               <ListItemIcon
@@ -451,6 +377,7 @@ export default function SideNav() {
                   {
                     minWidth: 0,
                     justifyContent: "center",
+                    color: location.pathname === item.route ? "white" : "black", // Set icon color to white if active
                   },
                   open
                     ? {
@@ -464,9 +391,9 @@ export default function SideNav() {
                 {item.icon}
               </ListItemIcon>
               <h1
-                className={`text-sm text-black ${
-                  open ? "opacity-100" : "hidden"
-                }`}
+                className={`text-sm ${
+                  location.pathname === item.route ? "text-white" : "text-black"
+                } ${open ? "opacity-100" : "hidden"}`}
               >
                 {item.label}
               </h1>
@@ -491,14 +418,19 @@ export default function SideNav() {
                 {
                   minHeight: 48,
                   px: 2.5,
+                  backgroundColor:
+                    location.pathname === item.route
+                      ? "#1D8000"
+                      : "transparent", // Highlight active route
+                  color: location.pathname === item.route ? "white" : "black", // Change text color
+                  "&:hover": {
+                    backgroundColor:
+                      location.pathname === item.route ? "#1D8000" : "#f4f4f4", // Hover effect for active route
+                  },
                 },
                 open
-                  ? {
-                      justifyContent: "initial",
-                    }
-                  : {
-                      justifyContent: "center",
-                    },
+                  ? { justifyContent: "initial" }
+                  : { justifyContent: "center" },
               ]}
             >
               <ListItemIcon
@@ -506,6 +438,7 @@ export default function SideNav() {
                   {
                     minWidth: 0,
                     justifyContent: "center",
+                    color: location.pathname === item.route ? "white" : "black", // Set icon color to white if active
                   },
                   open
                     ? {
@@ -519,9 +452,9 @@ export default function SideNav() {
                 {item.icon}
               </ListItemIcon>
               <h1
-                className={`text-sm text-black ${
-                  open ? "opacity-100" : "hidden"
-                }`}
+                className={`text-sm ${
+                  location.pathname === item.route ? "text-white" : "text-black"
+                } ${open ? "opacity-100" : "hidden"}`}
               >
                 {item.label}
               </h1>

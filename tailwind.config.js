@@ -8,6 +8,9 @@ export default {
         poppins: ["Poppins"],
         montserrat: ["montserrat"],
       },
+      colors: {
+        primary: "#1D8000"
+      }
     },
   },
   plugins: [
