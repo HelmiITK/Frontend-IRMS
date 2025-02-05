@@ -10,6 +10,7 @@ import HistoryMyIncidentReportPage from "./pages/Incident Report/HistoryMyIncide
 import TaskIncidentReportPage from "./pages/Incident Report/TaskIncidentReportPage";
 import HistoryTaskIncidentReportPage from "./pages/Incident Report/HistoryTaskIncidentReportPage";
 import ResultPage from "./pages/Result/ResultPage";
+import ProfileUserPage from "./pages/User/ProfileUserPage";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/user_management" element={<UserManagementPage />} />
           <Route path="/user_alerts" element={<UserAlertsPage />} />
+          <Route path="/profile_user" element={<ProfileUserPage/>}/>
 
           <Route path="/incident_report" element={<IncidentReportPage />} />
           <Route
