@@ -1,4 +1,4 @@
-# IRMS (Incident Report Management System)
+# IRMS (Incident Report Monitoring System)
 
 Merupakan website sistem yang mengontrol kelayakan mutu kinerja pabrik dan pelaporan insiden yang terjadi di lapangan.
 
