@@ -25,7 +25,7 @@ const ProfileUserPage = () => {
     <Box sx={{ display: "flex" }}>
       <SideNav />
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <h1 className="mt-14 text-black text-2xl text-start mb-2">
+        <h1 className="mt-14 text-black text-xl text-start mb-2 font-montserrat">
           Profile User
         </h1>
         <Divider className="w-full h-[0.5px] bg-slate-400" />

@@ -13,13 +13,15 @@ const ProfileComponent = () => {
         tabIndex={0}
         className="dropdown-content menu bg-base-100 rounded-md z-[1] shadow"
       >
+        <h1 className="text-white text-sm mb-1 text-center bg-black rounded-md py-1 ">Admin</h1>
         <li>
-          <div className="flex flex-row gap-2 items-center px-2">
+          <Link
+            to={"/profile_user"}
+            className="flex flex-row gap-2 items-center px-2"
+          >
             <FiUser className="w-6 h-6 text-black" />
-            <Link to={"/profile_user"} className="text-black text-sm ">
-              Profile
-            </Link>
-          </div>
+            <p className="text-black text-sm">Profile</p>
+          </Link>
         </li>
         <li>
           <div className="flex flex-row gap-2 items-center px-2">
