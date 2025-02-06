@@ -42,7 +42,7 @@ const InformationReportComponent = () => {
       {informationReport.map((itemReport, index) => (
         <div
           key={index}
-          className="border flex flex-row justify-between p-2 rounded-sm"
+          className="border flex flex-row justify-between p-2 rounded-sm group hover:scale-105 hover:shadow-md hover:shadow-slate-400 hover:rounded-md hover:border-slate-400 duration-150 ease-linear "
           style={{ backgroundColor: itemReport.bgColor }}
         >
           <div className="flex flex-col justify-between pl-3 py-2">
@@ -57,7 +57,7 @@ const InformationReportComponent = () => {
             <img
               src={itemReport.icon}
               alt={itemReport.kategori}
-              className="w-20 h-20 opacity-45"
+              className="w-20 h-20 opacity-30 group-hover:scale-110 group-hover:opacity-45 duration-150 ease-linear"
             />
           </div>
         </div>

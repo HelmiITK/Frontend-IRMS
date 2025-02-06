@@ -55,7 +55,7 @@ const CorporateValueComponent = () => {
         {/* Overlay untuk efek gelap agar teks lebih jelas */}
         <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40 z-5"></div>
 
-        <div className="mt-20 flex flex-col justify-between items-start gap-6 p-2 ">
+        <div className="mt-20 flex flex-col justify-between items-start gap-6 p-3 ">
           {/* header jargon */}
           <div className="grid grid-cols-4 gap-4 items-center justify-center">
             {misi.map((item) => (
@@ -108,28 +108,28 @@ const CorporateValueComponent = () => {
       {/* visi misi */}
       <div className="mt-3 rounded-sm grid grid-cols-2 gap-4">
         {/* visi */}
-        <div className="bg-gradient-to-r from-blue-700 to-slate-800 px-6 py-2 flex flex-row items-center justify-between rounded-md shadow-md shadow-slate-500">
+        <div className="relative h-48 bg-gradient-to-r from-blue-700 to-slate-900 px-6 py-2 flex flex-row items-center justify-between rounded-md shadow-md shadow-slate-500 group hover:bg-gradient-to-l hover:from-blue-700 hover:to-slate-900 hover:shadow-lg hover:shadow-blue-500 duration-150 ease-linear">
           <div className="flex flex-col gap-2">
-            <h1 className="text-3xl font-bold font-montserrat uppercase text-white">
+            <h1 className="text-3xl font-bold font-montserrat uppercase text-white group-hover:text-4xl duration-150 ease-linear">
               Vision
             </h1>
-            <p className="text-lg font-montserrat font-light text-white">
+            <p className="text-base font-montserrat font-extralight text-white z-10 w-[80%] group-hover:font-light group-hover:text-lg duration-150 ease-linear">
               Perusahaan penghasil amoniak terefisien di dunia
             </p>
           </div>
           <img
             src={VisionIcon}
             alt="vision icon"
-            className="w-40 h-40 opacity-45"
+            className="absolute right-2 bottom-0 w-40 h-40 opacity-45 group-hover:-translate-y-3 group-hover:-translate-x-4 duration-150 ease-linear"
           />
         </div>
         {/* misi */}
-        <div className="bg-gradient-to-r from-red-700 to-slate-800 px-6 py-4 flex flex-row items-center justify-between rounded-md shadow-md shadow-slate-500">
+        <div className="relative h-48 bg-gradient-to-r from-red-700 to-slate-900 px-6 py-4 flex flex-row items-center justify-between rounded-md shadow-md shadow-slate-500 group hover:bg-gradient-to-l hover:from-red-700 hover:to-slate-900 hover:shadow-lg hover:shadow-red-500 duration-150 ease-linear">
           <div className="flex flex-col gap-2">
-            <h1 className="text-3xl font-bold font-montserrat uppercase text-white">
+            <h1 className="text-3xl font-bold font-montserrat uppercase text-white group-hover:text-4xl duration-150 ease-linear">
               Mission
             </h1>
-            <ol className="list-decimal list-outside text-sm font-montserrat font-light text-white pl-4">
+            <ol className="z-10 list-decimal list-outside text-xs font-montserrat font-extralight text-white pl-4 group-hover:text-sm group-hover:font-light duration-150 ease-linear">
               <li>
                 Peduli akan kualitas, keselamatan, kesehatan, dan lingkungan
                 (QSHE)
@@ -144,7 +144,7 @@ const CorporateValueComponent = () => {
           <img
             src={MissionIcon}
             alt="vision icon"
-            className="w-40 h-40 opacity-45"
+            className="absolute right-0 bottom-0 w-40 h-40 scale-x-[-1] opacity-45 group-hover:-translate-y-3 group-hover:-translate-x-4 duration-150 ease-linear"
           />
         </div>
       </div>

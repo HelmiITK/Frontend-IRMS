@@ -9,6 +9,7 @@ import { FaRegCopy } from "react-icons/fa";
 import { GrDocumentCsv } from "react-icons/gr";
 import { RiFileExcel2Line } from "react-icons/ri";
 import { FaRegFilePdf } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 const UserManagementPage = () => {
   // Definisikan tipe data User
@@ -141,9 +142,11 @@ const UserManagementPage = () => {
           {/* left feature */}
           <div className="flex flex-row gap-4">
             {/* Create user  */}
-            <button className="capitalize text-sm bg-green-500 py-1 px-4 rounded-sm shadow-md text-white border border-green-700 hover:scale-105 duration-150 ease-in-out hover:shadow-lg">
-              add user
-            </button>
+            <Link to={'/add_user'}>
+              <button className="capitalize text-sm bg-green-500 py-1 px-4 rounded-sm shadow-md text-white border border-green-700 hover:scale-105 duration-150 ease-in-out hover:shadow-lg">
+                add user
+              </button>
+            </Link>
             <Divider className="h-8 w-[1px] bg-black" />
             {/* searching */}
             <div className="flex flex-row gap-1 items-center">
@@ -185,7 +188,7 @@ const UserManagementPage = () => {
                 typeof="button"
                 onClick={handleDeleteSelected}
                 disabled={selectedUsers.length === 0}
-                className={`py-1 px-3 text-sm rounded-sm shadow-sm bg-red-600 text-white ${
+                className={`py-1 px-3 text-sm rounded-sm shadow-sm text-white ${
                   selectedUsers.length > 0
                     ? "bg-red-600 hover:scale-105 duration-150 ease-in-out hover:shadow-lg"
                     : "bg-red-300 cursor-not-allowed"

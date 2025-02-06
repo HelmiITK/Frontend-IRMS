@@ -11,6 +11,7 @@ import TaskIncidentReportPage from "./pages/Incident Report/TaskIncidentReportPa
 import HistoryTaskIncidentReportPage from "./pages/Incident Report/HistoryTaskIncidentReportPage";
 import ResultPage from "./pages/Result/ResultPage";
 import ProfileUserPage from "./pages/User/ProfileUserPage";
+import AddUserComponent from "./components/UserComponents/AddUserComponent";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/user_management" element={<UserManagementPage />} />
           <Route path="/user_alerts" element={<UserAlertsPage />} />
           <Route path="/profile_user" element={<ProfileUserPage/>}/>
+          <Route path="/add_user" element={<AddUserComponent/>}/>
 
           <Route path="/incident_report" element={<IncidentReportPage />} />
           <Route
