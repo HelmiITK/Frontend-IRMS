@@ -130,6 +130,12 @@ const UserManagementPage = () => {
     setSelectedUsers([]); // Kosongkan pilihan setelah menghapus
   };
 
+  // Fungsi hapus row user
+  const handleDeleteRowUser = (id: number) => {
+    console.log(`Hapus user dengan ID: ${id}`);
+    setUserListField((prevUsers) => prevUsers.filter((user) => user.id !== id));
+  };
+
   return (
     <Box sx={{ display: "flex" }}>
       <SideNav />
@@ -142,7 +148,7 @@ const UserManagementPage = () => {
           {/* left feature */}
           <div className="flex flex-row gap-4">
             {/* Create user  */}
-            <Link to={'/add_user'}>
+            <Link to={"/add_user"}>
               <button className="capitalize text-sm bg-green-500 py-1 px-4 rounded-sm shadow-md text-white border border-green-700 hover:scale-105 duration-150 ease-in-out hover:shadow-lg">
                 add user
               </button>
@@ -474,7 +480,11 @@ const UserManagementPage = () => {
                     <button className="border border-sky-500 px-2 py-1 rounded-sm bg-sky-300 text-white capitalize hover:bg-sky-700 duration-150">
                       edit
                     </button>
-                    <button className="border border-red-700 px-2 py-1 rounded-sm bg-red-500 text-white capitalize hover:bg-red-700 duration-150">
+                    <button
+                      onClick={() => handleDeleteRowUser(itemList.id)}
+                      type="button"
+                      className="border border-red-700 px-2 py-1 rounded-sm bg-red-500 text-white capitalize hover:bg-red-700 duration-150"
+                    >
                       delete
                     </button>
                   </td>
