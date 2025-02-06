@@ -5,6 +5,10 @@ import { IoSearch } from "react-icons/io5";
 import { RxDoubleArrowUp } from "react-icons/rx";
 import { RxDoubleArrowDown } from "react-icons/rx";
 import { useState } from "react";
+import { FaRegCopy } from "react-icons/fa";
+import { GrDocumentCsv } from "react-icons/gr";
+import { RiFileExcel2Line } from "react-icons/ri";
+import { FaRegFilePdf } from "react-icons/fa6";
 
 const UserManagementPage = () => {
   // Definisikan tipe data User
@@ -27,7 +31,7 @@ const UserManagementPage = () => {
       email: "helmi123@gmail.com",
       roles: "Superintendent",
       job: "Manager",
-      department: "Information technologu",
+      department: "Information technology",
       superior: "Daniel",
     },
     {
@@ -37,7 +41,7 @@ const UserManagementPage = () => {
       email: "asep@gmail.com",
       roles: "independent",
       job: "IT Support",
-      department: "Information technologu",
+      department: "Information technology",
       superior: "Daniel",
     },
     {
@@ -56,40 +60,74 @@ const UserManagementPage = () => {
       name: "Kurniawam",
       email: "kurniawan@gmail.com",
       roles: "CSR",
-      job: "anana",
+      job: "Sales",
       department: "General Afiar",
       superior: "Nina",
     },
     {
       id: 87,
       npk: "11211033",
-      name: "Lasep",
-      email: "Lasep@gmail.com",
+      name: "Marasep",
+      email: "mara@gmail.com",
       roles: "Office Boy",
       job: "Senior OB",
       department: "Office",
       superior: "Rasyid",
     },
+    {
+      id: 76,
+      npk: "11211032",
+      name: "Erine",
+      email: "erni@gmail.com",
+      roles: "Brand Ambassador",
+      job: "Streamer",
+      department: "Esports",
+      superior: "Lasti",
+    },
   ];
 
+  // NOTE: perhatikan posisi state pastikan berada di atas fungsi agar dideklarasi terlebih dahulu
   const [sortField, setSortField] = useState<keyof User | null>(null);
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
+  const [selectedUsers, setSelectedUsers] = useState<number[]>([]);
+  const [userListField, setUserListField] = useState<User[]>(userList);
 
+  // funsgi sorting ascending & descending
   const handleSort = (field: keyof User) => {
-    if (sortField === field) {
-      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
-    } else {
-      setSortField(field);
-      setSortOrder("asc");
-    }
+    const newOrder =
+      sortField === field && sortOrder === "asc" ? "desc" : "asc";
+    setSortField(field);
+    setSortOrder(newOrder);
+
+    setUserListField((prevList) =>
+      [...prevList].sort((a, b) => {
+        if (a[field] < b[field]) return newOrder === "asc" ? -1 : 1;
+        if (a[field] > b[field]) return newOrder === "asc" ? 1 : -1;
+        return 0;
+      })
+    );
   };
 
-  const sortedUserList = [...userList].sort((a, b) => {
-    if (!sortField) return 0;
-    if (a[sortField] < b[sortField]) return sortOrder === "asc" ? -1 : 1;
-    if (a[sortField] > b[sortField]) return sortOrder === "asc" ? 1 : -1;
-    return 0;
-  });
+  //fungsi jalankan perintah smua checkbox
+  const handleSelectedAll = () => {
+    console.log("gua diklik -- selected");
+    setSelectedUsers(userListField.map((user) => user.id));
+  };
+
+  // fungsi hapus semua checkbox
+  const handleDeselectedAll = () => {
+    console.log("gua diklik -- deselected");
+    setSelectedUsers([]);
+  };
+
+  //fungsi hapus field yang diselect
+  const handleDeleteSelected = () => {
+    console.log("gua diklik - delete selected");
+    setUserListField((prevList) =>
+      prevList.filter((user) => !selectedUsers.includes(user.id))
+    );
+    setSelectedUsers([]); // Kosongkan pilihan setelah menghapus
+  };
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -98,22 +136,86 @@ const UserManagementPage = () => {
         <h1 className="mt-14 text-xl mb-2 font-montserrat">User List</h1>
         <Divider className="w-full h-[0.5px] bg-slate-200" />
 
-        {/* header add / search */}
-        <div className="flex flex-row items-center gap-4 mt-4 mb-4">
-          <button className="capitalize text-sm font-montserrat font-medium bg-green-500 py-2 px-4 rounded-sm shadow-md text-white border border-green-700 hover:scale-105 duration-150 ease-in-out hover:shadow-lg">
-            add user
-          </button>
-          <div className="flex flex-row gap-1 items-center">
-            <label htmlFor="search">
-              <IoSearch className="w-6 h-6 text-slate-500" />
-            </label>
-            <input
-              type="text"
-              name="search"
-              id="search"
-              className="px-2 py-1 text-sm placeholder:text-sm placeholder:text-slate-400 border border-slate-400 rounded-sm shadow-sm"
-              placeholder="search"
-            />
+        {/* Header tools fitur */}
+        <div className="py-2 flex flex-row gap-4">
+          {/* left feature */}
+          <div className="flex flex-row gap-4">
+            {/* Create user  */}
+            <button className="capitalize text-sm bg-green-500 py-1 px-4 rounded-sm shadow-md text-white border border-green-700 hover:scale-105 duration-150 ease-in-out hover:shadow-lg">
+              add user
+            </button>
+            <Divider className="h-8 w-[1px] bg-black" />
+            {/* searching */}
+            <div className="flex flex-row gap-1 items-center">
+              <label htmlFor="search">
+                <IoSearch className="w-6 h-6 text-slate-500" />
+              </label>
+              <input
+                type="text"
+                name="search"
+                id="search"
+                className="px-2 py-1 text-sm placeholder:text-sm placeholder:text-slate-400 border border-slate-400 rounded-sm shadow-sm"
+                placeholder="search"
+              />
+            </div>
+            <Divider className="h-8 w-[0.7px] bg-black" />
+          </div>
+          {/* right feature */}
+          <div className="flex flex-row gap-2 items-center">
+            {/* Middle button */}
+            <div className="flex flex-row gap-2 mr-2">
+              {selectedUsers.length === userListField.length ? (
+                <button
+                  typeof="button"
+                  onClick={handleDeselectedAll}
+                  className="w-28 py-1 px-3 text-sm rounded-sm shadow-sm bg-zinc-600 text-white hover:scale-105 duration-150 ease-in-out hover:shadow-lg"
+                >
+                  Deselect all
+                </button>
+              ) : (
+                <button
+                  typeof="button"
+                  onClick={handleSelectedAll}
+                  className="w-28 py-1 px-3 text-sm rounded-sm shadow-sm bg-zinc-500 text-white hover:scale-105 duration-150 ease-in-out hover:shadow-lg"
+                >
+                  Select all
+                </button>
+              )}
+              <button
+                typeof="button"
+                onClick={handleDeleteSelected}
+                disabled={selectedUsers.length === 0}
+                className={`py-1 px-3 text-sm rounded-sm shadow-sm bg-red-600 text-white ${
+                  selectedUsers.length > 0
+                    ? "bg-red-600 hover:scale-105 duration-150 ease-in-out hover:shadow-lg"
+                    : "bg-red-300 cursor-not-allowed"
+                }`}
+              >
+                Delete selected
+              </button>
+            </div>
+
+            <Divider className="h-8 w-[0.7px] bg-black" />
+
+            {/* dokumen button */}
+            <div className="flex flex-row gap-2 items-center ml-2">
+              <div className="bg-slate-300 rounded-md shadow-sm flex items-center gap-[2px] p-1 hover:scale-105 duration-150 hover:shadow-md cursor-pointer">
+                <FaRegCopy className="w-6 h-6 p-[2px]" />
+                <p className="text-xs">Copy</p>
+              </div>
+              <div className="bg-slate-400 rounded-md shadow-sm flex items-center gap-[2px] p-1 hover:scale-105 duration-150 hover:shadow-md cursor-pointer">
+                <GrDocumentCsv className="w-6 h-6 p-[2px]" />
+                <p className="text-xs">CSV</p>
+              </div>
+              <div className="bg-green-300 rounded-md shadow-sm flex items-center gap-[2px] p-1 hover:scale-105 duration-150 hover:shadow-md cursor-pointer">
+                <RiFileExcel2Line className="w-6 h-6 p-[2px]" />
+                <p className="text-xs">Excel</p>
+              </div>
+              <div className="bg-red-400 rounded-md shadow-sm flex items-center gap-[2px] p-1 hover:scale-105 duration-150 hover:shadow-md cursor-pointer">
+                <FaRegFilePdf className="w-6 h-6 p-[2px]" />
+                <p className="text-xs">PDF</p>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -125,7 +227,22 @@ const UserManagementPage = () => {
             {/* head */}
             <thead>
               <tr className="bg-gray-50">
-                <th></th>
+                {/* show dropdown */}
+                <th className="flex flex-row items-center gap-1">
+                  <label htmlFor="show" className="text-sm text-black">
+                    Show
+                  </label>
+                  <select
+                    name="show"
+                    id="show"
+                    className="p-1 rounded-sm shadow-sm border border-1 border-slate-900 w-[52px]"
+                  >
+                    <option value="volvo">5</option>
+                    <option value="saab">10</option>
+                    <option value="mercedes">50</option>
+                    <option value="audi">100</option>
+                  </select>
+                </th>
                 {/* ID */}
                 <th>
                   <div className="flex items-center gap-1">
@@ -200,7 +317,7 @@ const UserManagementPage = () => {
                   <div className="flex items-center gap-1">
                     <p className="text-black text-sm">Email</p>
                     <div
-                      onClick={() => handleSort("name")}
+                      onClick={() => handleSort("email")}
                       className="cursor-pointer"
                     >
                       {sortField === "email" ? (
@@ -313,13 +430,26 @@ const UserManagementPage = () => {
                 <th></th>
               </tr>
             </thead>
-            {/* isi data */}
+            {/* data field */}
             <tbody>
-              {sortedUserList.map((itemList, index) => (
+              {userListField.map((itemList, index) => (
                 <tr key={index}>
                   <th>
-                    <label>
-                      <input type="checkbox" className="checkbox" />
+                    <label className="flex items-center justify-center">
+                      <input
+                        type="checkbox"
+                        className="checkbox"
+                        checked={selectedUsers.includes(itemList.id)}
+                        onChange={() => {
+                          if (selectedUsers.includes(itemList.id)) {
+                            setSelectedUsers(
+                              selectedUsers.filter((id) => id !== itemList.id)
+                            );
+                          } else {
+                            setSelectedUsers([...selectedUsers, itemList.id]);
+                          }
+                        }}
+                      />
                     </label>
                   </th>
                   <td className="text-sm text-black">{itemList.id}</td>
