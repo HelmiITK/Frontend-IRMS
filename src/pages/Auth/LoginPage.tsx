@@ -1,6 +1,6 @@
-import LogoKPI from "../assets/KPI_logo_2.png";
-import WarningIcon from "../assets/warning_12089273.png";
-import BgLogin from "../assets/bgLogin.jpg";
+import LogoKPI from "../../assets/KPI_logo_2.png";
+import WarningIcon from "../../assets/warning_12089273.png";
+import BgLogin from "../../assets/bgLogin.jpg";
 
 import { TypeAnimation } from "react-type-animation";
 import { IoLogInSharp } from "react-icons/io5";

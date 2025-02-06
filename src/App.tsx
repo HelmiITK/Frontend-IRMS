@@ -1,6 +1,6 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
+import LoginPage from "./pages/Auth/LoginPage";
 import DashboardPage from "./pages/Dashboard/DashboardPage";
 import UserManagementPage from "./pages/User/UserManagementPage";
 import IncidentReportPage from "./pages/Incident Report/IncidentReportPage";
@@ -12,6 +12,7 @@ import HistoryTaskIncidentReportPage from "./pages/Incident Report/HistoryTaskIn
 import ResultPage from "./pages/Result/ResultPage";
 import ProfileUserPage from "./pages/User/ProfileUserPage";
 import AddUserComponent from "./components/UserComponents/AddUserComponent";
+import NotFoundPage from "./pages/NotFound/NotFoundPage";
 
 function App() {
   return (
@@ -45,6 +46,8 @@ function App() {
           />
 
           <Route path="/result" element={<ResultPage />} />
+
+          <Route path="*" element={<NotFoundPage/>}/>
         </Routes>
       </Router>
     </>
