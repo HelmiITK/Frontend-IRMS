@@ -22,7 +22,8 @@
     "react-spinners": "^0.15.0",
     "react-type-animation": "^3.2.0",
     "react-world-flags": "^1.6.0",
-    "recharts": "^2.15.1"
+    "recharts": "^2.15.1",
+    "sweetalert2": "^11.15.10"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

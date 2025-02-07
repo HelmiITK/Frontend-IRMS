@@ -13,6 +13,7 @@ import ResultPage from "./pages/Result/ResultPage";
 import ProfileUserPage from "./pages/User/ProfileUserPage";
 import AddUserComponent from "./components/UserComponents/AddUserComponent";
 import NotFoundPage from "./pages/NotFound/NotFoundPage";
+import DetailUserComponent from "./components/UserComponents/DetailUserComponent";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/user_alerts" element={<UserAlertsPage />} />
           <Route path="/profile_user" element={<ProfileUserPage/>}/>
           <Route path="/add_user" element={<AddUserComponent/>}/>
+          <Route path="/detail_user" element={<DetailUserComponent/>}/>
 
           <Route path="/incident_report" element={<IncidentReportPage />} />
           <Route

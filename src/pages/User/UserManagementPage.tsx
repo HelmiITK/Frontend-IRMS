@@ -11,6 +11,7 @@ import { RiFileExcel2Line } from "react-icons/ri";
 import { FaRegFilePdf } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import FooterComponent from "../../components/Footer/FooterComponent";
+import Swal from "sweetalert2";
 
 const UserManagementPage = () => {
   // Definisikan tipe data User
@@ -131,10 +132,51 @@ const UserManagementPage = () => {
     setSelectedUsers([]); // Kosongkan pilihan setelah menghapus
   };
 
-  // Fungsi hapus row user
+  // Fungsi hapus row user with SweetAlert2
   const handleDeleteRowUser = (id: number) => {
-    console.log(`Hapus user dengan ID: ${id}`);
-    setUserListField((prevUsers) => prevUsers.filter((user) => user.id !== id));
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+      position: "center", // Menentukan posisi di atas
+      toast: false, // Menghindari penggunaan toast untuk memastikan SweetAlert muncul sebagai pop-up biasa
+      didOpen: () => {
+        // Mengakses container SweetAlert dan menambahkan z-index
+        const swalModal = document.querySelector(
+          ".swal2-container"
+        ) as HTMLElement;
+        if (swalModal) {
+          swalModal.style.zIndex = "9999"; // Pastikan nilai z-index cukup tinggi
+        }
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+          position: "center", // Tetap posisi di atas setelah penghapusan
+          didOpen: () => {
+            const swalModal = document.querySelector(
+              ".swal2-container"
+            ) as HTMLElement;
+            if (swalModal) {
+              swalModal.style.zIndex = "9999";
+            }
+          },
+        });
+
+        // Hapus user dari daftar
+        console.log(`Hapus user dengan ID: ${id}`);
+        setUserListField((prevUsers) =>
+          prevUsers.filter((user) => user.id !== id)
+        );
+      }
+    });
   };
 
   return (
@@ -476,9 +518,13 @@ const UserManagementPage = () => {
                     <td>{itemList.department}</td>
                     <td>{itemList.superior}</td>
                     <td className="flex flex-col gap-2 ">
-                      <button className="border border-blue-700 px-2 py-1 rounded-sm bg-blue-500 text-white capitalize hover:bg-blue-700 duration-150">
+                      <Link
+                        to="/detail_user"
+                        type="button"
+                        className="border border-blue-700 px-2 py-1 rounded-sm bg-blue-500 text-white capitalize hover:bg-blue-700 duration-150 text-center"
+                      >
                         view
-                      </button>
+                      </Link>
                       <button className="border border-sky-500 px-2 py-1 rounded-sm bg-sky-300 text-white capitalize hover:bg-sky-700 duration-150">
                         edit
                       </button>

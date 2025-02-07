@@ -282,10 +282,13 @@ export default function SideNav() {
         {/* sidebar 1 */}
         <List>
           {menuSidebar1.map((item, index) => {
-            const isActive =
-              location.pathname.startsWith(item.route) ||
-              (item.route === "/user_management" &&
-                location.pathname.startsWith("/add_user"));
+            const activeRoutes =
+              item.route === "/user_management"
+                ? ["/add_user", "/detail_user", "/user_management"]
+                : [item.route]; // Tambahkan semua route di sini
+            const isActive = activeRoutes.some((route) =>
+              location.pathname.startsWith(route)
+            );
             return (
               <ListItem
                 key={index}
