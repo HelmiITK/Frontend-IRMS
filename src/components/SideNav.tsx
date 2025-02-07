@@ -280,66 +280,63 @@ export default function SideNav() {
 
         {/* sidebar 1 */}
         <List>
-          {menuSidebar1.map((item, index) => (
-            <ListItem
-              key={index}
-              disablePadding
-              sx={{ display: "block" }}
-              onClick={() => navigate(item.route)}
-            >
-              <ListItemButton
-                sx={[
-                  {
-                    minHeight: 48,
-                    px: 2.5,
-                    backgroundColor:
-                      location.pathname === item.route
-                        ? "#1D8000"
-                        : "transparent", // Highlight active route
-                    color: location.pathname === item.route ? "white" : "black", // Change text color
-                    "&:hover": {
-                      backgroundColor:
-                        location.pathname === item.route
-                          ? "#1D8000"
-                          : "#f4f4f4", // Hover effect for active route
-                    },
-                  },
-                  open
-                    ? { justifyContent: "initial" }
-                    : { justifyContent: "center" },
-                ]}
+          {menuSidebar1.map((item, index) => {
+            const isActive =
+              location.pathname.startsWith(item.route) ||
+              (item.route === "/user_management" &&
+                location.pathname.startsWith("/add_user"));
+            return (
+              <ListItem
+                key={index}
+                disablePadding
+                sx={{ display: "block" }}
+                onClick={() => navigate(item.route)}
               >
-                <ListItemIcon
+                <ListItemButton
                   sx={[
                     {
-                      minWidth: 0,
-                      justifyContent: "center",
-                      color:
-                        location.pathname === item.route ? "white" : "black", // Set icon color to white if active
+                      minHeight: 48,
+                      px: 2.5,
+                      backgroundColor: isActive ? "#1D8000" : "transparent", // Highlight active route
+                      color: isActive ? "white" : "black", // Change text color
+                      "&:hover": {
+                        backgroundColor: isActive ? "#1D8000" : "#f4f4f4", // Hover effect for active route
+                      },
                     },
                     open
-                      ? {
-                          mr: 2,
-                        }
-                      : {
-                          mr: "auto",
-                        },
+                      ? { justifyContent: "initial" }
+                      : { justifyContent: "center" },
                   ]}
                 >
-                  {item.icon}
-                </ListItemIcon>
-                <h1
-                  className={`text-sm ${
-                    location.pathname === item.route
-                      ? "text-white"
-                      : "text-black"
-                  } ${open ? "opacity-100" : "hidden"}`}
-                >
-                  {item.label}
-                </h1>
-              </ListItemButton>
-            </ListItem>
-          ))}
+                  <ListItemIcon
+                    sx={[
+                      {
+                        minWidth: 0,
+                        justifyContent: "center",
+                        color: isActive ? "white" : "black", // Set icon color to white if active
+                      },
+                      open
+                        ? {
+                            mr: 2,
+                          }
+                        : {
+                            mr: "auto",
+                          },
+                    ]}
+                  >
+                    {item.icon}
+                  </ListItemIcon>
+                  <h1
+                    className={`text-sm ${
+                      isActive ? "text-white" : "text-black"
+                    } ${open ? "opacity-100" : "hidden"}`}
+                  >
+                    {item.label}
+                  </h1>
+                </ListItemButton>
+              </ListItem>
+            );
+          })}
         </List>
 
         <Divider sx={{ marginInline: "25px", marginBottom: "6px" }} />
