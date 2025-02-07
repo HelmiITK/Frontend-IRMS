@@ -6,12 +6,24 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import FooterComponent from "../Footer/FooterComponent";
+import Select from "react-select";
+import { FaAngleDown } from "react-icons/fa6";
+
+type OptionType = { value: string; label: string };
+const options = [
+  { value: "Super adminstrator", label: "Super adminstrator" },
+  { value: "Manager", label: "Manager" },
+  { value: "Initiator", label: "Initiator" },
+  { value: "General Manager", label: "General Manager" },
+  { value: "Ironman", label: "Ironman" },
+];
 
 const AddUserComponent = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [selectedJob, setSelectedJob] = useState("");
   const [selectedDepartment, setSelectedDepartment] = useState("");
   const [selectedSuperior, setSelectedSuperior] = useState("");
+  const [selectedOptions, setSelectedOptions] = useState<OptionType[]>([]);
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -143,63 +155,71 @@ const AddUserComponent = () => {
                   >
                     Roles
                   </label>
-                  <input
-                    type="text"
-                    id="roles"
-                    name="roles"
-                    placeholder="klik pilihan role"
-                    className="rounded-sm placeholder:text-sm px-3 py-2 border border-slate-300 shadow-sm shadow-slate-200 focus:shadow-md focus:shadow-green-300 focus:outline-none focus:ring-1 focus:ring-green-100"
+                  <Select
+                    isMulti
+                    options={options}
+                    value={selectedOptions}
+                    onChange={(selected) =>
+                      setSelectedOptions(selected as OptionType[])
+                    }
+                    placeholder="Select a role..."
+                    className="text-sm"
                   />
                 </div>
+
                 {/* Job */}
-                <div className="flex flex-col gap-1">
+                <div className="flex flex-col gap-1 relative">
                   <label
                     htmlFor="job"
                     className="font-semibold font-montserrat text-sm"
                   >
                     Job
                   </label>
-                  <select
-                    name="job"
-                    id="job"
-                    className={`rounded-sm px-3 py-2 border border-slate-300 shadow-sm shadow-slate-200 focus:shadow-md focus:shadow-green-300 focus:outline-none focus:ring-1 focus:ring-green-100 
-                    ${selectedJob === "" ? "text-gray-400" : "text-black"}`}
-                    value={selectedJob}
-                    onChange={(e) => setSelectedJob(e.target.value)}
-                  >
-                    <option value="" disabled hidden>
-                      Select a job...
-                    </option>
-                    <option value="IT Support" className="text-black">
-                      IT Support
-                    </option>
-                    <option value="Accounting Staf" className="text-black">
-                      Accounting Staf
-                    </option>
-                    <option value="Finance Supervisor" className="text-black">
-                      Finance Supervisor
-                    </option>
-                    <option value="Senior Manager" className="text-black">
-                      Senior Manager
-                    </option>
-                    <option
-                      value="General Manager HRD & GA"
-                      className="text-black"
+                  <div className="relative">
+                    <select
+                      name="job"
+                      id="job"
+                      className={`appearance-none text-sm rounded-sm px-3 py-[10px] border border-slate-300 shadow-sm shadow-slate-200 focus:shadow-md focus:shadow-green-300 focus:outline-none focus:ring-1 focus:ring-green-100 
+      ${selectedJob === "" ? "text-gray-400" : "text-black"} w-full`}
+                      value={selectedJob}
+                      onChange={(e) => setSelectedJob(e.target.value)}
                     >
-                      General Manager HRD & GA
-                    </option>
-                    <option
-                      value="Budget, Asset, & Control"
-                      className="text-black"
-                    >
-                      Budget, Asset, & Control
-                    </option>
-                  </select>
+                      <option value="" disabled hidden>
+                        Select a job...
+                      </option>
+                      <option value="IT Support" className="text-black">
+                        IT Support
+                      </option>
+                      <option value="Accounting Staf" className="text-black">
+                        Accounting Staf
+                      </option>
+                      <option value="Finance Supervisor" className="text-black">
+                        Finance Supervisor
+                      </option>
+                      <option value="Senior Manager" className="text-black">
+                        Senior Manager
+                      </option>
+                      <option
+                        value="General Manager HRD & GA"
+                        className="text-black"
+                      >
+                        General Manager HRD & GA
+                      </option>
+                      <option
+                        value="Budget, Asset, & Control"
+                        className="text-black"
+                      >
+                        Budget, Asset, & Control
+                      </option>
+                    </select>
+
+                    <FaAngleDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300 pointer-events-none hover:text-slate-800" />
+                  </div>
                 </div>
               </div>
-              <div className="flex flex-col w-full gap-3">
+              <div className="flex flex-col w-full gap-3 relative">
                 {/* Department */}
-                <div className="flex flex-col gap-1">
+                <div className="flex flex-col gap-1 relative">
                   <label
                     htmlFor="department"
                     className="font-semibold font-montserrat text-sm"
@@ -209,10 +229,12 @@ const AddUserComponent = () => {
                   <select
                     name="department"
                     id="department"
-                    className={`rounded-sm px-3 py-2 border border-slate-300 shadow-sm shadow-slate-200 focus:shadow-md focus:shadow-green-300 focus:outline-none focus:ring-1 focus:ring-green-100 
-                    ${
-                      selectedDepartment === "" ? "text-gray-400" : "text-black"
-                    }`}
+                    className={`appearance-none text-sm rounded-sm px-3 py-[10px] border border-slate-300 shadow-sm shadow-slate-200 focus:shadow-md focus:shadow-green-300 focus:outline-none focus:ring-1 focus:ring-green-100 
+                      ${
+                        selectedDepartment === ""
+                          ? "text-gray-400"
+                          : "text-black"
+                      } w-full`}
                     value={selectedDepartment}
                     onChange={(e) => setSelectedDepartment(e.target.value)}
                   >
@@ -244,19 +266,21 @@ const AddUserComponent = () => {
                       Guality, Safety, Health and Environtment
                     </option>
                   </select>
+
+                  <FaAngleDown className="absolute right-3 top-11 -translate-y-1/2 w-4 h-4 text-gray-300 pointer-events-none hover:text-slate-800" />
                 </div>
                 {/* Superior */}
-                <div className="flex flex-col gap-1">
+                <div className="flex flex-col gap-1 relative">
                   <label
                     htmlFor="superior"
-                    className="font-semibold font-montserrat text-sm"
+                    className="font-semibold font-montserrat text-sm relative"
                   >
                     Superior
                   </label>
                   <select
                     name="superior"
                     id="superior"
-                    className={`rounded-sm px-3 py-2 border border-slate-300 shadow-sm shadow-slate-200 focus:shadow-md focus:shadow-green-300 focus:outline-none focus:ring-1 focus:ring-green-100 
+                    className={`text-sm appearance-none rounded-sm px-3 py-[10px] border border-slate-300 shadow-sm shadow-slate-200 focus:shadow-md focus:shadow-green-300 focus:outline-none focus:ring-1 focus:ring-green-100 
                     ${
                       selectedSuperior === "" ? "text-gray-400" : "text-black"
                     }`}
@@ -291,6 +315,7 @@ const AddUserComponent = () => {
                       Alfian
                     </option>
                   </select>
+                  <FaAngleDown className="absolute right-3 top-11 -translate-y-1/2 w-4 h-4 text-gray-300 pointer-events-none hover:text-slate-800" />
                 </div>
               </div>
             </div>
