@@ -188,6 +188,7 @@ export default function SideNav() {
   ];
   return (
     // sidenav by MaterialUI
+
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
