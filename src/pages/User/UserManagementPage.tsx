@@ -179,6 +179,8 @@ const UserManagementPage = () => {
     });
   };
 
+  const paginationNumber = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+
   return (
     <Box sx={{ display: "flex" }}>
       <SideNav />
@@ -281,9 +283,9 @@ const UserManagementPage = () => {
               <thead>
                 <tr className="bg-gray-50">
                   {/* show dropdown */}
-                  <th className="flex flex-row items-center gap-1">
+                  <th className="flex flex-row items-center gap-1 justify-center">
                     <label htmlFor="show" className="text-sm text-black">
-                      Show
+                      Show :
                     </label>
                     <select
                       name="show"
@@ -508,37 +510,66 @@ const UserManagementPage = () => {
                     <td className="text-sm text-black">{itemList.id}</td>
                     <td className="text-sm text-black">{itemList.npk}</td>
                     <td>{itemList.name}</td>
-                    <td>{itemList.email}</td>
+                    <td className="text-sm text-black">{itemList.email}</td>
                     <td>
-                      <p className="bg-orange-500 py-1 px-2 rounded-md text-white text-center">
+                      <p className="bg-orange-500 py-1 px-2 rounded-md text-white text-center text-xs font-medium font-poppins">
                         {itemList.roles}
                       </p>
                     </td>
                     <td>{itemList.job}</td>
                     <td>{itemList.department}</td>
                     <td>{itemList.superior}</td>
-                    <td className="flex flex-col gap-2 ">
-                      <Link
-                        to="/detail_user"
-                        type="button"
-                        className="border border-blue-700 px-2 py-1 rounded-sm bg-blue-500 text-white capitalize hover:bg-blue-700 duration-150 text-center"
-                      >
-                        view
-                      </Link>
-                      <button className="border border-sky-500 px-2 py-1 rounded-sm bg-sky-300 text-white capitalize hover:bg-sky-700 duration-150">
-                        edit
-                      </button>
-                      <button
-                        onClick={() => handleDeleteRowUser(itemList.id)}
-                        type="button"
-                        className="border border-red-700 px-2 py-1 rounded-sm bg-red-500 text-white capitalize hover:bg-red-700 duration-150"
-                      >
-                        delete
-                      </button>
-                    </td>
+                    <div className="flex justify-center">
+                      <td className="flex flex-col gap-[5px]">
+                        <Link
+                          to="/detail_user"
+                          type="button"
+                          className=" text-xs border border-blue-700 px-2 py-1 rounded-sm bg-blue-500 text-white capitalize hover:bg-blue-700 duration-150 text-center"
+                        >
+                          view
+                        </Link>
+                        <button className="text-xs border border-sky-500 px-2 py-1 rounded-sm bg-sky-300 text-white capitalize hover:bg-sky-700 duration-150">
+                          edit
+                        </button>
+                        <button
+                          onClick={() => handleDeleteRowUser(itemList.id)}
+                          type="button"
+                          className="text-xs border border-red-700 px-2 py-1 rounded-sm bg-red-500 text-white capitalize hover:bg-red-700 duration-150"
+                        >
+                          delete
+                        </button>
+                      </td>
+                    </div>
                   </tr>
                 ))}
               </tbody>
+              {/* pagination */}
+              <tfoot>
+                <tr className="">
+                  <th>Showing 0-50 of 100</th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th className="">
+                    <div className="join flex items-center gap-2">
+                      <button className="join-item bg-slate-100 px-2 py-1 hover:bg-slate-200 duration-150">
+                        «
+                      </button>
+                      <div className="flex items-center">
+                        <h1 className="join-item px-2 py-1">1</h1>
+                      </div>
+                      <button className="join-item bg-slate-100 px-2 py-1 hover:bg-slate-200 duration-150">
+                        »
+                      </button>
+                    </div>
+                  </th>
+                </tr>
+              </tfoot>
             </table>
           </div>
         </Box>
