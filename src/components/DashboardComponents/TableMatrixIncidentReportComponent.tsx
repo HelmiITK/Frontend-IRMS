@@ -1,5 +1,9 @@
+import { useState } from "react";
+import { FiMinus, FiPlus } from "react-icons/fi";
 
 const TableMatrixIncidentReportComponent = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const tableMatrix = [
     {
       kategoriIncident: "Insignificant",
@@ -72,63 +76,88 @@ const TableMatrixIncidentReportComponent = () => {
       securitySiber: "Kelumpuhan infrastruktur IT",
     },
   ];
+
   return (
-    <div className="bg-white py-2 border border-t-2 border-t-slate-400 flex flex-col gap-2 shadow-sm shadow-slate-200">
-      <h1 className="font-montserrat font-medium text-lg capitalize border border-t-0 pb-2 border-x-0 px-2">
-        table matrix incident report
-      </h1>
-      {/* table by DaisyUI */}
-      <div className="overflow-x-auto">
-        <table className="table table-sm table-zebra">
-          <thead>
-            <tr>
-              <th></th>
-              <th className="text-black text-sm">Manusia</th>
-              <th className="text-black text-sm">Asset/Produksi</th>
-              <th className="text-black text-sm">Lingkungan</th>
-              <th className="text-black text-sm">Reputasi</th>
-              <th className="text-black text-sm">Security Fisik</th>
-              <th className="text-black text-sm">Security Siber</th>
-            </tr>
-          </thead>
-          <tbody>
-            {tableMatrix.map((itemTable, index) => (
-              <tr key={index} className="hover">
-                <th className="text-black text-sm">
-                  {itemTable.kategoriIncident}
-                </th>
-                <td>{itemTable.manusia}</td>
-                <td>
-                  {itemTable.asset.length > 1 ? (
-                    <ul className="list-disc ml-4">
-                      {itemTable.asset.map((item, index) => (
-                        <li key={index}>{item}</li>
-                      ))}
-                    </ul>
-                  ) : (
-                    itemTable.asset[0]
-                  )}
-                </td>
-                <td>{itemTable.lingkungan}</td>
-                <td>
-                  {itemTable.asset.length > 1 ? (
-                    <ul className="list-disc ml-4">
-                      {itemTable.reputasi.map((item, i) => (
-                        <li key={i}>{item}</li>
-                      ))}
-                    </ul>
-                  ) : (
-                    itemTable.asset[0]
-                  )}
-                </td>
-                <td>{itemTable.securityFisik}</td>
-                <td>{itemTable.securitySiber}</td>
-              </tr>
-            ))}
-          </tbody>
-          {/* <tfoot></tfoot> */}
-        </table>
+    <div className="bg-white pt-1 border border-t-2 border-t-slate-400 flex flex-col gap-2 shadow-sm shadow-slate-200 ">
+      <div className="flex justify-between items-center px-2 border border-t-0 border-x-0 pb-2">
+        <h1 className="font-montserrat font-medium text-base lg:text-lg capitalize">
+          Table Matrix Incident Report
+        </h1>
+        <button
+          className="p-1 rounded-md hover:bg-gray-200 transition"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? <FiMinus size={18} /> : <FiPlus size={18} />}
+        </button>
       </div>
+      {isOpen && (
+        <div className="overflow-x-auto">
+          <table className="table table-sm table-zebra min-w-full">
+            <thead>
+              <tr>
+                <th className="text-xs md:text-sm"></th>
+                <th className="text-black text-xs md:text-sm whitespace-nowrap">
+                  Manusia
+                </th>
+                <th className="text-black text-xs md:text-sm whitespace-nowrap">
+                  Asset/Produksi
+                </th>
+                <th className="text-black text-xs md:text-sm whitespace-nowrap">
+                  Lingkungan
+                </th>
+                <th className="text-black text-xs md:text-sm whitespace-nowrap">
+                  Reputasi
+                </th>
+                <th className="text-black text-xs md:text-sm whitespace-nowrap">
+                  Security Fisik
+                </th>
+                <th className="text-black text-xs md:text-sm whitespace-nowrap">
+                  Security Siber
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {tableMatrix.map((itemTable, index) => (
+                <tr key={index} className="hover">
+                  <th className="text-black text-xs md:text-sm whitespace-nowrap">
+                    {itemTable.kategoriIncident}
+                  </th>
+                  <td className="text-xs md:text-sm">{itemTable.manusia}</td>
+                  <td className="text-xs md:text-sm">
+                    {itemTable.asset.length > 1 ? (
+                      <ul className="list-disc ml-4">
+                        {itemTable.asset.map((item, i) => (
+                          <li key={i}>{item}</li>
+                        ))}
+                      </ul>
+                    ) : (
+                      itemTable.asset[0]
+                    )}
+                  </td>
+                  <td className="text-xs md:text-sm">{itemTable.lingkungan}</td>
+                  <td className="text-xs md:text-sm">
+                    {itemTable.reputasi.length > 1 ? (
+                      <ul className="list-disc ml-4">
+                        {itemTable.reputasi.map((item, i) => (
+                          <li key={i}>{item}</li>
+                        ))}
+                      </ul>
+                    ) : (
+                      itemTable.reputasi[0]
+                    )}
+                  </td>
+                  <td className="text-xs md:text-sm">
+                    {itemTable.securityFisik}
+                  </td>
+                  <td className="text-xs md:text-sm">
+                    {itemTable.securitySiber}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 };

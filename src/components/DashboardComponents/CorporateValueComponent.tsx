@@ -46,7 +46,7 @@ const CorporateValueComponent = () => {
         Corporate Value
       </h1>
       {/* jargon */}
-      <div className="relative w-full h-[400px] rounded-md overflow-hidden shadow-lg">
+      <div className="relative w-full lg:h-[400px] rounded-md overflow-hidden shadow-lg">
         <img
           src={BgDashboard}
           alt="foto dashboard"
@@ -55,13 +55,13 @@ const CorporateValueComponent = () => {
         {/* Overlay untuk efek gelap agar teks lebih jelas */}
         <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40 z-5"></div>
 
-        <div className="mt-20 flex flex-col justify-between items-start gap-6 p-3 ">
+        <div className="p-4 lg:mt-20 flex flex-col justify-between items-start gap-6 lg:p-3 ">
           {/* header jargon */}
           <div className="grid grid-cols-4 gap-4 items-center justify-center">
             {misi.map((item) => (
               <div
                 key={item.id}
-                className={`relative z-10 text-center text-white text-4xl font-montserrat font-semibold p-4 shadow-lg shadow-gray-400 rounded-md transition-transform duration-150 ease-in-out 
+                className={`relative z-10 text-center text-white text-2xl lg:text-4xl font-montserrat font-semibold p-2 lg:p-4 shadow-lg shadow-gray-400 rounded-md transition-transform duration-150 ease-in-out 
                   ${hoverId === item.id ? "scale-110" : "hover:scale-110"}`}
                 style={{ backgroundColor: item.color2 }}
                 onMouseEnter={() => setHoverId(item.id)}
@@ -72,7 +72,7 @@ const CorporateValueComponent = () => {
             ))}
           </div>
           {/* card jargon */}
-          <div className="relative z-10 grid grid-cols-4 gap-2">
+          <div className="relative z-10 grid grid-cols-1 gap-4 lg:grid lg:grid-cols-4 lg:gap-2">
             {misi.map((itemJargon) => (
               <div
                 key={itemJargon.id}
@@ -87,11 +87,11 @@ const CorporateValueComponent = () => {
                 <div className="flex flex-row items-end">
                   <div
                     style={{ backgroundColor: itemJargon.color2 }}
-                    className="shadow-md px-2 text-4xl rounded-sm text-white"
+                    className="shadow-md px-2 text-2xl lg:text-4xl rounded-sm text-white font-medium font-montserrat "
                   >
                     {itemJargon.id}
                   </div>
-                  <h1 className="font-medium text-xl text-white uppercase">
+                  <h1 className="font-medium text-base lg:text-xl text-white uppercase">
                     {itemJargon.judul}
                   </h1>
                 </div>
@@ -106,7 +106,7 @@ const CorporateValueComponent = () => {
         </div>
       </div>
       {/* visi misi */}
-      <div className="mt-3 rounded-sm grid grid-cols-2 gap-4">
+      <div className="mt-3 rounded-sm grid grid-cols-1 gap-2 lg:grid lg:grid-cols-2 lg:gap-4">
         {/* visi */}
         <div className="relative h-48 bg-gradient-to-r from-blue-700 to-slate-900 px-6 py-2 flex flex-row items-center justify-between rounded-md shadow-md shadow-slate-500 group hover:bg-gradient-to-l hover:from-blue-700 hover:to-slate-900 hover:shadow-lg hover:shadow-blue-500 duration-150 ease-linear">
           <div className="flex flex-col gap-2">

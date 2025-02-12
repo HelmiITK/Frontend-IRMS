@@ -38,11 +38,11 @@ const InformationReportComponent = () => {
     },
   ];
   return (
-    <div className="grid grid-cols-4 gap-x-4 gap-y-3 bg-white p-4 shadow-md rounded-sm">
+    <div className="p-1 grid grid-cols-1 gap-1 lg:grid lg:grid-cols-4 lg:gap-x-4 lg:gap-y-3 bg-white lg:p-4 shadow-md rounded-sm">
       {informationReport.map((itemReport, index) => (
         <div
           key={index}
-          className="border flex flex-row justify-between p-2 rounded-sm group hover:scale-105 hover:shadow-md hover:shadow-slate-400 hover:rounded-md hover:border-slate-400 duration-150 ease-linear "
+          className="p-1 border flex flex-row justify-between lg:p-2 rounded-sm group hover:scale-105 hover:shadow-md hover:shadow-slate-400 hover:rounded-md hover:border-slate-400 duration-150 ease-linear "
           style={{ backgroundColor: itemReport.bgColor }}
         >
           <div className="flex flex-col justify-between pl-3 py-2">

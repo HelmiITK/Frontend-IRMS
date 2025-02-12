@@ -10,13 +10,13 @@ const DashboardPage = () => {
   
   return (
     <>
-      <Box sx={{ display: "flex" }} className="bg-gray-50">
+      <Box sx={{ display: "flex" }} className="bg-gray-50 ">
         <SideNav />
         <div className="flex flex-col">
-          <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-            <div>
+          <Box component="main" sx={{ flexGrow: 1 }} className="p-2 lg:p-6">
+            <div className="mb-4">
               {/* header */}
-              <h1 className="mt-14 text-base font-montserrat font-medium tracking-wider">
+              <h1 className="mt-16 lg:mt-14 text-base font-montserrat font-medium tracking-wider">
                 Dashboard
               </h1>
               <div className="w-full h-[1px] bg-slate-300 my-2 mb-4"></div>
