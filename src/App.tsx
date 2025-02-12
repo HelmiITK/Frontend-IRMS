@@ -14,6 +14,7 @@ import ProfileUserPage from "./pages/User/ProfileUserPage";
 import AddUserComponent from "./components/UserComponents/AddUserComponent";
 import NotFoundPage from "./pages/NotFound/NotFoundPage";
 import DetailUserComponent from "./components/UserComponents/DetailUserComponent";
+import EditUserComponent from "./components/UserComponents/EditUserComponent";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/profile_user" element={<ProfileUserPage/>}/>
           <Route path="/add_user" element={<AddUserComponent/>}/>
           <Route path="/detail_user" element={<DetailUserComponent/>}/>
+          <Route path="/edit_user" element={<EditUserComponent/>}/>
 
           <Route path="/incident_report" element={<IncidentReportPage />} />
           <Route

@@ -18,7 +18,7 @@ const options = [
   { value: "Ironman", label: "Ironman" },
 ];
 
-const AddUserComponent = () => {
+const EditUserComponent = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [selectedJob, setSelectedJob] = useState("");
   const [selectedDepartment, setSelectedDepartment] = useState("");
@@ -36,7 +36,7 @@ const AddUserComponent = () => {
           {/* header top */}
           <div>
             <h1 className="font-montserrat text-xl capitalize mt-14 mb-2">
-              create user
+              edit data user
             </h1>
             <Divider className="w-full h-[0.5px] bg-slate-200 " />
           </div>
@@ -325,7 +325,7 @@ const AddUserComponent = () => {
                 type="button"
                 className="capitalize font-montserrat font-semibold text-sm p-[10px] rounded-sm shadow-md bg-white my-4 w-1/2 border-2 text-green-600 border-green-500 hover:bg-green-500 hover:text-white hover:shadow-lg hover:shadow-green-300 duration-150 ease-linear"
               >
-                save
+                save changes
               </button>
             </div>
           </form>
@@ -336,4 +336,4 @@ const AddUserComponent = () => {
   );
 };
 
-export default AddUserComponent;
+export default EditUserComponent;

@@ -284,7 +284,12 @@ export default function SideNav() {
           {menuSidebar1.map((item, index) => {
             const activeRoutes =
               item.route === "/user_management"
-                ? ["/add_user", "/detail_user", "/user_management"]
+                ? [
+                    "/user_management",
+                    "/add_user",
+                    "/detail_user",
+                    "/edit_user",
+                  ]
                 : [item.route]; // Tambahkan semua route di sini
             const isActive = activeRoutes.some((route) =>
               location.pathname.startsWith(route)

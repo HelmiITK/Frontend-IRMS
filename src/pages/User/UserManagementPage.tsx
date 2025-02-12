@@ -533,9 +533,13 @@ const UserManagementPage = () => {
                         >
                           View
                         </Link>
-                        <button className="text-xs border border-sky-500 px-2 py-1 rounded-sm bg-sky-300 text-white capitalize hover:bg-sky-700 duration-150">
+                        <Link
+                          to="/edit_user"
+                          type="button"
+                          className="text-xs border border-sky-500 px-2 py-1 rounded-sm bg-sky-300 text-white capitalize hover:bg-sky-700 duration-150 text-center"
+                        >
                           Edit
-                        </button>
+                        </Link>
                         <button
                           onClick={() => handleDeleteRowUser(itemList.id)}
                           type="button"
