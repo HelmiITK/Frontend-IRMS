@@ -185,25 +185,25 @@ const UserManagementPage = () => {
     <Box sx={{ display: "flex" }}>
       <SideNav />
       <div className="flex flex-col w-full">
-        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        <Box component="main" sx={{ flexGrow: 1 }} className="p-3 lg:p-6">
           <h1 className="mt-14 text-xl mb-2 font-montserrat">User List</h1>
           <Divider className="w-full h-[0.5px] bg-slate-200" />
 
           {/* Header tools fitur */}
-          <div className="py-2 flex flex-row gap-4">
+          <div className="py-2 flex flex-col gap-2 lg:flex lg:flex-row lg:gap-4">
             {/* left feature */}
-            <div className="flex flex-row gap-4">
+            <div className="flex items-center gap-2 lg:flex lg:flex-row lg:gap-4">
               {/* Create user  */}
               <Link to={"/add_user"}>
-                <button className="capitalize text-sm bg-green-500 py-1 px-4 rounded-sm shadow-md text-white border border-green-700 hover:scale-105 duration-150 ease-in-out hover:shadow-lg">
+                <button className="capitalize text-xs lg:text-sm bg-green-500 py-1 px-2 lg:py-1 lg:px-4 rounded-sm shadow-md text-white border border-green-700 hover:scale-105 duration-150 ease-in-out hover:shadow-lg">
                   add user
                 </button>
               </Link>
-              <Divider className="h-8 w-[1px] bg-black" />
+              <Divider className="hidden lg:block h-8 w-[1px] bg-black" />
               {/* searching */}
               <div className="flex flex-row gap-1 items-center">
                 <label htmlFor="search">
-                  <IoSearch className="w-6 h-6 text-slate-500" />
+                  <IoSearch className="hidden lg:block w-6 h-6 text-slate-500" />
                 </label>
                 <input
                   type="text"
@@ -213,12 +213,12 @@ const UserManagementPage = () => {
                   placeholder="search"
                 />
               </div>
-              <Divider className="h-8 w-[0.7px] bg-black" />
+              <Divider className="hidden lg:block h-8 w-[0.7px] bg-black" />
             </div>
             {/* right feature */}
-            <div className="flex flex-row gap-2 items-center">
+            <div className="flex flex-col gap-2 items-start lg:flex lg:flex-row lg:gap-2 lg:items-center">
               {/* Middle button */}
-              <div className="flex flex-row gap-2 mr-2">
+              <div className="flex flex-row gap-2 lg:flex lg:flex-row lg:gap-2 lg:mr-2">
                 {selectedUsers.length === userListField.length ? (
                   <button
                     typeof="button"
@@ -231,7 +231,7 @@ const UserManagementPage = () => {
                   <button
                     typeof="button"
                     onClick={handleSelectedAll}
-                    className="w-28 py-1 px-3 text-sm rounded-sm shadow-sm bg-zinc-500 text-white hover:scale-105 duration-150 ease-in-out hover:shadow-lg"
+                    className="px-2 py-1 text-xs w-28 lg:py-1 lg:px-3 lg:text-sm rounded-sm shadow-sm bg-zinc-500 text-white hover:scale-105 duration-150 ease-in-out hover:shadow-lg"
                   >
                     Select all
                   </button>
@@ -250,10 +250,10 @@ const UserManagementPage = () => {
                 </button>
               </div>
 
-              <Divider className="h-8 w-[0.7px] bg-black" />
+              <Divider className="hidden lg:block h-8 w-[0.7px] bg-black" />
 
               {/* dokumen button */}
-              <div className="flex flex-row gap-2 items-center ml-2">
+              <div className="flex flex-row gap-2 items-center lg:ml-2">
                 <div className="bg-slate-300 rounded-md shadow-sm flex items-center gap-[2px] p-1 hover:scale-105 duration-150 hover:shadow-md cursor-pointer">
                   <FaRegCopy className="w-6 h-6 p-[2px]" />
                   <p className="text-xs">Copy</p>
@@ -277,7 +277,7 @@ const UserManagementPage = () => {
           <Divider className="w-full h-[0.5px] bg-slate-200 " />
 
           {/* table user management by daisyUI */}
-          <div className="overflow-x-auto mt-4">
+          <div className="overflow-x-auto mt-2 lg:mt-4">
             <table className="table table-zebra">
               {/* head */}
               <thead>
