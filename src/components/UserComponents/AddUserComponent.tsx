@@ -32,7 +32,7 @@ const AddUserComponent = () => {
     <Box sx={{ display: "flex" }} className="bg-gray-100 h-screen">
       <SideNav />
       <div className="flex flex-col w-full">
-        <Box component={"main"} sx={{ flexGrow: 1, p: 3 }}>
+        <Box component={"main"} sx={{ flexGrow: 1 }} className="p-3 lg:p-6">
           {/* header top */}
           <div>
             <h1 className="font-montserrat text-xl capitalize mt-14 mb-2">
@@ -57,7 +57,7 @@ const AddUserComponent = () => {
             className="p-4 mt-3 bg-white rounded-sm shadow-sm shadow-slate-400 flex flex-col gap-3 border border-t-2 border-t-green-500"
           >
             {/* address */}
-            <div className="flex flex-row gap-4 mb-4 mt-2">
+            <div className="flex flex-col gap-2 mb-2 lg:flex lg:flex-row lg:gap-4 lg:mb-4 lg:mt-2">
               <h1 className="capitalize font-montserrat text-base font-medium text-black mr-2">
                 address
               </h1>
@@ -142,7 +142,7 @@ const AddUserComponent = () => {
             </div>
             <Divider className="w-full h-[0.5px] bg-slate-200 " />
             {/* position */}
-            <div className="flex flex-row gap-4 mt-2">
+            <div className="flex flex-col gap-2 lg:flex lg:flex-row lg:gap-4 lg:mt-2">
               <h1 className="capitalize font-montserrat text-base font-medium text-black mr-2">
                 position
               </h1>
