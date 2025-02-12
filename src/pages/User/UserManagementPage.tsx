@@ -487,62 +487,78 @@ const UserManagementPage = () => {
               </thead>
               {/* data field */}
               <tbody>
-                {userListField.map((itemList, index) => (
-                  <tr key={index}>
-                    <th>
-                      <label className="flex items-center justify-center">
-                        <input
-                          type="checkbox"
-                          className="checkbox"
-                          checked={selectedUsers.includes(itemList.id)}
-                          onChange={() => {
-                            if (selectedUsers.includes(itemList.id)) {
-                              setSelectedUsers(
-                                selectedUsers.filter((id) => id !== itemList.id)
-                              );
-                            } else {
-                              setSelectedUsers([...selectedUsers, itemList.id]);
-                            }
-                          }}
-                        />
-                      </label>
-                    </th>
-                    <td className="text-sm text-black">{itemList.id}</td>
-                    <td className="text-sm text-black">{itemList.npk}</td>
-                    <td>{itemList.name}</td>
-                    <td className="text-sm text-black">{itemList.email}</td>
-                    <td>
-                      <p className="bg-orange-500 py-1 px-2 rounded-md text-white text-center text-xs font-medium font-poppins">
-                        {itemList.roles}
-                      </p>
-                    </td>
-                    <td>{itemList.job}</td>
-                    <td>{itemList.department}</td>
-                    <td>{itemList.superior}</td>
-                    <div className="flex justify-center">
-                      <td className="flex flex-col gap-[5px]">
+                {userListField.length > 0 ? (
+                  userListField.map((itemList, index) => (
+                    <tr key={index}>
+                      <th>
+                        <label className="flex items-center justify-center">
+                          <input
+                            type="checkbox"
+                            className="checkbox"
+                            checked={selectedUsers.includes(itemList.id)}
+                            onChange={() => {
+                              if (selectedUsers.includes(itemList.id)) {
+                                setSelectedUsers(
+                                  selectedUsers.filter(
+                                    (id) => id !== itemList.id
+                                  )
+                                );
+                              } else {
+                                setSelectedUsers([
+                                  ...selectedUsers,
+                                  itemList.id,
+                                ]);
+                              }
+                            }}
+                          />
+                        </label>
+                      </th>
+                      <td className="text-sm text-black">{itemList.id}</td>
+                      <td className="text-sm text-black">{itemList.npk}</td>
+                      <td>{itemList.name}</td>
+                      <td className="text-sm text-black">{itemList.email}</td>
+                      <td>
+                        <p className="bg-orange-500 py-1 px-2 rounded-md text-white text-center text-xs font-medium font-poppins">
+                          {itemList.roles}
+                        </p>
+                      </td>
+                      <td>{itemList.job}</td>
+                      <td>{itemList.department}</td>
+                      <td>{itemList.superior}</td>
+                      <td className="flex flex-col gap-[5px] justify-center">
                         <Link
                           to="/detail_user"
                           type="button"
-                          className=" text-xs border border-blue-700 px-2 py-1 rounded-sm bg-blue-500 text-white capitalize hover:bg-blue-700 duration-150 text-center"
+                          className="text-xs border border-blue-700 px-2 py-1 rounded-sm bg-blue-500 text-white capitalize hover:bg-blue-700 duration-150 text-center"
                         >
-                          view
+                          View
                         </Link>
                         <button className="text-xs border border-sky-500 px-2 py-1 rounded-sm bg-sky-300 text-white capitalize hover:bg-sky-700 duration-150">
-                          edit
+                          Edit
                         </button>
                         <button
                           onClick={() => handleDeleteRowUser(itemList.id)}
                           type="button"
                           className="text-xs border border-red-700 px-2 py-1 rounded-sm bg-red-500 text-white capitalize hover:bg-red-700 duration-150"
                         >
-                          delete
+                          Delete
                         </button>
                       </td>
-                    </div>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td
+                      colSpan={10}
+                      className="text-center text-base text-black font-montserrat font-light py-5"
+                    >
+                      <h1 className="italic">Data field is not found</h1>
+                      <p className="text-2xl">😴</p>
+                    </td>
                   </tr>
-                ))}
+                )}
               </tbody>
+
               {/* pagination */}
               <tfoot>
                 <tr className="">

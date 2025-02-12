@@ -26,7 +26,7 @@ const FullScreenComponent = () => {
 
   return (
     <button
-      className="group hover:scale-110 ease-linear duration-150"
+      className="hidden lg:block group hover:scale-110 ease-linear duration-150"
       onClick={toggleFullScreen}
     >
       {isFullScreen ? (

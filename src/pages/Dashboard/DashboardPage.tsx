@@ -7,6 +7,7 @@ import SideNav from "../../components/SideNav";
 import Box from "@mui/material/Box";
 
 const DashboardPage = () => {
+  
   return (
     <>
       <Box sx={{ display: "flex" }} className="bg-gray-50">

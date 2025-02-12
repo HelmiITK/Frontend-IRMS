@@ -25,18 +25,24 @@ const ProfileUserPage = () => {
   return (
     <Box sx={{ display: "flex" }}>
       <SideNav />
-      <div className="flex flex-col w-full">
-        <Box component="main" sx={{ flexGrow: 1, p: 3 }} className="bg-slate-50 h-screen">
+      <div className=" flex flex-col lg:w-full">
+        <Box
+          component="main"
+          sx={{ flexGrow: 1 }}
+          className="bg-slate-50 pb-8 lg:h-screen p-2 lg:p-6"
+        >
           <h1 className="mt-14 text-black text-xl text-start mb-2 font-montserrat">
             Profile User
           </h1>
           <Divider className="w-full h-[0.5px] bg-slate-400" />
-          <div className="flex flex-col justify-center bg-white mt-6">
-            <div className="flex flex-row gap-4 justify-start items-center p-8  shadow-lg rounded-md border-2 border-blue-400">
+
+          <div className="bg-white mt-4 lg:mt-6">
+            <div className="p-2 py-3 flex flex-col gap-4 lg:flex lg:flex-row lg:gap-4 lg:justify-start lg:items-center lg:p-8 shadow-lg rounded-md border-2 border-blue-400">
+              {/* image */}
               <img
                 src={UserIcon}
                 alt="user icon"
-                className="w-44 h-44 p-2 mr-3 rounded-full shadow-md opacity-80"
+                className="hidden lg:block w-44 h-44 p-2 mr-3 rounded-full shadow-md opacity-80"
               />
               {/* not change */}
               <div className="flex flex-col gap-4 w-full">
@@ -68,10 +74,10 @@ const ProfileUserPage = () => {
                 </div>
               </div>
 
-              <div className="h-80 w-1  bg-yellow-200 "></div>
+              <div className="hidden lg:block lg:h-80 w-1 lg:bg-yellow-200 "></div>
 
               {/* change available */}
-              <div className="flex flex-col justify-center items-center w-full gap-1">
+              <div className="flex flex-col items-center gap-2 lg:flex lg:flex-col lg:justify-center lg:items-center lg:w-full lg:gap-1">
                 <div className="flex flex-row-reverse gap-2 items-center">
                   <h1 className="capitalize text-slate-600 font-montserrat text-lg text-center font-semibold">
                     change password
@@ -156,7 +162,7 @@ const ProfileUserPage = () => {
                   </div>
                   <button
                     type="button"
-                    className="capitalize font-montserrat font-medium text-base p-2 rounded-md shadow-md text-white bg-blue-500 hover:scale-x-125 hover:-tracking-wide duration-150 ease-in-out mx-28"
+                    className="mx-20 capitalize font-montserrat font-medium text-base p-2 rounded-md shadow-md text-white bg-blue-500 lg:hover:scale-x-125 lg:hover:-tracking-wide duration-150 ease-in-out lg:mx-28"
                   >
                     submit
                   </button>

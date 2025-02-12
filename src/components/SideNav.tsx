@@ -188,7 +188,6 @@ export default function SideNav() {
   ];
   return (
     // sidenav by MaterialUI
-
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
@@ -227,7 +226,7 @@ export default function SideNav() {
           )}
 
           {/* right nav link */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 lg:flex lg:items-center lg:gap-4">
             {/* language switcher by daisyUI*/}
             <LanguageSwitcherComponent />
             {/* fullscreen  */}
@@ -271,6 +270,7 @@ export default function SideNav() {
             </IconButton>
           </DrawerHeader>
         </div>
+        
         <Divider />
         {/* live clock */}
         <div className="flex items-center justify-center py-4">
