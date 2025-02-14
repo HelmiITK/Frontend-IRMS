@@ -44,7 +44,7 @@ const LoginPage: React.FC = () => {
         alt="background image"
         className="fixed top-0 left-0 w-screen h-screen object-cover z-0"
       />
-      <div className=" relative z-10 bg-black min-h-screen bg-opacity-25 lg:flex lg:flex-col lg:items-center">
+      <div className=" relative z-10 min-h-screen bg-opacity-25 lg:flex lg:flex-col lg:items-center lg:justify-center">
         {/* header */}
         <div className="relative z-10 flex flex-row items-center justify-center gap-2 py-3 px-3 bg-white bg-opacity-65 backdrop-blur-sm lg:w-[29%] lg:rounded-md lg:mt-4">
           <img src={LogoKPI} alt="logo" className="max-w-20" />
