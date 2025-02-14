@@ -38,15 +38,15 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto min-h-screen w-full overflow-hidden">
       <img
         src={BgLogin}
         alt="background image"
-        className="fixed top-0 left-0 w-full h-full object-cover z-0" // Ensure the background fills the screen
+        className="fixed top-0 left-0 w-screen h-screen object-cover z-0"
       />
-      <div className="relative z-10 bg-black min-h-screen bg-opacity-25 lg:flex lg:flex-col lg:items-center">
+      <div className=" relative z-10 bg-black min-h-screen bg-opacity-25 lg:flex lg:flex-col lg:items-center">
         {/* header */}
-        <div className="relative z-10 flex flex-row items-center justify-center gap-2 py-3 px-3 bg-white bg-opacity-80 lg:w-[29%] lg:rounded-md lg:mt-4">
+        <div className="relative z-10 flex flex-row items-center justify-center gap-2 py-3 px-3 bg-white bg-opacity-65 backdrop-blur-sm lg:w-[29%] lg:rounded-md lg:mt-4">
           <img src={LogoKPI} alt="logo" className="max-w-20" />
           <div className="flex flex-col">
             <h1 className="font-bold text-green-700 text-lg">
@@ -78,8 +78,8 @@ const LoginPage: React.FC = () => {
         </div>
 
         {/* form login */}
-        <div className="relative z-10 flex rounded-md mx-2 mt-4 flex-col items-center">
-          <div className="w-full max-w-md p-6 bg-white bg-opacity-80 rounded-lg shadow-md">
+        <div className="mx-6 relative z-10 flex rounded-md mt-4 flex-col items-center">
+          <div className="w-full max-w-md p-6 bg-white bg-opacity-65 rounded-lg shadow-md backdrop-blur-sm">
             <div className="flex flex-col items-center gap-2">
               <img src={WarningIcon} alt="icon" className="w-12 h-12" />
               <p className="font-poppins text-xl text-green-800 uppercase font-bold ">
@@ -97,7 +97,7 @@ const LoginPage: React.FC = () => {
               <div className="mb-4">
                 <label
                   htmlFor="npk"
-                  className="block mb-2 text-sm font-medium text-slate-800"
+                  className="block mb-2 text-sm font-medium text-black"
                 >
                   NPK
                 </label>
@@ -114,7 +114,7 @@ const LoginPage: React.FC = () => {
               <div className="mb-4 relative">
                 <label
                   htmlFor="password"
-                  className="block mb-2 text-sm font-medium text-slate-800"
+                  className="block mb-2 text-sm font-medium text-black"
                 >
                   Password
                 </label>
@@ -147,12 +147,12 @@ const LoginPage: React.FC = () => {
                   />
                   <label
                     htmlFor="remember"
-                    className="ml-2 text-sm text-gray-600"
+                    className="ml-2 text-sm text-blue-600"
                   >
                     Remember me
                   </label>
                 </div>
-                <a href="#" className="text-sm text-blue-500 hover:underline">
+                <a href="#" className="text-sm text-red-500 hover:underline">
                   Forgot Password?
                 </a>
               </div>
