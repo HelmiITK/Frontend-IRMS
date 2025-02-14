@@ -181,7 +181,7 @@ const UserManagementPage: React.FC = () => {
 
   return (
     <Box sx={{ display: "flex" }}>
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col w-full bg-gray-50">
         <Box component="main" sx={{ flexGrow: 1 }} className="p-3 lg:p-6">
           <h1 className="mt-14 text-xl mb-2 font-montserrat">User List</h1>
           <Divider className="w-full h-[0.5px] bg-slate-200" />
