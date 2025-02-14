@@ -2,12 +2,16 @@ import { FaArrowLeft } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import Bg from "../../assets/bgNotFound.jpg";
 
-const NotFoundPage = () => {
+const NotFoundPage: React.FC = () => {
   const navigate = useNavigate();
   return (
     <div className="w-full relative flex items-center justify-center">
       <div className="flex items-center flex-col">
-        <img src={Bg} alt="bg notfound" className="object-cover h-screen z-0 lg:w-screen lg:object-cover" />
+        <img
+          src={Bg}
+          alt="bg notfound"
+          className="object-cover h-screen z-0 lg:w-screen lg:object-cover"
+        />
         <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-80 z-5"></div>
 
         <div className="text-center absolute z-10 top-[40%] flex flex-col justify-center items-center">

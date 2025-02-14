@@ -1,9 +1,9 @@
 import { useState } from "react";
 import Flag from "react-world-flags";
 
-const LanguageSwitcherComponent = () => {
-  const [language, setLanguage] = useState("ID");
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+const LanguageSwitcherComponent: React.FC = () => {
+  const [language, setLanguage] = useState<string>("ID");
+  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const handleLanguageChange = (lang: string) => {
     setLanguage(lang);
     setIsDropdownOpen(false);

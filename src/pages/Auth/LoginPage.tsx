@@ -17,8 +17,8 @@ import { useNavigate } from "react-router-dom";
 // }
 
 const LoginPage: React.FC = () => {
-  const [passwordVisible, setPasswordVisible] = useState(false); //state menyimpan perubahan icon password
-  const [onClickLogin, setOnClickLogin] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState<boolean>(false); //state menyimpan perubahan icon password
+  const [onClickLogin, setOnClickLogin] = useState<boolean>(false);
   const navigate = useNavigate();
 
   // handle password icon
@@ -38,7 +38,7 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <>
+    <div className="container mx-auto">
       <img
         src={BgLogin}
         alt="background image"
@@ -183,7 +183,7 @@ const LoginPage: React.FC = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

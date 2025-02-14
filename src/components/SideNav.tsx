@@ -1,28 +1,20 @@
-// import * as React from "react";
 import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
 import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-
 import { IoSpeedometerSharp } from "react-icons/io5";
 import { FaUsers } from "react-icons/fa6";
 import { IoNotificationsSharp } from "react-icons/io5";
 import { HiClipboardList } from "react-icons/hi";
 import { IoMdAddCircle } from "react-icons/io";
 import { IoWarning } from "react-icons/io5";
-
-import { useLocation, useNavigate } from "react-router-dom";
 import LogoKPI from "../assets/KPI_logo_2.png";
 import { useState } from "react";
 import { HiSpeakerphone } from "react-icons/hi";
@@ -31,6 +23,7 @@ import FullScreenComponent from "./SideNavComponent/FullScreenComponent";
 import LiveClockComponent from "./SideNavComponent/LiveClockComponent";
 import ProfileComponent from "./SideNavComponent/ProfileComponent";
 import LanguageSwitcherComponent from "./SideNavComponent/LanguageSwitcherComponent";
+import { NavLink, useLocation } from "react-router-dom";
 
 const drawerWidth = 275;
 
@@ -118,12 +111,67 @@ const Drawer = styled(MuiDrawer, {
   ],
 }));
 
-export default function SideNav() {
-  const theme = useTheme();
-  const [open, setOpen] = useState(false);
+// validasi tipe data route dll
+interface MenuItem {
+  label: string;
+  icon: JSX.Element;
+  route: string;
+}
 
-  const navigate = useNavigate();
+const menuSidebar: MenuItem[] = [
+  {
+    label: "Dashboard",
+    icon: <IoSpeedometerSharp />,
+    route: "/dashboard",
+  },
+  {
+    label: "User Management",
+    icon: <FaUsers />,
+    route: "user_management",
+    // children: ["add_user", "detail_user", "edit_user"],
+  },
+  {
+    label: "User Alerts",
+    icon: <IoNotificationsSharp />,
+    route: "user_alerts",
+  },
+  {
+    label: "Incident Report",
+    icon: <HiClipboardList />,
+    route: "incident_report",
+  },
+  {
+    label: "My Incident Report",
+    icon: <IoMdAddCircle />,
+    route: "my_incident_report",
+  },
+  {
+    label: "History My Incident Report",
+    icon: <IoMdAddCircle />,
+    route: "history_my_incident_report",
+  },
+  {
+    label: "Task Incident Report",
+    icon: <IoWarning />,
+    route: "task_incident_report",
+  },
+  {
+    label: "History Task Incident Report",
+    icon: <IoWarning />,
+    route: "history_task_incident_report",
+  },
+  {
+    label: "Result",
+    icon: <HiSpeakerphone />,
+    route: "result",
+  },
+];
+
+const SideNav: React.FC = () => {
+  const theme = useTheme();
+  const [open, setOpen] = useState<boolean>(false);
   const location = useLocation();
+  const currentPath = location.pathname;
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -133,59 +181,6 @@ export default function SideNav() {
     setOpen(false);
   };
 
-  const menuSidebar1 = [
-    {
-      label: "Dashboard",
-      icon: <IoSpeedometerSharp />,
-      route: "/dashboard",
-    },
-    {
-      label: "User Management",
-      icon: <FaUsers />,
-      route: "/user_management",
-    },
-    {
-      label: "User Alerts",
-      icon: <IoNotificationsSharp />,
-      route: "/user_alerts",
-    },
-  ];
-
-  const menuSidebar2 = [
-    {
-      label: "Incident Report",
-      icon: <HiClipboardList />,
-      route: "/incident_report",
-    },
-    {
-      label: "My Incident Report",
-      icon: <IoMdAddCircle />,
-      route: "/my_incident_report",
-    },
-    {
-      label: "History My Incident Report",
-      icon: <IoMdAddCircle />,
-      route: "/history_my_incident_report",
-    },
-    {
-      label: "Task Incident Report",
-      icon: <IoWarning />,
-      route: "/task_incident_report",
-    },
-    {
-      label: "History Task Incident Report",
-      icon: <IoWarning />,
-      route: "/history_task_incident_report",
-    },
-  ];
-
-  const menuSidebar3 = [
-    {
-      label: "Result",
-      icon: <HiSpeakerphone />,
-      route: "/result",
-    },
-  ];
   return (
     // sidenav by MaterialUI
     <Box sx={{ display: "flex" }}>
@@ -270,204 +265,52 @@ export default function SideNav() {
             </IconButton>
           </DrawerHeader>
         </div>
-
         <Divider />
         {/* live clock */}
         <div className="flex items-center justify-center py-4">
           {open ? <LiveClockComponent /> : <FaClock className="text-primary" />}
         </div>
-
         <Divider />
+        {/* sidebar  */}
+        <ul>
+          {menuSidebar.map((item, index) => {
+            // Cek apakah ini menu parent yang memiliki child routes
+            // const isParentActive =
+            //   item.children &&
+            //   item.children.some((child) =>
+            //     currentPath.includes(`/${item.route}/${child}`)
+            //   );
 
-        {/* sidebar 1 */}
-        <List>
-          {menuSidebar1.map((item, index) => {
-            const activeRoutes =
-              item.route === "/user_management"
-                ? [
-                    "/user_management",
-                    "/add_user",
-                    "/detail_user",
-                    "/edit_user",
-                  ]
-                : [item.route]; // Tambahkan semua route di sini
-            const isActive = activeRoutes.some((route) =>
-              location.pathname.startsWith(route)
-            );
+            // Cek apakah halaman saat ini adalah halaman utama dari menu
+            const isCurrentRoute = currentPath.includes(`/${item?.route}`);
+
             return (
-              <ListItem
-                key={index}
-                disablePadding
-                sx={{ display: "block" }}
-                onClick={() => navigate(item.route)}
-              >
-                <ListItemButton
-                  sx={[
-                    {
-                      minHeight: 48,
-                      px: 2.5,
-                      backgroundColor: isActive ? "#1D8000" : "transparent", // Highlight active route
-                      color: isActive ? "white" : "black", // Change text color
-                      "&:hover": {
-                        backgroundColor: isActive ? "#1D8000" : "#f4f4f4", // Hover effect for active route
-                      },
-                    },
-                    open
-                      ? { justifyContent: "initial" }
-                      : { justifyContent: "center" },
-                  ]}
+              <li key={index}>
+                <NavLink
+                  to={item?.route}
+                  end
+                  className={({ isActive }) => {
+                    const active = isActive || isCurrentRoute;
+                    return open
+                      ? `flex items-center p-3 transition ${
+                          active ? "bg-primary text-white" : "text-black"
+                        }`
+                      : `flex items-center justify-center p-3 pl-5 transition ${
+                          active ? "bg-primary text-white" : "text-black"
+                        }`;
+                  }}
                 >
-                  <ListItemIcon
-                    sx={[
-                      {
-                        minWidth: 0,
-                        justifyContent: "center",
-                        color: isActive ? "white" : "black", // Set icon color to white if active
-                      },
-                      open
-                        ? {
-                            mr: 2,
-                          }
-                        : {
-                            mr: "auto",
-                          },
-                    ]}
-                  >
-                    {item.icon}
-                  </ListItemIcon>
-                  <h1
-                    className={`text-sm ${
-                      isActive ? "text-white" : "text-black"
-                    } ${open ? "opacity-100" : "hidden"}`}
-                  >
-                    {item.label}
-                  </h1>
-                </ListItemButton>
-              </ListItem>
+                  <span className="mr-3 text-lg">{item?.icon}</span>
+                  {open && <span className="ml-3">{item?.label}</span>}
+                </NavLink>
+              </li>
             );
           })}
-        </List>
-
+        </ul>
         <Divider sx={{ marginInline: "25px", marginBottom: "6px" }} />
-
-        {/* sidebar 2 */}
-        {menuSidebar2.map((item, index) => (
-          <ListItem
-            key={index}
-            disablePadding
-            sx={{ display: "block" }}
-            onClick={() => navigate(item.route)}
-          >
-            <ListItemButton
-              sx={[
-                {
-                  minHeight: 48,
-                  px: 2.5,
-                  backgroundColor:
-                    location.pathname === item.route
-                      ? "#1D8000"
-                      : "transparent", // Highlight active route
-                  color: location.pathname === item.route ? "white" : "black", // Change text color
-                  "&:hover": {
-                    backgroundColor:
-                      location.pathname === item.route ? "#1D8000" : "#f4f4f4", // Hover effect for active route
-                  },
-                },
-                open
-                  ? { justifyContent: "initial" }
-                  : { justifyContent: "center" },
-              ]}
-            >
-              <ListItemIcon
-                sx={[
-                  {
-                    minWidth: 0,
-                    justifyContent: "center",
-                    color: location.pathname === item.route ? "white" : "black", // Set icon color to white if active
-                  },
-                  open
-                    ? {
-                        mr: 2,
-                      }
-                    : {
-                        mr: "auto",
-                      },
-                ]}
-              >
-                {item.icon}
-              </ListItemIcon>
-              <h1
-                className={`text-sm ${
-                  location.pathname === item.route ? "text-white" : "text-black"
-                } ${open ? "opacity-100" : "hidden"}`}
-              >
-                {item.label}
-              </h1>
-            </ListItemButton>
-          </ListItem>
-        ))}
-
-        <Divider
-          sx={{ marginInline: "25px", marginTop: "6px", marginBottom: "6px" }}
-        />
-
-        {/* sidebar 3 */}
-        {menuSidebar3.map((item, index) => (
-          <ListItem
-            key={index}
-            disablePadding
-            sx={{ display: "block" }}
-            onClick={() => navigate(item.route)}
-          >
-            <ListItemButton
-              sx={[
-                {
-                  minHeight: 48,
-                  px: 2.5,
-                  backgroundColor:
-                    location.pathname === item.route
-                      ? "#1D8000"
-                      : "transparent", // Highlight active route
-                  color: location.pathname === item.route ? "white" : "black", // Change text color
-                  "&:hover": {
-                    backgroundColor:
-                      location.pathname === item.route ? "#1D8000" : "#f4f4f4", // Hover effect for active route
-                  },
-                },
-                open
-                  ? { justifyContent: "initial" }
-                  : { justifyContent: "center" },
-              ]}
-            >
-              <ListItemIcon
-                sx={[
-                  {
-                    minWidth: 0,
-                    justifyContent: "center",
-                    color: location.pathname === item.route ? "white" : "black", // Set icon color to white if active
-                  },
-                  open
-                    ? {
-                        mr: 2,
-                      }
-                    : {
-                        mr: "auto",
-                      },
-                ]}
-              >
-                {item.icon}
-              </ListItemIcon>
-              <h1
-                className={`text-sm ${
-                  location.pathname === item.route ? "text-white" : "text-black"
-                } ${open ? "opacity-100" : "hidden"}`}
-              >
-                {item.label}
-              </h1>
-            </ListItemButton>
-          </ListItem>
-        ))}
       </Drawer>
     </Box>
   );
-}
+};
+
+export default SideNav;

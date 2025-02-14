@@ -15,43 +15,50 @@ import AddUserComponent from "./components/UserComponents/AddUserComponent";
 import NotFoundPage from "./pages/NotFound/NotFoundPage";
 import DetailUserComponent from "./components/UserComponents/DetailUserComponent";
 import EditUserComponent from "./components/UserComponents/EditUserComponent";
+import Layout from "./layout/Layout";
 
 function App() {
   return (
     <>
       <Router>
         <Routes>
+          {/* nested routes  */}
           <Route path="/" element={<LoginPage />} />
 
-          <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/user_management" element={<UserManagementPage />} />
-          <Route path="/user_alerts" element={<UserAlertsPage />} />
-          <Route path="/profile_user" element={<ProfileUserPage/>}/>
-          <Route path="/add_user" element={<AddUserComponent/>}/>
-          <Route path="/detail_user" element={<DetailUserComponent/>}/>
-          <Route path="/edit_user" element={<EditUserComponent/>}/>
+          <Route path="/dashboard" element={<Layout />}>
+            <Route index element={<DashboardPage />} />
+            <Route path="profile_user" element={<ProfileUserPage />} />
 
-          <Route path="/incident_report" element={<IncidentReportPage />} />
-          <Route
-            path="/my_incident_report"
-            element={<MyIncidentReportPage />}
-          />
-          <Route
-            path="/history_my_incident_report"
-            element={<HistoryMyIncidentReportPage />}
-          />
-          <Route
-            path="/task_incident_report"
-            element={<TaskIncidentReportPage />}
-          />
-          <Route
-            path="/history_task_incident_report"
-            element={<HistoryTaskIncidentReportPage />}
-          />
+            <Route path="user_management">
+              <Route index element={<UserManagementPage />} />
+              <Route path="add_user" element={<AddUserComponent />} />
+              <Route path="detail_user" element={<DetailUserComponent />} />
+              <Route path="edit_user" element={<EditUserComponent />} />
+            </Route>
 
-          <Route path="/result" element={<ResultPage />} />
+            <Route path="user_alerts" element={<UserAlertsPage />} />
+            <Route path="incident_report" element={<IncidentReportPage />} />
+            <Route
+              path="my_incident_report"
+              element={<MyIncidentReportPage />}
+            />
+            <Route
+              path="history_my_incident_report"
+              element={<HistoryMyIncidentReportPage />}
+            />
+            <Route
+              path="task_incident_report"
+              element={<TaskIncidentReportPage />}
+            />
+            <Route
+              path="history_task_incident_report"
+              element={<HistoryTaskIncidentReportPage />}
+            />
 
-          <Route path="*" element={<NotFoundPage/>}/>
+            <Route path="result" element={<ResultPage />} />
+          </Route>
+
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Router>
     </>

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
-const LiveClockComponent = () => {
+const LiveClockComponent: React.FC = () => {
   // Time
-  const [time, setTime] = useState(new Date());
+  const [time, setTime] = useState<Date>(new Date());
 
   useEffect(() => {
     const interval = setInterval(() => {

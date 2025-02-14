@@ -1,4 +1,4 @@
-const FooterComponent = () => {
+const FooterComponent: React.FC = () => {
   return (
     <footer className="footer bg-primary text-green-100 items-center p-4">
       <aside className="grid-flow-col items-center">

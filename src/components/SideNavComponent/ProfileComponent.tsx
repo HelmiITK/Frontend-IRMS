@@ -3,7 +3,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { MdLogout } from "react-icons/md";
 import { Link } from "react-router-dom";
 
-const ProfileComponent = () => {
+const ProfileComponent: React.FC = () => {
   return (
     <div className="dropdown dropdown-end">
       <div tabIndex={0} role="button" className=" m-1">
@@ -16,7 +16,7 @@ const ProfileComponent = () => {
         <h1 className="text-white text-sm mb-1 text-center bg-black rounded-md py-1 ">Admin</h1>
         <li>
           <Link
-            to={"/profile_user"}
+            to={"profile_user"}
             className="flex flex-row gap-2 items-center px-2"
           >
             <FiUser className="w-6 h-6 text-black" />

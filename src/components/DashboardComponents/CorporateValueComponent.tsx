@@ -3,7 +3,7 @@ import MissionIcon from "../../assets/mission.png";
 import BgDashboard from "../../assets/BgDashboard.png";
 import { useState } from "react";
 
-const CorporateValueComponent = () => {
+const CorporateValueComponent: React.FC = () => {
   const [hoverId, setHoverId] = useState<string | null>(null);
   // state untuk melacak hover
 

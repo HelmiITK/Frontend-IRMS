@@ -1,5 +1,5 @@
 import { Divider } from "@mui/material";
-import SideNav from "../../components/SideNav";
+// import SideNav from "../../components/SideNav";
 import Box from "@mui/material/Box";
 import { IoSearch } from "react-icons/io5";
 import { RxDoubleArrowUp } from "react-icons/rx";
@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 import FooterComponent from "../../components/Footer/FooterComponent";
 import Swal from "sweetalert2";
 
-const UserManagementPage = () => {
+const UserManagementPage: React.FC = () => {
   // Definisikan tipe data User
   type User = {
     id: number;
@@ -179,11 +179,8 @@ const UserManagementPage = () => {
     });
   };
 
-  // const paginationNumber = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
-
   return (
     <Box sx={{ display: "flex" }}>
-      <SideNav />
       <div className="flex flex-col w-full">
         <Box component="main" sx={{ flexGrow: 1 }} className="p-3 lg:p-6">
           <h1 className="mt-14 text-xl mb-2 font-montserrat">User List</h1>
@@ -194,7 +191,7 @@ const UserManagementPage = () => {
             {/* left feature */}
             <div className="flex items-center gap-2 lg:flex lg:flex-row lg:gap-4">
               {/* Create user  */}
-              <Link to={"/add_user"}>
+              <Link to={"add_user"}>
                 <button className="capitalize text-xs lg:text-sm bg-green-500 py-1 px-2 lg:py-1 lg:px-4 rounded-sm shadow-md text-white border border-green-700 hover:scale-105 duration-150 ease-in-out hover:shadow-lg">
                   add user
                 </button>
@@ -527,14 +524,14 @@ const UserManagementPage = () => {
                       <td>{itemList.superior}</td>
                       <td className="flex flex-col gap-[5px] justify-center">
                         <Link
-                          to="/detail_user"
+                          to="detail_user"
                           type="button"
                           className="text-xs border border-blue-700 px-2 py-1 rounded-sm bg-blue-500 text-white capitalize hover:bg-blue-700 duration-150 text-center"
                         >
                           View
                         </Link>
                         <Link
-                          to="/edit_user"
+                          to="edit_user"
                           type="button"
                           className="text-xs border border-sky-500 px-2 py-1 rounded-sm bg-sky-300 text-white capitalize hover:bg-sky-700 duration-150 text-center"
                         >

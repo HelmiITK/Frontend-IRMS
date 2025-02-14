@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { AiOutlineFullscreen } from "react-icons/ai";
 import { AiOutlineFullscreenExit } from "react-icons/ai";
 
-const FullScreenComponent = () => {
-  const [isFullScreen, setIsFullScreen] = useState(false);
+const FullScreenComponent: React.FC = () => {
+  const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
 
   const toggleFullScreen = () => {
     if (!document.fullscreenElement) {

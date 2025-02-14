@@ -4,7 +4,7 @@ import RejectedIcon from "../../assets/rejected.png";
 import InProgressIcon from "../../assets/processing-time (1).png";
 import CloseIcon from "../../assets/thumbs-up.png";
 
-const InformationReportComponent = () => {
+const InformationReportComponent: React.FC = () => {
   const informationReport = [
     {
       total: "27",
