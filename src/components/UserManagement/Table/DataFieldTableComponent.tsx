@@ -60,7 +60,7 @@ const DataFieldTableComponent: React.FC<DataFieldTableComponentProps> = ({
             <td>{itemList.job}</td>
             <td>{itemList.department}</td>
             <td>{itemList.superior}</td>
-            <td className="flex flex-col gap-[5px] justify-center">
+            <td className="sticky right-0 flex flex-col gap-[5px] justify-center ">
               <Link
                 to="detail_user"
                 type="button"

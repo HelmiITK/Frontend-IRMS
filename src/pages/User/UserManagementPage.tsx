@@ -7,87 +7,98 @@ import HeaderTableComponent from "../../components/UserManagement/Table/HeaderTa
 import DataFieldTableComponent from "../../components/UserManagement/Table/DataFieldTableComponent";
 import PaginationTableComponent from "../../components/UserManagement/Table/PaginationTableComponent";
 
+interface User {
+  id: number;
+  npk: string;
+  name: string;
+  email: string;
+  roles: string;
+  job: string;
+  department: string;
+  superior: string;
+}
+
+const userList: User[] = [
+  {
+    id: 24,
+    npk: "11211043",
+    name: "Helmi",
+    email: "helmi123@gmail.com",
+    roles: "Superintendent",
+    job: "Manager",
+    department: "Information technology",
+    superior: "Daniel",
+  },
+  {
+    id: 44,
+    npk: "11211043",
+    name: "Asep",
+    email: "asep@gmail.com",
+    roles: "independent",
+    job: "IT Support",
+    department: "Information technology",
+    superior: "Daniel",
+  },
+  {
+    id: 12,
+    npk: "11211047",
+    name: "Heri",
+    email: "heri@gmail.com",
+    roles: "Messanger",
+    job: "External Relation Specialist",
+    department: "Logistic",
+    superior: "Yessi",
+  },
+  {
+    id: 99,
+    npk: "11211066",
+    name: "Kurniawam",
+    email: "kurniawan@gmail.com",
+    roles: "CSR",
+    job: "Sales",
+    department: "General Afiar",
+    superior: "Nina",
+  },
+  {
+    id: 87,
+    npk: "11211033",
+    name: "Marasep",
+    email: "mara@gmail.com",
+    roles: "Office Boy",
+    job: "Senior OB",
+    department: "Office",
+    superior: "Rasyid",
+  },
+  {
+    id: 76,
+    npk: "11211032",
+    name: "Erine",
+    email: "erni@gmail.com",
+    roles: "Brand Ambassador",
+    job: "Streamer",
+    department: "Esports",
+    superior: "Lasti",
+  },
+];
+
 const UserManagementPage: React.FC = () => {
-  // Definisikan tipe data User
-  type User = {
-    id: number;
-    npk: string;
-    name: string;
-    email: string;
-    roles: string;
-    job: string;
-    department: string;
-    superior: string;
-  };
-
-  const userList: User[] = [
-    {
-      id: 24,
-      npk: "11211043",
-      name: "Helmi",
-      email: "helmi123@gmail.com",
-      roles: "Superintendent",
-      job: "Manager",
-      department: "Information technology",
-      superior: "Daniel",
-    },
-    {
-      id: 44,
-      npk: "11211043",
-      name: "Asep",
-      email: "asep@gmail.com",
-      roles: "independent",
-      job: "IT Support",
-      department: "Information technology",
-      superior: "Daniel",
-    },
-    {
-      id: 12,
-      npk: "11211047",
-      name: "Heri",
-      email: "heri@gmail.com",
-      roles: "Messanger",
-      job: "External Relation Specialist",
-      department: "Logistic",
-      superior: "Yessi",
-    },
-    {
-      id: 99,
-      npk: "11211066",
-      name: "Kurniawam",
-      email: "kurniawan@gmail.com",
-      roles: "CSR",
-      job: "Sales",
-      department: "General Afiar",
-      superior: "Nina",
-    },
-    {
-      id: 87,
-      npk: "11211033",
-      name: "Marasep",
-      email: "mara@gmail.com",
-      roles: "Office Boy",
-      job: "Senior OB",
-      department: "Office",
-      superior: "Rasyid",
-    },
-    {
-      id: 76,
-      npk: "11211032",
-      name: "Erine",
-      email: "erni@gmail.com",
-      roles: "Brand Ambassador",
-      job: "Streamer",
-      department: "Esports",
-      superior: "Lasti",
-    },
-  ];
-
   // NOTE: perhatikan posisi state pastikan berada di atas fungsi agar dideklarasi terlebih dahulu
   const [sortField, setSortField] = useState<keyof User | null>(null);
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
   const [selectedUsers, setSelectedUsers] = useState<number[]>([]);
+
   const [userListField, setUserListField] = useState<User[]>(userList);
+  const [currentPage, setCurrentPage] = useState(1);
+  const rowsPerPage = 4;
+
+  const totalPages = Math.ceil(userListField.length / rowsPerPage);
+  const indexOfLastRow = currentPage * rowsPerPage;
+  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+  const currentUsers = userListField.slice(indexOfFirstRow, indexOfLastRow);
+
+  const handlePageChange = (newPage: number) => {
+    setCurrentPage(newPage);
+  };
 
   // funsgi sorting ascending & descending
   const handleSort = (field: keyof User) => {
@@ -174,44 +185,49 @@ const UserManagementPage: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col w-full bg-gray-50">
-      <h1 className="mt-2 lg:mt-3 text-xl mb-2 font-montserrat">User List</h1>
-      <Divider className="w-full h-[0.5px] bg-slate-200" />
+    <div className="flex flex-col w-full h-full justify-between bg-gray-50">
+      <div>
+        <h1 className="mt-2 lg:mt-3 text-xl mb-2 font-montserrat">User List</h1>
+        <Divider className="w-full h-[0.5px] bg-slate-200" />
 
-      {/* Header tools fitur and filtering */}
-      <FilterComponent
-        handleSelectedAll={handleSelectedAll}
-        selectedUsers={selectedUsers}
-        userListField={userListField}
-        handleDeselectedAll={handleDeselectedAll}
-        handleDeleteSelected={handleDeleteSelected}
-      />
+        {/* Header tools fitur and filtering */}
+        <FilterComponent
+          handleSelectedAll={handleSelectedAll}
+          selectedUsers={selectedUsers}
+          userListField={userListField}
+          handleDeselectedAll={handleDeselectedAll}
+          handleDeleteSelected={handleDeleteSelected}
+        />
 
-      <Divider className="w-full h-[0.5px] bg-slate-200 " />
+        <Divider className="w-full h-[0.5px] bg-slate-200 " />
 
-      {/* table user management by daisyUI */}
-      <div className="overflow-x-auto mt-2 lg:mt-4">
-        <table className="table table-zebra">
-          {/* head */}
-          <HeaderTableComponent
-            handleSort={handleSort}
-            sortField={sortField}
-            sortOrder={sortOrder}
+        {/* table user management by daisyUI */}
+        <div className="overflow-x-auto mt-2 lg:mt-4 mb-8">
+          <table className="table table-zebra">
+            {/* head */}
+            <HeaderTableComponent
+              handleSort={handleSort}
+              sortField={sortField}
+              sortOrder={sortOrder}
+            />
+
+            {/* data field */}
+            <DataFieldTableComponent
+              userListField={currentUsers}
+              selectedUsers={selectedUsers}
+              setSelectedUsers={setSelectedUsers}
+              handleDeleteRowUser={handleDeleteRowUser}
+            />
+
+            {/* pagination */}
+          </table>
+          <PaginationTableComponent
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
           />
-
-          {/* data field */}
-          <DataFieldTableComponent
-            userListField={userListField}
-            selectedUsers={selectedUsers}
-            setSelectedUsers={setSelectedUsers}
-            handleDeleteRowUser={handleDeleteRowUser}
-          />
-
-          {/* pagination */}
-          <PaginationTableComponent />
-        </table>
+        </div>
       </div>
-
       <FooterComponent />
     </div>
   );
