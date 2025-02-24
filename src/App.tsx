@@ -11,10 +11,10 @@ import TaskIncidentReportPage from "./pages/Incident Report/TaskIncidentReportPa
 import HistoryTaskIncidentReportPage from "./pages/Incident Report/HistoryTaskIncidentReportPage";
 import ResultPage from "./pages/Result/ResultPage";
 import ProfileUserPage from "./pages/User/ProfileUserPage";
-import AddUserComponent from "./components/UserComponents/AddUserComponent";
+import AddUserComponent from "./components/UserManagement/Action/AddUserComponent";
 import NotFoundPage from "./pages/NotFound/NotFoundPage";
-import DetailUserComponent from "./components/UserComponents/DetailUserComponent";
-import EditUserComponent from "./components/UserComponents/EditUserComponent";
+import DetailUserComponent from "./components/UserManagement/Action/DetailUserComponent";
+import EditUserComponent from "./components/UserManagement/Action/EditUserComponent";
 import Layout from "./layout/Layout";
 import ForgetPasswordPage from "./pages/Auth/ForgetPasswordPage";
 

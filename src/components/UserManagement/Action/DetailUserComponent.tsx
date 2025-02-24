@@ -1,4 +1,4 @@
-import FooterComponent from "../Footer/FooterComponent";
+import FooterComponent from "../../Footer/FooterComponent";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { Divider } from "@mui/material";
 import { Link } from "react-router-dom";

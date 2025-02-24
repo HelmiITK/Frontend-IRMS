@@ -3,7 +3,7 @@ import { IoEye, IoEyeOff } from "react-icons/io5";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { IoIosArrowRoundBack } from "react-icons/io";
-import FooterComponent from "../Footer/FooterComponent";
+import FooterComponent from "../../Footer/FooterComponent";
 import Select from "react-select";
 import { FaAngleDown } from "react-icons/fa6";
 
@@ -16,7 +16,7 @@ const options = [
   { value: "Ironman", label: "Ironman" },
 ];
 
-const AddUserComponent: React.FC = () => {
+const EditUserComponent: React.FC = () => {
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
   const [selectedJob, setSelectedJob] = useState<string>("");
   const [selectedDepartment, setSelectedDepartment] = useState<string>("");
@@ -27,12 +27,12 @@ const AddUserComponent: React.FC = () => {
     setPasswordVisible(!passwordVisible);
   };
   return (
-    <div className="flex flex-col h-full justify-between gap-10">
+    <div className="flex flex-col gap-10 justify-between h-full">
       <div className="flex flex-col w-full">
         {/* header top */}
         <div>
           <h1 className="font-montserrat text-xl capitalize mt-2 lg:mt-3 mb-2">
-            create user
+            edit data user
           </h1>
           <Divider className="w-full h-[0.5px] bg-slate-200 " />
         </div>
@@ -321,7 +321,7 @@ const AddUserComponent: React.FC = () => {
               type="button"
               className="capitalize font-montserrat font-semibold text-sm p-[10px] rounded-sm shadow-md bg-white my-4 w-1/2 border-2 text-green-600 border-green-500 hover:bg-green-500 hover:text-white hover:shadow-lg hover:shadow-green-300 duration-150 ease-linear"
             >
-              save
+              save changes
             </button>
           </div>
         </form>
@@ -331,4 +331,4 @@ const AddUserComponent: React.FC = () => {
   );
 };
 
-export default AddUserComponent;
+export default EditUserComponent;
