@@ -27,7 +27,7 @@ const LiveClockComponent: React.FC = () => {
   };
 
   return (
-    <div className="text-2xl text-start flex justify-center py-2 px-7 font-semibold tracking-widest text-primary border border-slate-200 rounded-lg drop-shadow-lg shadow-sm">
+    <div className="text-xl lg:text-2xl text-start flex justify-center py-2 px-7 font-semibold tracking-widest text-primary border border-slate-200 rounded-lg drop-shadow-lg shadow-sm">
       <div>{formatTime(time)}</div>
     </div>
   );
