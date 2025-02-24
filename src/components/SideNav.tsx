@@ -68,7 +68,6 @@ const menuSidebar: MenuItem[] = [
 
 const SideNav: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -76,12 +75,6 @@ const SideNav: React.FC = () => {
 
   const handleDrawerClose = () => {
     setOpen(false);
-    setOpenDropdown(null);
-  };
-
-  const toggleDropdown = (label: string) => {
-    setOpen(true);
-    setOpenDropdown(openDropdown === label ? null : label);
   };
 
   return (
@@ -94,9 +87,7 @@ const SideNav: React.FC = () => {
       {/* Sidebar list */}
       <SideBarComponent
         open={open}
-        openDropdown={openDropdown}
         handleDrawerClose={handleDrawerClose}
-        toggleDropdown={toggleDropdown}
         menuSidebar={menuSidebar}
       />
     </Box>

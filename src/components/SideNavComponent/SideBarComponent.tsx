@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom";
-import { FaChevronUp, FaChevronDown } from "react-icons/fa";
 import MuiDrawer from "@mui/material/Drawer";
 import { FaClock } from "react-icons/fa6";
 import IconButton from "@mui/material/IconButton";
@@ -82,17 +81,13 @@ interface MenuItem {
 
 interface SideBarComponentProps {
   open: boolean;
-  openDropdown: string | null;
   handleDrawerClose: () => void;
-  toggleDropdown: (label: string) => void;
   menuSidebar: MenuItem[];
 }
 
 const SideBarComponent: React.FC<SideBarComponentProps> = ({
   open,
-  openDropdown,
   handleDrawerClose,
-  toggleDropdown,
   menuSidebar,
 }) => {
   const theme = useTheme();
@@ -110,9 +105,8 @@ const SideBarComponent: React.FC<SideBarComponentProps> = ({
     >
       {/* header */}
       <DrawerHeader className="flex flex-row lg:gap-5">
-
-        <h1 className="font-montserrat text-xs lg:text-sm font-semibold text-primary ">
-          PT. Kaltim Parna Industri
+        <h1 className="font-montserrat text-xs font-semibold text-primary ">
+          PT Kaltim Parna Industri
         </h1>
         <IconButton onClick={handleDrawerClose}>
           {theme.direction === "rtl" ? <LuChevronRight /> : <LuChevronLeft />}
@@ -134,7 +128,7 @@ const SideBarComponent: React.FC<SideBarComponentProps> = ({
             className="flex flex-col hover:bg-gray-50 duration-150 ease-linear"
           >
             {/* Parent route */}
-            {item.route ? (
+            {item.route && (
               <NavLink
                 to={item.route}
                 end
@@ -159,28 +153,6 @@ const SideBarComponent: React.FC<SideBarComponentProps> = ({
                   </>
                 )}
               </NavLink>
-            ) : (
-              <div
-                className={`flex items-center pl-6 pr-5 py-3 cursor-pointer ${
-                  !open ? "justify-center" : "justify-between"
-                }`}
-                onClick={() => toggleDropdown(item.label)}
-              >
-                <div className="flex items-center gap-3">
-                  <span className="text-lg text-gray-700">{item.icon}</span>
-                  {open && (
-                    <span className="text-sm lg:text-base text-gray-700 capitalize">
-                      {item.label}
-                    </span>
-                  )}
-                </div>
-                {open &&
-                  (openDropdown === item.label ? (
-                    <FaChevronUp className="w-3 h-3 text-gray-500" />
-                  ) : (
-                    <FaChevronDown className="w-3 h-3 text-gray-500" />
-                  ))}
-              </div>
             )}
           </li>
         ))}

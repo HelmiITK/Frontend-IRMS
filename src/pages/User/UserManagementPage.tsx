@@ -6,6 +6,9 @@ import FilterComponent from "../../components/UserManagement/FilterComponent";
 import HeaderTableComponent from "../../components/UserManagement/Table/HeaderTableComponent";
 import DataFieldTableComponent from "../../components/UserManagement/Table/DataFieldTableComponent";
 import PaginationTableComponent from "../../components/UserManagement/Table/PaginationTableComponent";
+import { MdChevronRight } from "react-icons/md";
+import { AiFillHome } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 interface User {
   id: number;
@@ -187,10 +190,27 @@ const UserManagementPage: React.FC = () => {
   return (
     <div className="flex flex-col w-full h-full justify-between bg-gray-50">
       <div>
-        <h1 className="mt-2 lg:mt-3 text-xl mb-2 font-montserrat">User List</h1>
+        {/* header */}
+        <div className="flex flex-col gap-2 mb-4">
+          <h1 className="mt-2 lg:mt-3 text-xl font-montserrat">User List</h1>
+          <div className="flex items-center gap-1">
+            <Link
+              to={"/dashboard"}
+              className="flex items-center gap-1 cursor-pointer text-gray-500 hover:text-black"
+            >
+              <AiFillHome className="text-sm " />
+              <h1 className=" text-sm capitalize">dashboard</h1>
+            </Link>
+
+            <MdChevronRight className="text-gray-500" />
+
+            <h2 className="text-sm capitalize text-black">user management</h2>
+          </div>
+        </div>
+
         <Divider className="w-full h-[0.5px] bg-slate-200" />
 
-        {/* Header tools fitur and filtering */}
+        {/* filtering */}
         <FilterComponent
           handleSelectedAll={handleSelectedAll}
           selectedUsers={selectedUsers}

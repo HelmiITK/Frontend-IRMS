@@ -1,29 +1,38 @@
 import FooterComponent from "../../Footer/FooterComponent";
-import { IoIosArrowRoundBack } from "react-icons/io";
-import { Divider } from "@mui/material";
 import { Link } from "react-router-dom";
+import { MdChevronRight } from "react-icons/md";
+import { AiFillHome } from "react-icons/ai";
 
 const DetailUserComponent: React.FC = () => {
   return (
     <div className="flex flex-col h-full justify-between gap-10">
       <div className="flex flex-col w-full">
         {/* header top */}
-        <div>
-          <h1 className="font-montserrat text-xl capitalize mt-2 lg:mt-3 mb-2">
+        <div className="flex flex-col gap-2 mb-2">
+          <h1 className="mt-2 lg:mt-3 text-xl font-montserrat capitalize">
             detail user
           </h1>
-          <Divider className="w-full h-[0.5px] bg-slate-200 " />
+          <div className="flex items-center gap-1">
+            <Link
+              to={"/dashboard"}
+              className="flex items-center gap-1 cursor-pointer text-gray-500 hover:text-black"
+            >
+              <AiFillHome className="text-sm " />
+              <h1 className=" text-sm capitalize">dashboard</h1>
+            </Link>
+            <MdChevronRight className="text-gray-500" />
+            <Link
+              to={"../"}
+              className="text-sm capitalize cursor-pointer text-gray-500 hover:text-black"
+            >
+              user management
+            </Link>
+            <MdChevronRight className="text-gray-500" />
+            <h1 className="text-sm capitalize text-black">detail user</h1>
+          </div>
         </div>
-        {/* button back */}
-        <div className="flex justify-start">
-          <Link
-            to={"../"}
-            className="flex items-center gap-1 mt-2 hover:underline hover:-translate-x-1 duration-150"
-          >
-            <IoIosArrowRoundBack className="w-6 h-6" />
-            <h2 className="italic text-sm">Back</h2>
-          </Link>
-        </div>
+
+        {/* content */}
       </div>
       <FooterComponent />
     </div>
