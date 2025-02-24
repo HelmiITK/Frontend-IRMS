@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FiMinus, FiPlus } from "react-icons/fi";
+import { motion } from "framer-motion";
 
 interface incidentMatrix {
   kategoriIncident: string;
@@ -85,11 +86,11 @@ const tableMatrix: incidentMatrix[] = [
 ];
 
 const TableMatrixIncidentReportComponent: React.FC = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false); 
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
-    <div className="bg-white pt-1 border border-t-2 border-t-slate-400 flex flex-col gap-2 shadow-sm shadow-slate-200 ">
-      <div className="flex justify-between items-center px-2 border border-t-0 border-x-0 pb-2">
+    <div className=" bg-white pt-1 border-t-2 border-t-slate-400 flex flex-col gap-2 shadow-md shadow-slate-200 ">
+      <div className="flex justify-between items-center px-2 border border-t-0 border-x-0 border-b-0 py-1">
         <h1 className="font-montserrat font-medium text-base lg:text-lg capitalize">
           Table Matrix Incident Report
         </h1>
@@ -100,7 +101,12 @@ const TableMatrixIncidentReportComponent: React.FC = () => {
           {isOpen ? <FiMinus size={18} /> : <FiPlus size={18} />}
         </button>
       </div>
-      {isOpen && (
+      <motion.div
+        initial={{ height: 0, opacity: 0 }}
+        animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className="overflow-hidden"
+      >
         <div className="overflow-x-auto">
           <table className="table table-sm table-zebra min-w-full">
             <thead>
@@ -167,7 +173,7 @@ const TableMatrixIncidentReportComponent: React.FC = () => {
             </tbody>
           </table>
         </div>
-      )}
+      </motion.div>
     </div>
   );
 };

@@ -1,4 +1,3 @@
-import Box from "@mui/material/Box";
 import FooterComponent from "../Footer/FooterComponent";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { Divider } from "@mui/material";
@@ -6,11 +5,11 @@ import { Link } from "react-router-dom";
 
 const DetailUserComponent: React.FC = () => {
   return (
-    <div className="flex flex-col w-full">
-      <Box component={"main"} sx={{ flexGrow: 1, p: 3 }}>
+    <div className="flex flex-col h-full justify-between gap-10">
+      <div className="flex flex-col w-full">
         {/* header top */}
         <div>
-          <h1 className="font-montserrat text-xl capitalize mt-14 mb-2">
+          <h1 className="font-montserrat text-xl capitalize mt-2 lg:mt-3 mb-2">
             detail user
           </h1>
           <Divider className="w-full h-[0.5px] bg-slate-200 " />
@@ -25,7 +24,7 @@ const DetailUserComponent: React.FC = () => {
             <h2 className="italic text-sm">Back</h2>
           </Link>
         </div>
-      </Box>
+      </div>
       <FooterComponent />
     </div>
   );

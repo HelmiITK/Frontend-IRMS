@@ -1,5 +1,4 @@
 import { Divider } from "@mui/material";
-import Box from "@mui/material/Box";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -28,11 +27,11 @@ const EditUserComponent: React.FC = () => {
     setPasswordVisible(!passwordVisible);
   };
   return (
-    <div className="flex flex-col w-full">
-      <Box component={"main"} sx={{ flexGrow: 1 }} className="p-3 lg:p-6">
+    <div className="flex flex-col gap-10 justify-between h-full">
+      <div className="flex flex-col w-full">
         {/* header top */}
         <div>
-          <h1 className="font-montserrat text-xl capitalize mt-14 mb-2">
+          <h1 className="font-montserrat text-xl capitalize mt-2 lg:mt-3 mb-2">
             edit data user
           </h1>
           <Divider className="w-full h-[0.5px] bg-slate-200 " />
@@ -326,7 +325,7 @@ const EditUserComponent: React.FC = () => {
             </button>
           </div>
         </form>
-      </Box>
+      </div>
       <FooterComponent />
     </div>
   );

@@ -8,6 +8,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { FiMinus, FiPlus } from "react-icons/fi";
+import { motion } from "framer-motion";
 
 const PieChartCategoryIncidentComponent: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -19,9 +20,9 @@ const PieChartCategoryIncidentComponent: React.FC = () => {
   ];
 
   return (
-    <div className="flex flex-col gap-2 bg-white border-t-2 border-red-500 rounded-sm shadow-sm">
+    <div className=" flex flex-col gap-2 bg-white border-t-2 border-red-500 rounded-sm shadow-md shadow-slate-200">
       {/* Header */}
-      <div className="flex justify-between items-center p-2 border-b-2 border-slate-100">
+      <div className="flex justify-between items-center px-2 border border-t-0 border-x-0 border-b-0 py-1">
         <h1 className="font-montserrat font-medium text-base lg:text-lg capitalize">
           Kategori Insiden
         </h1>
@@ -34,7 +35,12 @@ const PieChartCategoryIncidentComponent: React.FC = () => {
       </div>
 
       {/* Pie Chart */}
-      {isOpen && (
+      <motion.div
+        initial={{ height: 0, opacity: 0 }}
+        animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className="overflow-hidden"
+      >
         <div className="flex flex-col items-center justify-center mt-2 mb-3 ">
           <h3 className="font-montserrat font-medium text-base">
             Kategori Insiden
@@ -69,7 +75,7 @@ const PieChartCategoryIncidentComponent: React.FC = () => {
             </ResponsiveContainer>
           </div>
         </div>
-      )}
+      </motion.div>
     </div>
   );
 };
