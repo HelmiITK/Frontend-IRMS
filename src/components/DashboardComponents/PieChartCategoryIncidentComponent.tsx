@@ -28,9 +28,9 @@ const PieChartCategoryIncidentComponent: React.FC = () => {
         </h1>
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="p-1 rounded-md hover:bg-gray-200 transition"
+          className="p-2 hover:bg-gray-200 rounded"
         >
-          {isOpen ? <FiMinus size={20} /> : <FiPlus size={20} />}
+          {isOpen ? <FiMinus size={18} /> : <FiPlus size={18} />}
         </button>
       </div>
 

@@ -202,7 +202,7 @@ const UserManagementPage: React.FC = () => {
         <Divider className="w-full h-[0.5px] bg-slate-200 " />
 
         {/* table user management by daisyUI */}
-        <div className="overflow-x-auto mt-2 lg:mt-4 mb-8">
+        <div className="overflow-x-auto w-full mt-2 lg:mt-4 mb-8 ">
           <table className="table table-zebra">
             {/* head */}
             <HeaderTableComponent

@@ -89,85 +89,67 @@ const TableMatrixIncidentReportComponent: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
-    <div className=" bg-white pt-1 border-t-2 border-t-slate-400 flex flex-col gap-2 shadow-md shadow-slate-200 ">
-      <div className="flex justify-between items-center px-2 border border-t-0 border-x-0 border-b-0 py-1">
+    <div className="bg-white shadow-md overflow-hidden border-t-2 border-slate-400 px-2 pb-2 pt-1">
+      <div className="flex justify-between items-center">
         <h1 className="font-montserrat font-medium text-base lg:text-lg capitalize">
-          Table Matrix Incident Report
+          table matrix incident report
         </h1>
         <button
-          className="p-1 rounded-md hover:bg-gray-200 transition"
           onClick={() => setIsOpen(!isOpen)}
+          className="p-2 hover:bg-gray-200 rounded"
         >
           {isOpen ? <FiMinus size={18} /> : <FiPlus size={18} />}
         </button>
       </div>
+
       <motion.div
         initial={{ height: 0, opacity: 0 }}
         animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
         className="overflow-hidden"
       >
         <div className="overflow-x-auto">
-          <table className="table table-sm table-zebra min-w-full">
+          <table className="table table-zebra w-full">
             <thead>
               <tr>
-                <th className="text-xs md:text-sm"></th>
-                <th className="text-black text-xs md:text-sm whitespace-nowrap">
-                  Manusia
-                </th>
-                <th className="text-black text-xs md:text-sm whitespace-nowrap">
-                  Asset/Produksi
-                </th>
-                <th className="text-black text-xs md:text-sm whitespace-nowrap">
-                  Lingkungan
-                </th>
-                <th className="text-black text-xs md:text-sm whitespace-nowrap">
-                  Reputasi
-                </th>
-                <th className="text-black text-xs md:text-sm whitespace-nowrap">
-                  Security Fisik
-                </th>
-                <th className="text-black text-xs md:text-sm whitespace-nowrap">
-                  Security Siber
-                </th>
+                <th></th>
+                <th>Manusia</th>
+                <th>Asset</th>
+                <th>Lingkungan</th>
+                <th>Reputasi</th>
+                <th>Security Fisik</th>
+                <th>Security Siber</th>
               </tr>
             </thead>
             <tbody>
-              {tableMatrix.map((itemTable, index) => (
-                <tr key={index} className="hover">
-                  <th className="text-black text-xs md:text-sm whitespace-nowrap">
-                    {itemTable.kategoriIncident}
-                  </th>
-                  <td className="text-xs md:text-sm">{itemTable.manusia}</td>
+              {tableMatrix.map((row, index) => (
+                <tr key={index}>
+                  <td>{row.kategoriIncident}</td>
+                  <td>{row.manusia}</td>
                   <td className="text-xs md:text-sm">
-                    {itemTable.asset.length > 1 ? (
+                    {row.asset.length > 1 ? (
                       <ul className="list-disc ml-4">
-                        {itemTable.asset.map((item, i) => (
+                        {row.asset.map((item, i) => (
                           <li key={i}>{item}</li>
                         ))}
                       </ul>
                     ) : (
-                      itemTable.asset[0]
+                      row.asset[0]
                     )}
                   </td>
-                  <td className="text-xs md:text-sm">{itemTable.lingkungan}</td>
+                  <td>{row.lingkungan}</td>
                   <td className="text-xs md:text-sm">
-                    {itemTable.reputasi.length > 1 ? (
+                    {row.asset.length > 1 ? (
                       <ul className="list-disc ml-4">
-                        {itemTable.reputasi.map((item, i) => (
+                        {row.reputasi.map((item, i) => (
                           <li key={i}>{item}</li>
                         ))}
                       </ul>
                     ) : (
-                      itemTable.reputasi[0]
+                      row.asset[0]
                     )}
                   </td>
-                  <td className="text-xs md:text-sm">
-                    {itemTable.securityFisik}
-                  </td>
-                  <td className="text-xs md:text-sm">
-                    {itemTable.securitySiber}
-                  </td>
+                  <td>{row.securityFisik}</td>
+                  <td>{row.securitySiber}</td>
                 </tr>
               ))}
             </tbody>
