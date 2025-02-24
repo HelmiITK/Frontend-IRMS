@@ -16,6 +16,7 @@ import NotFoundPage from "./pages/NotFound/NotFoundPage";
 import DetailUserComponent from "./components/UserComponents/DetailUserComponent";
 import EditUserComponent from "./components/UserComponents/EditUserComponent";
 import Layout from "./layout/Layout";
+import ForgetPasswordPage from "./pages/Auth/ForgetPasswordPage";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Routes>
           {/* nested routes  */}
           <Route path="/" element={<LoginPage />} />
+          <Route path="/forget-password" element={<ForgetPasswordPage />} />
 
           <Route path="/dashboard" element={<Layout />}>
             <Route index element={<DashboardPage />} />

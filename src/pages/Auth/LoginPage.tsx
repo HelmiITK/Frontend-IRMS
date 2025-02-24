@@ -10,12 +10,6 @@ import { useState } from "react";
 import { PulseLoader } from "react-spinners";
 import { useNavigate } from "react-router-dom";
 
-// Props with react ts
-// interface Props {
-//   title: string;
-//   onclick: () => void;
-// }
-
 const LoginPage: React.FC = () => {
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false); //state menyimpan perubahan icon password
   const [onClickLogin, setOnClickLogin] = useState<boolean>(false);
@@ -37,6 +31,9 @@ const LoginPage: React.FC = () => {
     }, 2000);
   };
 
+  const handleForgetPass = () => {
+    navigate("/forget-password");
+  };
   return (
     <div className="container mx-auto min-h-screen w-full overflow-hidden">
       <img
@@ -152,9 +149,13 @@ const LoginPage: React.FC = () => {
                     Remember me
                   </label>
                 </div>
-                <a href="#" className="text-sm text-red-500 hover:underline">
+                <button
+                  onClick={handleForgetPass}
+                  type="button"
+                  className="text-sm text-red-500 hover:underline"
+                >
                   Forgot Password?
-                </a>
+                </button>
               </div>
 
               {/* Login Button */}
