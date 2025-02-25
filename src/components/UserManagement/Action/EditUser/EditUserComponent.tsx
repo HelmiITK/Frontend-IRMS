@@ -1,10 +1,10 @@
 import { Divider } from "@mui/material";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import FooterComponent from "../../Footer/FooterComponent";
+import FooterComponent from "../../../Footer/FooterComponent";
 import Select from "react-select";
 import { FaAngleDown } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 import { MdChevronRight } from "react-icons/md";
 import { AiFillHome } from "react-icons/ai";
 
@@ -17,7 +17,7 @@ const options = [
   { value: "Ironman", label: "Ironman" },
 ];
 
-const AddUserComponent: React.FC = () => {
+const EditUserComponent: React.FC = () => {
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
   const [selectedJob, setSelectedJob] = useState<string>("");
   const [selectedDepartment, setSelectedDepartment] = useState<string>("");
@@ -28,12 +28,12 @@ const AddUserComponent: React.FC = () => {
     setPasswordVisible(!passwordVisible);
   };
   return (
-    <div className="flex flex-col h-full justify-between gap-10">
+    <div className="flex flex-col gap-10 justify-between h-full">
       <div className="flex flex-col w-full">
-        {/* header top */}
+        {/* header  */}
         <div className="flex flex-col gap-2 mb-2">
           <h1 className="mt-2 lg:mt-3 text-xl font-montserrat capitalize">
-            create user
+            edit data user
           </h1>
           <div className="flex items-center gap-1">
             <Link
@@ -51,9 +51,10 @@ const AddUserComponent: React.FC = () => {
               user management
             </Link>
             <MdChevronRight className="text-gray-500" />
-            <h1 className="text-sm capitalize text-black">add user</h1>
+            <h1 className="text-sm capitalize text-black">edit user</h1>
           </div>
         </div>
+
         {/* form create user */}
         <form
           action=""
@@ -328,7 +329,7 @@ const AddUserComponent: React.FC = () => {
               type="button"
               className="capitalize font-montserrat font-semibold text-sm p-[10px] rounded-sm shadow-md bg-white my-4 w-1/2 border-2 text-green-600 border-green-500 hover:bg-green-500 hover:text-white hover:shadow-lg hover:shadow-green-300 duration-150 ease-linear"
             >
-              save
+              save changes
             </button>
           </div>
         </form>
@@ -338,4 +339,4 @@ const AddUserComponent: React.FC = () => {
   );
 };
 
-export default AddUserComponent;
+export default EditUserComponent;

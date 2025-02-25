@@ -13,7 +13,7 @@ const PaginationTableComponent: React.FC<PaginationTableComponentProps> = ({
 }) => {
   return (
     <>
-      <div className="flex justify-center gap-4 mt-2 items-center lg:mt-4">
+      <div className="flex justify-center overflow-hidden w-full gap-4 mt-2 items-center lg:mt-4">
         <button
           disabled={currentPage === 1}
           onClick={() => onPageChange(currentPage - 1)}

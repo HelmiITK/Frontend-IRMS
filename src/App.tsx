@@ -1,4 +1,3 @@
-import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/Auth/LoginPage";
 import DashboardPage from "./pages/Dashboard/DashboardPage";
@@ -11,10 +10,10 @@ import TaskIncidentReportPage from "./pages/Incident Report/TaskIncidentReportPa
 import HistoryTaskIncidentReportPage from "./pages/Incident Report/HistoryTaskIncidentReportPage";
 import ResultPage from "./pages/Result/ResultPage";
 import ProfileUserPage from "./pages/User/ProfileUserPage";
-import AddUserComponent from "./components/UserManagement/Action/AddUserComponent";
+import AddUserComponent from "./components/UserManagement/Action/AddUser/AddUserComponent";
 import NotFoundPage from "./pages/NotFound/NotFoundPage";
-import DetailUserComponent from "./components/UserManagement/Action/DetailUserComponent";
-import EditUserComponent from "./components/UserManagement/Action/EditUserComponent";
+import DetailUserComponent from "./components/UserManagement/Action/DetailUser/DetailUserComponent";
+import EditUserComponent from "./components/UserManagement/Action/EditUser/EditUserComponent";
 import Layout from "./layout/Layout";
 import ForgetPasswordPage from "./pages/Auth/ForgetPasswordPage";
 

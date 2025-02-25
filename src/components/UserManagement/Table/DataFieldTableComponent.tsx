@@ -26,7 +26,7 @@ const DataFieldTableComponent: React.FC<DataFieldTableComponentProps> = ({
   handleDeleteRowUser,
 }) => {
   return (
-    <tbody>
+    <tbody className="overflow-hidden">
       {userListField.length > 0 ? (
         userListField.map((itemList, index) => (
           <tr key={index}>

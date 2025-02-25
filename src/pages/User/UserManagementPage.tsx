@@ -6,9 +6,7 @@ import FilterComponent from "../../components/UserManagement/FilterComponent";
 import HeaderTableComponent from "../../components/UserManagement/Table/HeaderTableComponent";
 import DataFieldTableComponent from "../../components/UserManagement/Table/DataFieldTableComponent";
 import PaginationTableComponent from "../../components/UserManagement/Table/PaginationTableComponent";
-import { MdChevronRight } from "react-icons/md";
-import { AiFillHome } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import HeaderUserManagemenComponent from "../../components/UserManagement/HeaderUserManagemenComponent";
 
 interface User {
   id: number;
@@ -188,25 +186,10 @@ const UserManagementPage: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col w-full h-full justify-between bg-gray-50">
-      <div>
+    <div className="flex flex-col min-h-screen w-full justify-between bg-gray-50">
+      <div className="w-full">
         {/* header */}
-        <div className="flex flex-col gap-2 mb-4">
-          <h1 className="mt-2 lg:mt-3 text-xl font-montserrat">User List</h1>
-          <div className="flex items-center gap-1">
-            <Link
-              to={"/dashboard"}
-              className="flex items-center gap-1 cursor-pointer text-gray-500 hover:text-black"
-            >
-              <AiFillHome className="text-sm " />
-              <h1 className=" text-sm capitalize">dashboard</h1>
-            </Link>
-
-            <MdChevronRight className="text-gray-500" />
-
-            <h2 className="text-sm capitalize text-black">user management</h2>
-          </div>
-        </div>
+        <HeaderUserManagemenComponent />
 
         <Divider className="w-full h-[0.5px] bg-slate-200" />
 
@@ -222,32 +205,37 @@ const UserManagementPage: React.FC = () => {
         <Divider className="w-full h-[0.5px] bg-slate-200 " />
 
         {/* table user management by daisyUI */}
-        <div className="overflow-x-auto w-full mt-2 lg:mt-4 mb-8 ">
-          <table className="table table-zebra">
-            {/* head */}
-            <HeaderTableComponent
-              handleSort={handleSort}
-              sortField={sortField}
-              sortOrder={sortOrder}
-            />
+        <div className="w-full overflow-hidden rounded-lg shadow-lg bg-white mt-2 lg:mt-4 mb-8">
+          <div className="overflow-auto">
+            <table className="table table-zebra ">
+              {/* head */}
+              <HeaderTableComponent
+                handleSort={handleSort}
+                sortField={sortField}
+                sortOrder={sortOrder}
+              />
 
-            {/* data field */}
-            <DataFieldTableComponent
-              userListField={currentUsers}
-              selectedUsers={selectedUsers}
-              setSelectedUsers={setSelectedUsers}
-              handleDeleteRowUser={handleDeleteRowUser}
-            />
+              {/* data field */}
+              <DataFieldTableComponent
+                userListField={currentUsers}
+                selectedUsers={selectedUsers}
+                setSelectedUsers={setSelectedUsers}
+                handleDeleteRowUser={handleDeleteRowUser}
+              />
+            </table>
+          </div>
 
-            {/* pagination */}
-          </table>
-          <PaginationTableComponent
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={handlePageChange}
-          />
+          {/* pagination */}
+          <div className="p-4">
+            <PaginationTableComponent
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
+          </div>
         </div>
       </div>
+
       <FooterComponent />
     </div>
   );

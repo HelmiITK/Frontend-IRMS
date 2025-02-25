@@ -6,6 +6,7 @@ import Divider from "@mui/material/Divider";
 import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
 import { LuChevronRight, LuChevronLeft } from "react-icons/lu";
 import LiveClockComponent from "./LiveClockComponent";
+import logoKpi from "../../assets/KPI_logo_2.png";
 
 const drawerWidth = 275; // Default drawer width for larger screens
 const mobileDrawerWidth = 220; // Drawer width for mobile screens
@@ -104,10 +105,13 @@ const SideBarComponent: React.FC<SideBarComponentProps> = ({
       }}
     >
       {/* header */}
-      <DrawerHeader className="flex flex-row lg:gap-5">
-        <h1 className="font-montserrat text-xs font-semibold text-primary ">
-          PT Kaltim Parna Industri
-        </h1>
+      <DrawerHeader className="flex flex-row lg:gap-2">
+        <div className="flex items-center gap-2">
+          <img src={logoKpi} alt="" className="w-8 hidden lg:block" />
+          <h1 className="font-montserrat text-xs font-semibold text-primary ">
+            PT Kaltim Parna Industri
+          </h1>
+        </div>
         <IconButton onClick={handleDrawerClose}>
           {theme.direction === "rtl" ? <LuChevronRight /> : <LuChevronLeft />}
         </IconButton>
@@ -142,7 +146,7 @@ const SideBarComponent: React.FC<SideBarComponentProps> = ({
                   <>
                     <span
                       className={`mr-3 text-lg ${
-                        isActive ? "text-white" : "text-gray-700"
+                        isActive ? "text-white" : "text-primary"
                       }`}
                     >
                       {item.icon}
