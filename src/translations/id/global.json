@@ -1,0 +1,41 @@
+{
+  "cardDashboardInfo": {
+    "totalReports": "Total Laporan",
+    "approved": "Disetujui",
+    "rejected": "Ditolak",
+    "inProgress": "Sedang Diproses",
+    "close": "Selesai"
+  },
+  "corporateValue": {
+    "jargon": {
+      "b": "b",
+      "a": "a",
+      "i": "i",
+      "k": "k"
+    },
+    "cardHeader": {
+      "b": "erpengetahuan",
+      "a": "kuntabilitas",
+      "i": "ntegritas dan etika",
+      "k": "erja tim"
+    },
+    "description": {
+      "b": "Menjadi ahli di bidangnya",
+      "a": "Memahami dan bertanggung jawab untuk melaksanaan pekerjaan dengan benar",
+      "i": "Melakukan hal yang benar, dengan cara yang jujur, adil, dan bertanggung jawab",
+      "k": "Bekerja secara kolaboratif, penuh keharmonisan dan saling menghormati"
+    },
+    "header": {
+      "v": "visi",
+      "m": "misi"
+    },
+    "visi": "Perusahaan penghasil amoniak terefisien di dunia",
+    "misi": {
+      "a": "Peduli akan kualitas, keselamatan, kesehatan, dan lingkungan",
+      "b": "Fokus pada produktifitas dan kehandalan pabrik",
+      "c": "Menjadi perusahaan terbaik, di mana setiap karyawan bangga menjadi bagian dari perusahaan"
+    }
+  },
+  "table": "tabel matriks laporan kejadian",
+  "category": "kategori insiden"
+}

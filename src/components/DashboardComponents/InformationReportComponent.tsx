@@ -4,39 +4,20 @@ import RejectedIcon from "../../assets/rejected.png";
 import InProgressIcon from "../../assets/processing-time (1).png";
 import CloseIcon from "../../assets/thumbs-up.png";
 
-const InformationReportComponent: React.FC = () => {
+interface InformationReportComponentProps {
+  t: (key: string) => string; 
+}
+
+const InformationReportComponent: React.FC<InformationReportComponentProps> = ({t}) => {
+
   const informationReport = [
-    {
-      total: "27",
-      kategori: "Total Reports",
-      icon: ReportIcon,
-      bgColor: "#38bdf8 ",
-    },
-    {
-      total: "27",
-      kategori: "Approved",
-      icon: ApprovedIcon,
-      bgColor: "#16a34a",
-    },
-    {
-      total: "0",
-      kategori: "Rejected",
-      icon: RejectedIcon,
-      bgColor: "#ef4444",
-    },
-    {
-      total: "16",
-      kategori: "In Progress",
-      icon: InProgressIcon,
-      bgColor: "#3b82f6",
-    },
-    {
-      total: "11",
-      kategori: "Close",
-      icon: CloseIcon,
-      bgColor: "#22d3ee",
-    },
+    { total: "27", key: "totalReports", icon: ReportIcon, bgColor: "#38bdf8" },
+    { total: "27", key: "approved", icon: ApprovedIcon, bgColor: "#16a34a" },
+    { total: "0", key: "rejected", icon: RejectedIcon, bgColor: "#ef4444" },
+    { total: "16", key: "inProgress", icon: InProgressIcon, bgColor: "#3b82f6" },
+    { total: "11", key: "close", icon: CloseIcon, bgColor: "#22d3ee" },
   ];
+
   return (
     <div className="p-1 grid grid-cols-1 gap-1 lg:grid lg:grid-cols-4 lg:gap-x-4 lg:gap-y-3 bg-white lg:p-4 shadow-md rounded-sm">
       {informationReport.map((itemReport, index) => (
@@ -50,13 +31,13 @@ const InformationReportComponent: React.FC = () => {
               {itemReport.total}
             </h1>
             <p className="font-semibold text-white text-base">
-              {itemReport.kategori}
+              {t(`cardDashboardInfo.${itemReport.key}`)}
             </p>
           </div>
           <div className="p-4">
             <img
               src={itemReport.icon}
-              alt={itemReport.kategori}
+              alt={itemReport.key}
               className="w-20 h-20 opacity-30 group-hover:scale-110 group-hover:opacity-45 duration-150 ease-linear"
             />
           </div>

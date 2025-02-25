@@ -2,7 +2,11 @@ import { Outlet } from "react-router-dom";
 import Box from "@mui/material/Box";
 import SideNav from "../components/SideNav";
 
-const Layout: React.FC = () => {
+const Layout = ({
+  handleLanguageChange,
+}: {
+  handleLanguageChange: (lang: string) => void;
+}) => {
   return (
     <Box
       sx={{
@@ -13,7 +17,7 @@ const Layout: React.FC = () => {
         maxWidth: "100vw",
       }}
     >
-      <SideNav />
+      <SideNav handleLanguageChange={handleLanguageChange}/>
       <Box
         component="main"
         sx={{

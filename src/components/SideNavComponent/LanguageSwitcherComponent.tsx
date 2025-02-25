@@ -1,58 +1,28 @@
-import { useState } from "react";
-import Flag from "react-world-flags";
+// import { useState } from "react";
+// import Flag from "react-world-flags";
 
-const LanguageSwitcherComponent: React.FC = () => {
-  const [language, setLanguage] = useState<string>("ID");
-  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
-  const handleLanguageChange = (lang: string) => {
-    setLanguage(lang);
-    setIsDropdownOpen(false);
+interface LanguageSwitcherProps {
+  language: string; // Tambahkan language sebagai props
+  handleLanguageChange: (lang: string) => void;
+}
 
-    console.log(`Bahasa dipilih: ${lang}`);
-  };
-
-  const toggleDropdown = () => {
-    setIsDropdownOpen((prev) => !prev);
-  };
+const LanguageSwitcherComponent: React.FC<LanguageSwitcherProps> = ({
+  language,
+  handleLanguageChange,
+}) => {
   return (
-    <div className="dropdown dropdown-bottom dropdown-end">
-      <div tabIndex={0} role="button" className="" onClick={toggleDropdown}>
-        {language == "ID" ? "ID" : "EN"}
-      </div>
-      {isDropdownOpen && (
-        <ul
-          tabIndex={0}
-          className="dropdown-content menu bg-base-100 rounded-md p-1 w-20 shadow-md text-black"
-        >
-          <li>
-            <div
-              className="py-2 px-2"
-              onClick={() => handleLanguageChange("ID")}
-            >
-              <Flag
-                code="ID"
-                style={{ width: 25 }}
-                className="bg-black p-[1px]"
-              />
-              <a>ID</a>
-            </div>
-          </li>
-          <li>
-            <div
-              className="py-2 px-2"
-              onClick={() => handleLanguageChange("EN")}
-            >
-              <Flag
-                code="us"
-                style={{ width: 25 }}
-                className="bg-black p-[1px]"
-              />
-              <a>EN</a>
-            </div>
-          </li>
-        </ul>
-      )}
-    </div>
+    <select
+      onChange={(e) => handleLanguageChange(e.target.value)}
+      value={language} // Atur nilai default berdasarkan state `language`
+      className="select text-white bg-transparent w-20"
+    >
+      <option value="en" className="text-black">
+        EN
+      </option>
+      <option value="id" className="text-black">
+        ID
+      </option>
+    </select>
   );
 };
 

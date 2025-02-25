@@ -10,7 +10,12 @@ import {
 import { FiMinus, FiPlus } from "react-icons/fi";
 import { motion } from "framer-motion";
 
-const PieChartCategoryIncidentComponent: React.FC = () => {
+
+interface PieChartCategoryIncidentComponentProps {
+  t: (key: string) => string;
+}
+
+const PieChartCategoryIncidentComponent: React.FC<PieChartCategoryIncidentComponentProps> = ({t}) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const data = [
@@ -24,7 +29,7 @@ const PieChartCategoryIncidentComponent: React.FC = () => {
       {/* Header */}
       <div className="flex justify-between items-center px-2 border border-t-0 border-x-0 border-b-0 py-1">
         <h1 className="font-montserrat font-medium text-base lg:text-lg capitalize">
-          Kategori Insiden
+          {t(`category`)}
         </h1>
         <button
           onClick={() => setIsOpen(!isOpen)}

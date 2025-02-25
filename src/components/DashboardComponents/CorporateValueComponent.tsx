@@ -3,39 +3,42 @@ import MissionIcon from "../../assets/mission.png";
 import BgDashboard from "../../assets/BgDashboard.png";
 import { useState } from "react";
 
-const CorporateValueComponent: React.FC = () => {
+interface CorporateValueComponentProps {
+  t: (key: string) => string;
+}
+
+const CorporateValueComponent: React.FC<CorporateValueComponentProps> = ({
+  t,
+}) => {
   const [hoverId, setHoverId] = useState<string | null>(null);
   // state untuk melacak hover
 
   const misi = [
     {
-      id: "B",
-      judul: "erpengetahuan",
-      paragraf: "Menjadi ahli di bidangnya",
+      id: `${t(`corporateValue.jargon.b`)}`,
+      judul: `${t(`corporateValue.cardHeader.b`)}`,
+      paragraf: `${t(`corporateValue.description.b`)}`,
       color1: "#1D8000",
       color2: "#2EA30E",
     },
     {
-      id: "A",
-      judul: "kuntabilitas",
-      paragraf:
-        "Memahami dan bertanggung jawab untuk melaksanaan pekerjaan dengan benar",
+      id: `${t(`corporateValue.jargon.a`)}`,
+      judul: `${t(`corporateValue.cardHeader.a`)}`,
+      paragraf: `${t(`corporateValue.description.a`)}`,
       color1: "#058DE2",
       color2: "#049FFF",
     },
     {
-      id: "I",
-      judul: "ntegritas dan Etika",
-      paragraf:
-        "Melakukan hal yang benar, dengan cara yang jujur, adil, dan bertanggung jawab",
+      id: `${t(`corporateValue.jargon.i`)}`,
+      judul: `${t(`corporateValue.cardHeader.i`)}`,
+      paragraf: `${t(`corporateValue.description.i`)}`,
       color1: "#05C1E2",
       color2: "#00D9FF",
     },
     {
-      id: "K",
-      judul: "erja Tim",
-      paragraf:
-        "Bekerja secara kolaboratif, penuh keharmonisan dan saling menghormati",
+      id: `${t(`corporateValue.jargon.k`)}`,
+      judul: `${t(`corporateValue.cardHeader.k`)}`,
+      paragraf: `${t(`corporateValue.description.i`)}`,
       color1: "#E28D05",
       color2: "#FF9D00",
     },
@@ -61,7 +64,7 @@ const CorporateValueComponent: React.FC = () => {
             {misi.map((item) => (
               <div
                 key={item.id}
-                className={`relative z-10 text-center text-white text-2xl lg:text-4xl font-montserrat font-semibold p-2 lg:p-4 shadow-lg shadow-gray-400 rounded-md transition-transform duration-150 ease-in-out 
+                className={`relative z-10 text-center capitalize text-white text-2xl lg:text-4xl font-montserrat font-semibold p-2 lg:p-4 shadow-lg shadow-gray-400 rounded-md transition-transform duration-150 ease-in-out 
                   ${hoverId === item.id ? "scale-110" : "hover:scale-110"}`}
                 style={{ backgroundColor: item.color2 }}
                 onMouseEnter={() => setHoverId(item.id)}
@@ -87,7 +90,7 @@ const CorporateValueComponent: React.FC = () => {
                 <div className="flex flex-row items-end">
                   <div
                     style={{ backgroundColor: itemJargon.color2 }}
-                    className="shadow-md px-2 text-2xl lg:text-4xl rounded-sm text-white font-medium font-montserrat "
+                    className="shadow-md px-2 text-2xl lg:text-4xl rounded-sm text-white font-medium font-montserrat capitalize"
                   >
                     {itemJargon.id}
                   </div>
@@ -111,10 +114,12 @@ const CorporateValueComponent: React.FC = () => {
         <div className="relative h-48 bg-gradient-to-r from-blue-700 to-slate-900 px-6 py-2 flex flex-row items-center justify-between rounded-md shadow-md shadow-slate-500 group hover:bg-gradient-to-l hover:from-blue-700 hover:to-slate-900 hover:shadow-lg hover:shadow-blue-500 duration-150 ease-linear">
           <div className="flex flex-col gap-2">
             <h1 className="text-3xl font-bold font-montserrat uppercase text-white group-hover:text-4xl duration-150 ease-linear">
-              Vision
+              {/* Vision */}
+              {t(`corporateValue.header.v`)}
             </h1>
             <p className="text-base font-montserrat font-extralight text-white z-10 w-[80%] group-hover:font-light group-hover:text-lg duration-150 ease-linear">
-              Perusahaan penghasil amoniak terefisien di dunia
+              {/* Perusahaan penghasil amoniak terefisien di dunia */}
+              {t(`corporateValue.visi`)}
             </p>
           </div>
           <img
@@ -127,10 +132,11 @@ const CorporateValueComponent: React.FC = () => {
         <div className="relative h-48 bg-gradient-to-r from-red-700 to-slate-900 px-6 py-4 flex flex-row items-center justify-between rounded-md shadow-md shadow-slate-500 group hover:bg-gradient-to-l hover:from-red-700 hover:to-slate-900 hover:shadow-lg hover:shadow-red-500 duration-150 ease-linear">
           <div className="flex flex-col gap-2">
             <h1 className="text-3xl font-bold font-montserrat uppercase text-white group-hover:text-4xl duration-150 ease-linear">
-              Mission
+              {/* Mission */}
+              {t(`corporateValue.header.m`)}
             </h1>
             <ol className="z-10 list-decimal list-outside text-xs font-montserrat font-extralight text-white pl-4 group-hover:text-sm group-hover:font-light duration-150 ease-linear">
-              <li>
+              {/* <li>
                 Peduli akan kualitas, keselamatan, kesehatan, dan lingkungan
                 (QSHE)
               </li>
@@ -138,7 +144,10 @@ const CorporateValueComponent: React.FC = () => {
               <li>
                 Menjadi perusahaan terbaik, di mana setiap karyawan bangga
                 menjadi bagian dari perusahaan
-              </li>
+              </li> */}
+              <li>{t(`corporateValue.misi.a`)}</li>
+              <li>{t(`corporateValue.misi.b`)}</li>
+              <li>{t(`corporateValue.misi.c`)}</li>
             </ol>
           </div>
           <img

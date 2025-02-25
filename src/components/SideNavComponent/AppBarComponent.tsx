@@ -37,11 +37,15 @@ const AppBar = styled(MuiAppBar, {
 interface AppBarComponentProps {
   handleDrawerOpen: () => void;
   open: boolean;
+  language: string;
+  handleLanguageChange: (lang: string) => void;
 }
 
 const AppBarComponent: React.FC<AppBarComponentProps> = ({
   handleDrawerOpen,
   open,
+  language,
+  handleLanguageChange,
 }) => {
   return (
     <AppBar position="fixed" open={open}>
@@ -82,7 +86,10 @@ const AppBarComponent: React.FC<AppBarComponentProps> = ({
         {/* right nav link */}
         <div className="flex items-center gap-2 lg:flex lg:items-center lg:gap-4">
           {/* language switcher by daisyUI*/}
-          <LanguageSwitcherComponent />
+          <LanguageSwitcherComponent
+            language={language}
+            handleLanguageChange={handleLanguageChange}
+          />
           {/* fullscreen  */}
           <FullScreenComponent />
           {/* profile  */}

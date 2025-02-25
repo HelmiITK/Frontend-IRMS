@@ -1,0 +1,41 @@
+{
+  "cardDashboardInfo": {
+    "totalReports": "Total Reports",
+    "approved": "Approved",
+    "rejected": "Rejected",
+    "inProgress": "In Progress",
+    "close": "Close"
+  },
+  "corporateValue": {
+    "jargon": {
+      "b": "k",
+      "a": "a",
+      "i": "i",
+      "k": "t"
+    },
+    "cardHeader": {
+      "b": "nowledgeable",
+      "a": "ccountability",
+      "i": "ntegrity and ethics",
+      "k": "eamwork"
+    },
+    "description": {
+      "b": "Become an expert in the field",
+      "a": "Understand and be responsible for carrying out work correctly",
+      "i": "Doing the right thing, in an honest, fair and responsible manner",
+      "k": "Work collaboratively, full of harmony and mutual respect"
+    },
+    "header": {
+      "v": "vision",
+      "m": "mission"
+    },
+    "visi": "The most efficient ammonia producing company in the world",
+    "misi": {
+      "a": "Caring about quality, safety, health and the environment (QSHE)",
+      "b": "Focus on factory productivity and reliability",
+      "c": "To be the best company, where every employee is proud become part of the company"
+    }
+  },
+  "table": "table matrix incident report",
+  "category": "Incident Category"
+}

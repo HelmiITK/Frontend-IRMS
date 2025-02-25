@@ -12,6 +12,7 @@ import SideBarComponent from "./SideNavComponent/SideBarComponent";
 import { FaBuildingUser } from "react-icons/fa6";
 import { PiBellRingingFill } from "react-icons/pi";
 import { BiTask } from "react-icons/bi";
+import { useLanguage } from "../translations/LanguageProvider";
 
 // validasi tipe data route dll
 interface MenuItem {
@@ -88,7 +89,12 @@ const menuSidebar: MenuItem[] = [
   },
 ];
 
-const SideNav: React.FC = () => {
+const SideNav = ({
+  handleLanguageChange,
+}: {
+  handleLanguageChange: (lang: string) => void;
+}) => {
+  const { language } = useLanguage();
   const [open, setOpen] = useState<boolean>(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
@@ -111,7 +117,12 @@ const SideNav: React.FC = () => {
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       {/* app bar */}
-      <AppBarComponent handleDrawerOpen={handleDrawerOpen} open={open} />
+      <AppBarComponent
+        handleDrawerOpen={handleDrawerOpen}
+        open={open}
+        language={language}
+        handleLanguageChange={handleLanguageChange}
+      />
 
       {/* Sidebar list */}
       <SideBarComponent

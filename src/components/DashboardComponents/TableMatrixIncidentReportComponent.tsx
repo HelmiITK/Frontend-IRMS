@@ -85,14 +85,20 @@ const tableMatrix: incidentMatrix[] = [
   },
 ];
 
-const TableMatrixIncidentReportComponent: React.FC = () => {
+interface TableMatrixIncidentReportComponentProps {
+  t: (key: string) => string;
+}
+
+const TableMatrixIncidentReportComponent: React.FC<
+  TableMatrixIncidentReportComponentProps
+> = ({ t }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
     <div className="bg-white shadow-md overflow-hidden border-t-2 border-slate-400 px-2 pb-2 pt-1">
       <div className="flex justify-between items-center">
         <h1 className="font-montserrat font-medium text-base lg:text-lg capitalize">
-          table matrix incident report
+          {t(`table`)}
         </h1>
         <button
           onClick={() => setIsOpen(!isOpen)}

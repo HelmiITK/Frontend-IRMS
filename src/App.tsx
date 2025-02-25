@@ -16,8 +16,13 @@ import DetailUserComponent from "./components/UserManagement/Action/DetailUser/D
 import EditUserComponent from "./components/UserManagement/Action/EditUser/EditUserComponent";
 import Layout from "./layout/Layout";
 import ForgetPasswordPage from "./pages/Auth/ForgetPasswordPage";
+import { useTranslation } from "react-i18next";
+import { useLanguage } from "./translations/LanguageProvider";
 
 function App() {
+  const [t] = useTranslation("global");
+  const { changeLanguage } = useLanguage();
+
   return (
     <>
       <Router>
@@ -26,8 +31,11 @@ function App() {
           <Route path="/" element={<LoginPage />} />
           <Route path="/forget-password" element={<ForgetPasswordPage />} />
 
-          <Route path="/dashboard" element={<Layout />}>
-            <Route index element={<DashboardPage />} />
+          <Route
+            path="/dashboard"
+            element={<Layout handleLanguageChange={changeLanguage} />}
+          >
+            <Route index element={<DashboardPage t={t} />} />
             <Route path="profile_user" element={<ProfileUserPage />} />
 
             <Route path="user_management">

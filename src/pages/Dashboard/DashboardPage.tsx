@@ -4,7 +4,11 @@ import PieChartCategoryIncidentComponent from "../../components/DashboardCompone
 import TableMatrixIncidentReportComponent from "../../components/DashboardComponents/TableMatrixIncidentReportComponent";
 import FooterComponent from "../../components/Footer/FooterComponent";
 
-const DashboardPage: React.FC = () => {
+interface DashboardPageProps {
+  t: (key: string) => string; 
+}
+
+const DashboardPage: React.FC<DashboardPageProps> = ({ t }) => {
   return (
     <div className="flex flex-col w-full overflow-x-hidden">
       <div className="w-full mb-4 mt-2 lg:mt-3">
@@ -15,19 +19,19 @@ const DashboardPage: React.FC = () => {
         <div className="w-full h-[1px] bg-slate-300 my-2 mb-4"></div>
 
         {/* List grid information report*/}
-        <InformationReportComponent />
+        <InformationReportComponent t={t}/>
         <div className="w-full h-[1px] bg-slate-200 mt-4 mb-4"></div>
 
         {/* Corporate Value */}
-        <CorporateValueComponent />
+        <CorporateValueComponent t={t}/>
         <div className="w-full h-[1px] bg-slate-200 mt-4 mb-4"></div>
 
         {/* Table matrix incident report */}
-        <TableMatrixIncidentReportComponent />
+        <TableMatrixIncidentReportComponent t={t}/>
         <div className="w-full h-[1px] bg-slate-200 mt-4 mb-2"></div>
 
         {/* Pie chart kategory incident*/}
-        <PieChartCategoryIncidentComponent />
+        <PieChartCategoryIncidentComponent t={t}/>
       </div>
       <FooterComponent />
     </div>
