@@ -1,5 +1,17 @@
+import FooterComponent from "../../components/Footer/FooterComponent";
+import HeaderHistoryMyIncidentReportComponent from "../../components/Incident/HistoryMyIncidentReport/HeaderHistoryMyIncidentReportComponent";
+
 const HistoryMyIncidentReportPage: React.FC = () => {
-  return <h1 className="mt-2 lg:mt-3">History My Incident Report</h1>;
+  return (
+    <div className="flex flex-col w-full h-full justify-between bg-gray-50">
+      {/* header */}
+      <HeaderHistoryMyIncidentReportComponent />
+
+      {/* filter */}
+      {/* table user management by daisyUI */}
+      <FooterComponent />
+    </div>
+  );
 };
 
 export default HistoryMyIncidentReportPage;

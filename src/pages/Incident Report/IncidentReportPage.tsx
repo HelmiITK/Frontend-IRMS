@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import FooterComponent from "../../components/Footer/FooterComponent";
 import Swal from "sweetalert2";
 import contohImage from "../../assets/KPI_logo_2.png";
+import HeaderIncidentReportComponent from "../../components/Incident/IncidentReport/HeaderIncidentReportComponent";
 
 const IncidentReportPage: React.FC = () => {
   // Definisikan tipe data User
@@ -215,12 +216,12 @@ const IncidentReportPage: React.FC = () => {
 
   return (
     <div className="flex flex-col w-full bg-gray-50">
-      <h1 className="mt-2 lg:mt-3 text-xl mb-2 font-montserrat capitalize">
-        incident report list
-      </h1>
+      {/* header */}
+      <HeaderIncidentReportComponent />
+
       <Divider className="w-full h-[0.5px] bg-slate-200" />
 
-      {/* Header tools fitur */}
+      {/* filter */}
       <div className="py-2 flex flex-col gap-2 lg:flex lg:flex-row lg:gap-4">
         {/* left feature */}
         <div className="flex items-center gap-2 lg:flex lg:flex-row lg:gap-4">
@@ -738,32 +739,6 @@ const IncidentReportPage: React.FC = () => {
           </tbody>
 
           {/* pagination */}
-          <tfoot>
-            <tr className="">
-              <th>Showing 0-50 of 100</th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th className="">
-                <div className="join flex items-center gap-2">
-                  <button className="join-item bg-slate-100 px-2 py-1 hover:bg-slate-200 duration-150">
-                    «
-                  </button>
-                  <div className="flex items-center">
-                    <h1 className="join-item px-2 py-1">1</h1>
-                  </div>
-                  <button className="join-item bg-slate-100 px-2 py-1 hover:bg-slate-200 duration-150">
-                    »
-                  </button>
-                </div>
-              </th>
-            </tr>
-          </tfoot>
         </table>
       </div>
       <FooterComponent />

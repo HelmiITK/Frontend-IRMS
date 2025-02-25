@@ -7,6 +7,8 @@ import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
 import { LuChevronRight, LuChevronLeft } from "react-icons/lu";
 import LiveClockComponent from "./LiveClockComponent";
 import logoKpi from "../../assets/KPI_logo_2.png";
+import { motion } from "framer-motion";
+import { FaChevronUp, FaChevronDown } from "react-icons/fa";
 
 const drawerWidth = 275; // Default drawer width for larger screens
 const mobileDrawerWidth = 220; // Drawer width for mobile screens
@@ -77,21 +79,31 @@ interface MenuItem {
   label: string;
   icon: JSX.Element;
   route?: string;
-  children?: { label: string; route: string }[];
+  children?: { label: string; route: string; icon: JSX.Element }[];
 }
 
 interface SideBarComponentProps {
   open: boolean;
+  openDropdown: string | null;
   handleDrawerClose: () => void;
+  toggleDropdown: (label: string) => void;
   menuSidebar: MenuItem[];
 }
 
 const SideBarComponent: React.FC<SideBarComponentProps> = ({
   open,
+  openDropdown,
   handleDrawerClose,
+  toggleDropdown,
   menuSidebar,
 }) => {
   const theme = useTheme();
+
+  // Animasi dropdown
+  const dropdownVariants = {
+    open: { opacity: 1, height: "auto", transition: { duration: 0.2 } },
+    closed: { opacity: 0, height: 0, transition: { duration: 0.2 } },
+  };
 
   return (
     <Drawer
@@ -132,7 +144,7 @@ const SideBarComponent: React.FC<SideBarComponentProps> = ({
             className="flex flex-col hover:bg-gray-50 duration-150 ease-linear"
           >
             {/* Parent route */}
-            {item.route && (
+            {item.route ? (
               <NavLink
                 to={item.route}
                 end
@@ -146,7 +158,7 @@ const SideBarComponent: React.FC<SideBarComponentProps> = ({
                   <>
                     <span
                       className={`mr-3 text-lg ${
-                        isActive ? "text-white" : "text-primary"
+                        isActive ? "text-white" : "text-gray-700"
                       }`}
                     >
                       {item.icon}
@@ -157,6 +169,56 @@ const SideBarComponent: React.FC<SideBarComponentProps> = ({
                   </>
                 )}
               </NavLink>
+            ) : (
+              <div
+                className={`flex items-center pl-6 pr-5 py-3 cursor-pointer ${
+                  !open ? "justify-center" : "justify-between"
+                }`}
+                onClick={() => toggleDropdown(item.label)}
+              >
+                <div className="flex items-center gap-3">
+                  <span className="text-lg text-gray-700">{item.icon}</span>
+                  {open && (
+                    <span className="text-sm lg:text-base text-gray-700 capitalize">
+                      {item.label}
+                    </span>
+                  )}
+                </div>
+                {open &&
+                  (openDropdown === item.label ? (
+                    <FaChevronUp className="w-3 h-3 text-gray-500" />
+                  ) : (
+                    <FaChevronDown className="w-3 h-3 text-gray-500" />
+                  ))}
+              </div>
+            )}
+
+            {/* Dropdown Children route*/}
+            {item.children && (
+              <motion.ul
+                initial="closed"
+                animate={openDropdown === item.label ? "open" : "closed"}
+                variants={dropdownVariants}
+                className="ml-6 border-l-2 border-gray-300 pl-2 overflow-hidden"
+              >
+                {item.children.map((child, idx) => (
+                  <li key={idx}>
+                    <NavLink
+                      to={child.route}
+                      className={({ isActive }) =>
+                        `flex items-center gap-2 p-2 text-xs lg:text-sm transition  rounded capitalize ${
+                          isActive
+                            ? "bg-primary text-white"
+                            : "text-gray-700 hover:bg-gray-100"
+                        }`
+                      }
+                    >
+                      <span>{child.icon}</span>
+                      <span>{child.label}</span>
+                    </NavLink>
+                  </li>
+                ))}
+              </motion.ul>
             )}
           </li>
         ))}

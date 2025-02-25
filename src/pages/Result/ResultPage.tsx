@@ -1,5 +1,17 @@
+import FooterComponent from "../../components/Footer/FooterComponent";
+import HeaderResultComponent from "../../components/Result/HeaderResultComponent";
+
 const ResultPage: React.FC = () => {
-  return <h1 className="mt-2 lg:mt-3">Result</h1>;
+  return (
+    <div className="flex flex-col w-full h-full justify-between bg-gray-50">
+      {/* header */}
+      <HeaderResultComponent />
+
+      {/* filter */}
+      {/* table user management by daisyUI */}
+      <FooterComponent />
+    </div>
+  );
 };
 
 export default ResultPage;

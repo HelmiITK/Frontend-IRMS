@@ -1,8 +1,16 @@
+import FooterComponent from "../../components/Footer/FooterComponent";
+import HeaderUserAlert from "../../components/UserAlert/HeaderUserAlert";
+
 const UserAlertsPage: React.FC = () => {
   return (
-    <>
-      <h1 className="mt-2 lg:mt-3">User alerts</h1>
-    </>
+    <div className="flex flex-col w-full h-full justify-between bg-gray-50">
+      {/* header */}
+      <HeaderUserAlert />
+
+      {/* filter */}
+      {/* table user management by daisyUI */}
+      <FooterComponent />
+    </div>
   );
 };
 
