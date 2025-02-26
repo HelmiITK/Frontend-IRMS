@@ -37,5 +37,31 @@
     }
   },
   "table": "table matrix incident report",
-  "category": "Incident Category"
+  "category": {
+    "header": "incident category",
+    "year": "per year",
+    "h1": "assets/production",
+    "h2": "reputation",
+    "h3": "human"
+  },
+  "profileUser": {
+    "notChange": {
+      "label1": "npk",
+      "label2": "name",
+      "label3": "job",
+      "label4": "email"
+    },
+    "changeAvailable": {
+      "header": "change password",
+      "label1": "current password",
+      "label2": "new password",
+      "label3": "password confirmation",
+      "button": "submit"
+    },
+    "placeHolder": {
+      "input1": "enter the current password",
+      "input2": "enter a new password",
+      "input3": "confirm new password"
+    }
+  }
 }

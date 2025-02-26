@@ -36,7 +36,7 @@ function App() {
             element={<Layout handleLanguageChange={changeLanguage} />}
           >
             <Route index element={<DashboardPage t={t} />} />
-            <Route path="profile_user" element={<ProfileUserPage />} />
+            <Route path="profile_user" element={<ProfileUserPage t={t}/>} />
 
             <Route path="user_management">
               <Route index element={<UserManagementPage />} />

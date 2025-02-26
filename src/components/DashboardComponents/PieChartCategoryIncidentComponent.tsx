@@ -10,18 +10,20 @@ import {
 import { FiMinus, FiPlus } from "react-icons/fi";
 import { motion } from "framer-motion";
 
-
+// interface global untuk menangani switch language en and id
 interface PieChartCategoryIncidentComponentProps {
   t: (key: string) => string;
 }
 
-const PieChartCategoryIncidentComponent: React.FC<PieChartCategoryIncidentComponentProps> = ({t}) => {
+const PieChartCategoryIncidentComponent: React.FC<
+  PieChartCategoryIncidentComponentProps
+> = ({ t }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const data = [
-    { name: "Asset/Produksi", value: 88.9, color: "#64B5F6" }, // Biru
-    { name: "Manusia", value: 7.4, color: "#424242" }, // Hitam/Abu
-    { name: "Reputasi", value: 3.7, color: "#4CAF50" }, // Hijau
+    { name: `${t(`category.h1`)}`, value: 88.9, color: "#64B5F6" }, // Biru
+    { name: `${t(`category.h3`)}`, value: 7.4, color: "#424242" }, // Hitam/Abu
+    { name: `${t(`category.h2`)}`, value: 3.7, color: "#4CAF50" }, // Hijau
   ];
 
   return (
@@ -29,7 +31,7 @@ const PieChartCategoryIncidentComponent: React.FC<PieChartCategoryIncidentCompon
       {/* Header */}
       <div className="flex justify-between items-center px-2 border border-t-0 border-x-0 border-b-0 py-1">
         <h1 className="font-montserrat font-medium text-base lg:text-lg capitalize">
-          {t(`category`)}
+          {t(`category.header`)}
         </h1>
         <button
           onClick={() => setIsOpen(!isOpen)}
@@ -48,9 +50,11 @@ const PieChartCategoryIncidentComponent: React.FC<PieChartCategoryIncidentCompon
       >
         <div className="flex flex-col items-center justify-center mt-2 mb-3 ">
           <h3 className="font-montserrat font-medium text-base">
-            Kategori Insiden
+            {t(`category.header`)}
           </h3>
-          <p className="font-montserrat font-light text-sm">Per Tahun</p>
+          <p className="font-montserrat font-light text-sm">
+            {t(`category.year`)}
+          </p>
           <div className="w-full h-64 sm:h-80 md:h-96">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>

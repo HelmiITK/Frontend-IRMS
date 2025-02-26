@@ -5,7 +5,11 @@ import NotChangeComponent from "../../components/ProfileUser/NotChangeComponent"
 import ChangePasswordComponent from "../../components/ProfileUser/ChangePasswordComponent";
 import ImageIconComponent from "../../components/ProfileUser/ImageIconComponent";
 
-const ProfileUserPage: React.FC = () => {
+interface ProfileUserPageProps {
+  t: (key: string) => string;
+}
+
+const ProfileUserPage: React.FC<ProfileUserPageProps> = ({t}) => {
   return (
     <div className="flex flex-col gap-10 justify-between h-full">
       <div className="w-full flex flex-col lg:w-full">
@@ -19,12 +23,12 @@ const ProfileUserPage: React.FC = () => {
             {/* image */}
             <ImageIconComponent />
             {/* not change */}
-            <NotChangeComponent />
+            <NotChangeComponent t={t}/>
 
             <div className="hidden lg:block lg:h-80 w-1 lg:bg-yellow-200 "></div>
 
             {/* change available */}
-            <ChangePasswordComponent />
+            <ChangePasswordComponent t={t}/>
           </div>
         </div>
       </div>

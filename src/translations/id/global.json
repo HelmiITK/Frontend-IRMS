@@ -37,5 +37,31 @@
     }
   },
   "table": "tabel matriks laporan kejadian",
-  "category": "kategori insiden"
+  "category": {
+    "header": "kategori insiden",
+    "year": "per tahun",
+    "h1": "asset/produksi",
+    "h2": "reputasi",
+    "h3": "maunusia"
+  },
+  "profileUser": {
+    "notChange": {
+      "label1": "npk",
+      "label2": "nama",
+      "label3": "pekerjaan",
+      "label4": "email"
+    },
+    "changeAvailable": {
+      "header": "ubah kata sandi",
+      "label1": "kata sandi saat ini",
+      "label2": "kata sandi baru",
+      "label3": "konfirmasi kata sandi",
+      "button": "kirim"
+    },
+    "placeHolder": {
+      "input1": "masukkan kata sandi saat ini",
+      "input2": "masukkan kata sandi baru",
+      "input3": "konfirmasi kata sandi baru"
+    }
+  }
 }
