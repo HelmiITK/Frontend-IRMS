@@ -46,6 +46,13 @@
       "sf": "भौतिक सुरक्षा",
       "ss": "साइबर सुरक्षा"
     },
+    "headerRow": {
+      "Insignificant": "अमहत्वपूर्ण",
+      "Minor": "छोटा",
+      "Moderate": "मध्यम",
+      "Major": "बड़ा",
+      "Catastrophic": "विनाशकारी"
+    },
     "fieldTable": {
       "Insignificant": {
         "manusia": "प्राथमिक चिकित्सा मामला (कोई चिकित्सा उपचार नहीं)",

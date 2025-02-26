@@ -46,6 +46,13 @@
       "sf": "물리적 보안",
       "ss": "사이버 보안"
     },
+    "headerRow": {
+      "Insignificant": "사소한",
+      "Minor": "경미한",
+      "Moderate": "보통",
+      "Major": "중대",
+      "Catastrophic": "재앙적인"
+    },
     "fieldTable": {
       "Insignificant": {
         "manusia": "응급 처치 사례 (의료 치료 없음)",

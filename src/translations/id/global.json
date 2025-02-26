@@ -46,6 +46,13 @@
       "sf": "security fisik",
       "ss": "security siber"
     },
+    "headerRow": {
+      "Insignificant": "Tidak Signifikan",
+      "Minor": "Kecil",
+      "Moderate": "Sedang",
+      "Major": "Besar",
+      "Catastrophic": "Katastrofik"
+    },
     "fieldTable": {
       "Insignificant": {
         "manusia": "First aid case (tanpa tindakan medis)",

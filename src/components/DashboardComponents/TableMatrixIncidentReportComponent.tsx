@@ -19,8 +19,9 @@ const TableMatrixIncidentReportComponent: React.FC<
   }
 
   const tableMatrix: incidentMatrix[] = [
+    // Insignificant
     {
-      kategoriIncident: "Insignificant",
+      kategoriIncident: `${t(`table.headerRow.Insignificant`)}`,
       manusia: `${t(`table.fieldTable.Insignificant.manusia`)}`,
       asset: [`${t(`table.fieldTable.Insignificant.asset`)}`],
       lingkungan: `${t(`table.fieldTable.Insignificant.lingkungan`)}`,
@@ -28,8 +29,10 @@ const TableMatrixIncidentReportComponent: React.FC<
       securityFisik: `${t(`table.fieldTable.Insignificant.securityFisik`)}`,
       securitySiber: `${t(`table.fieldTable.Insignificant.securitySiber`)}`,
     },
+
+    // Minor
     {
-      kategoriIncident: "Minor",
+      kategoriIncident: `${t(`table.headerRow.Minor`)}`,
       manusia: `${t(`table.fieldTable.minor.manusia`)}`,
       asset: [`${t(`table.fieldTable.minor.asset`)}`],
       lingkungan: `${t(`table.fieldTable.minor.lingkungan`)}`,
@@ -37,8 +40,10 @@ const TableMatrixIncidentReportComponent: React.FC<
       securityFisik: `${t(`table.fieldTable.minor.securityFisik`)}`,
       securitySiber: `${t(`table.fieldTable.minor.securitySiber`)}`,
     },
+
+    // Moderate
     {
-      kategoriIncident: "Moderate",
+      kategoriIncident: `${t(`table.headerRow.Moderate`)}`,
       manusia: `${t(`table.fieldTable.moderate.manusia`)}`,
       asset: [
         `${t(`table.fieldTable.moderate.asset.a1`)}`,
@@ -52,8 +57,10 @@ const TableMatrixIncidentReportComponent: React.FC<
       securityFisik: `${t(`table.fieldTable.moderate.securityFisik`)}`,
       securitySiber: `${t(`table.fieldTable.moderate.securitySiber`)}`,
     },
+
+    // Major
     {
-      kategoriIncident: "Major",
+      kategoriIncident: `${t(`table.headerRow.Major`)}`,
       manusia: `${t(`table.fieldTable.major.manusia`)}`,
       asset: [
         `${t(`table.fieldTable.major.asset.a1`)}`,
@@ -68,8 +75,10 @@ const TableMatrixIncidentReportComponent: React.FC<
       securityFisik: `${t(`table.fieldTable.major.securityFisik`)}`,
       securitySiber: `${t(`table.fieldTable.major.securitySiber`)}`,
     },
+
+    // Catastrophic
     {
-      kategoriIncident: "Catastrophic",
+      kategoriIncident: `${t(`table.headerRow.Catastrophic`)}`,
       manusia: `${t(`table.fieldTable.Catastrophic.manusia`)}`,
       asset: [
         `${t(`table.fieldTable.Catastrophic.asset.a1`)}`,

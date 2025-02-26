@@ -46,6 +46,13 @@
       "sf": "physical security",
       "ss": "cyber security"
     },
+    "headerRow": {
+      "Insignificant": "Insignificant",
+      "Minor": "Minor",
+      "Moderate": "Moderate",
+      "Major": "Major",
+      "Catastrophic": "Catastrophic"
+    },
     "fieldTable": {
       "Insignificant": {
         "manusia": "First aid case (without medical treatment)",

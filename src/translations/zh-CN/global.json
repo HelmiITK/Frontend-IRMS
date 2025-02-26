@@ -46,6 +46,13 @@
       "sf": "物理安全",
       "ss": "网络安全"
     },
+    "headerRow": {
+      "Insignificant": "微不足道",
+      "Minor": "轻微",
+      "Moderate": "中等",
+      "Major": "重大",
+      "Catastrophic": "灾难性"
+    },
     "fieldTable": {
       "Insignificant": {
         "manusia": "急救案例（无需医疗治疗）",
