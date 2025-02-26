@@ -86,14 +86,19 @@ const AppBarComponent: React.FC<AppBarComponentProps> = ({
         {/* right nav link */}
         <div className="flex items-center gap-2 lg:flex lg:items-center lg:gap-4">
           {/* language switcher by daisyUI*/}
-          <LanguageSwitcherComponent
-            language={language}
-            handleLanguageChange={handleLanguageChange}
-          />
+          <div className="hidden lg:block">
+            <LanguageSwitcherComponent
+              language={language}
+              handleLanguageChange={handleLanguageChange}
+            />
+          </div>
           {/* fullscreen  */}
           <FullScreenComponent />
           {/* profile  */}
-          <ProfileComponent />
+          <ProfileComponent
+            language={language}
+            handleLanguageChange={handleLanguageChange}
+          />
         </div>
       </Toolbar>
     </AppBar>

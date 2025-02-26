@@ -1,0 +1,67 @@
+{
+  "cardDashboardInfo": {
+    "totalReports": "总报告",
+    "approved": "已批准",
+    "rejected": "已拒绝",
+    "inProgress": "处理中",
+    "close": "已完成"
+  },
+  "corporateValue": {
+    "jargon": {
+      "b": "b",
+      "a": "a",
+      "i": "i",
+      "k": "k"
+    },
+    "cardHeader": {
+      "b": "知识",
+      "a": "责任",
+      "i": "诚信与道德",
+      "k": "团队合作"
+    },
+    "description": {
+      "b": "成为该领域的专家",
+      "a": "理解并负责正确执行工作",
+      "i": "以诚实、公正和负责任的方式做正确的事",
+      "k": "协作工作，保持和谐与相互尊重"
+    },
+    "header": {
+      "v": "愿景",
+      "m": "使命"
+    },
+    "visi": "全球最具效率的氨气生产企业",
+    "misi": {
+      "a": "关注质量、安全、健康和环境",
+      "b": "专注于生产力和工厂可靠性",
+      "c": "成为每位员工都引以为豪的最佳企业"
+    }
+  },
+  "table": "事件报告矩阵表",
+  "category": {
+    "header": "事故类别",
+    "year": "每年",
+    "h1": "资产/生产",
+    "h2": "声誉",
+    "h3": "人力"
+  },
+  "profileUser": {
+    "notChange": {
+      "label1": "员工编号",
+      "label2": "姓名",
+      "label3": "职位",
+      "label4": "电子邮件"
+    },
+    "changeAvailable": {
+      "header": "更改密码",
+      "label1": "当前密码",
+      "label2": "新密码",
+      "label3": "确认密码",
+      "button": "提交"
+    },
+    "placeHolder": {
+      "input1": "输入当前密码",
+      "input2": "输入新密码",
+      "input3": "确认新密码"
+    }
+  }
+}
