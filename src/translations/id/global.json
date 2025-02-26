@@ -63,5 +63,29 @@
       "input2": "masukkan kata sandi baru",
       "input3": "konfirmasi kata sandi baru"
     }
+  },
+  "sidebar": {
+    "parentRoute": {
+      "route1": "dasbor",
+      "route2": "pengguna",
+      "route3": "insiden",
+      "route4": "tugas",
+      "route5": "hasil"
+    },
+    "childRoute": {
+      "user": {
+        "child1": "manajemen pengguna",
+        "child2": "peringatan pengguna"
+      },
+      "incident": {
+        "child1": "laporan insiden",
+        "child2": "laporan insiden saya",
+        "child3": "riwayat laporan insiden saya"
+      },
+      "task": {
+        "child1": "tugas laporan insiden",
+        "child2": "riwayat tugas laporan insiden"
+      }
+    }
   }
 }

@@ -63,5 +63,29 @@
       "input2": "새 비밀번호 입력",
       "input3": "새 비밀번호 확인"
     }
+  },
+  "sidebar": {
+    "parentRoute": {
+      "route1": "대시보드",
+      "route2": "사용자",
+      "route3": "사건",
+      "route4": "업무",
+      "route5": "결과"
+    },
+    "childRoute": {
+      "user": {
+        "child1": "사용자 관리",
+        "child2": "사용자 알림"
+      },
+      "incident": {
+        "child1": "사건 보고서",
+        "child2": "내 사건 보고서",
+        "child3": "내 사건 보고서 기록"
+      },
+      "task": {
+        "child1": "사건 보고서 업무",
+        "child2": "사건 보고서 업무 기록"
+      }
+    }
   }
 }

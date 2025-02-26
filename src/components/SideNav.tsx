@@ -13,87 +13,86 @@ import { FaBuildingUser } from "react-icons/fa6";
 import { PiBellRingingFill } from "react-icons/pi";
 import { BiTask } from "react-icons/bi";
 import { useLanguage } from "../translations/LanguageProvider";
-
-// validasi tipe data route dll
-interface MenuItem {
-  label: string;
-  icon: JSX.Element;
-  route?: string;
-  children?: { label: string; route: string; icon: JSX.Element }[];
+interface SideNavProps {
+  handleLanguageChange: (lang: string) => void;
+  t: (key: string) => string;
 }
 
-const menuSidebar: MenuItem[] = [
-  {
-    label: "Dashboard",
-    icon: <IoSpeedometerSharp />,
-    route: "/dashboard",
-  },
-  {
-    label: "User",
-    icon: <FaBuildingUser />,
-    children: [
-      {
-        label: "User Management",
-        route: "user_management",
-        icon: <FaUsers />,
-      },
-      {
-        label: "User Alerts",
-        route: "user_alerts",
-        icon: <PiBellRingingFill />,
-      },
-    ],
-  },
-  {
-    label: "Incident",
-    icon: <HiClipboardList />,
-    children: [
-      {
-        label: "Incident Report",
-        route: "incident_report",
-        icon: <HiClipboardList />,
-      },
-      {
-        label: "My Incident Report",
-        route: "my_incident_report",
-        icon: <IoMdAddCircle />,
-      },
-      {
-        label: "History My Incident Report",
-        route: "history_my_incident_report",
-        icon: <IoMdAddCircle />,
-      },
-    ],
-  },
+const SideNav: React.FC<SideNavProps> = ({ handleLanguageChange, t }) => {
+  // validasi tipe data route dll
+  interface MenuItem {
+    label: string;
+    icon: JSX.Element;
+    route?: string;
+    children?: { label: string; route: string; icon: JSX.Element }[];
+  }
 
-  {
-    label: "Task",
-    icon: <BiTask />,
-    children: [
-      {
-        label: "Task Incident Report",
-        route: "task_incident_report",
-        icon: <IoWarning />,
-      },
-      {
-        label: "History Task Incident Report",
-        route: "history_task_incident_report",
-        icon: <IoWarning />,
-      },
-    ],
-  },
-  {
-    label: "Result",
-    icon: <HiSpeakerphone />,
-    route: "result",
-  },
-];
+  const menuSidebar: MenuItem[] = [
+    {
+      label: `${t(`sidebar.parentRoute.route1`)}`,
+      icon: <IoSpeedometerSharp />,
+      route: "/dashboard",
+    },
+    {
+      label: `${t(`sidebar.parentRoute.route2`)}`,
+      icon: <FaBuildingUser />,
+      children: [
+        {
+          label: `${t(`sidebar.childRoute.user.child1`)}`,
+          route: "user_management",
+          icon: <FaUsers />,
+        },
+        {
+          label: `${t(`sidebar.childRoute.user.child2`)}`,
+          route: "user_alerts",
+          icon: <PiBellRingingFill />,
+        },
+      ],
+    },
+    {
+      label: `${t(`sidebar.parentRoute.route3`)}`,
+      icon: <HiClipboardList />,
+      children: [
+        {
+          label: `${t(`sidebar.childRoute.incident.child1`)}`,
+          route: "incident_report",
+          icon: <HiClipboardList />,
+        },
+        {
+          label: `${t(`sidebar.childRoute.incident.child2`)}`,
+          route: "my_incident_report",
+          icon: <IoMdAddCircle />,
+        },
+        {
+          label: `${t(`sidebar.childRoute.incident.child3`)}`,
+          route: "history_my_incident_report",
+          icon: <IoMdAddCircle />,
+        },
+      ],
+    },
 
-const SideNav = ({
-  handleLanguageChange,
-}: {
-  handleLanguageChange: (lang: string) => void;
-}) => {
+    {
+      label: `${t(`sidebar.parentRoute.route4`)}`,
+      icon: <BiTask />,
+      children: [
+        {
+          label: `${t(`sidebar.childRoute.task.child1`)}`,
+          route: "task_incident_report",
+          icon: <IoWarning />,
+        },
+        {
+          label: `${t(`sidebar.childRoute.task.child1`)}`,
+          route: "history_task_incident_report",
+          icon: <IoWarning />,
+        },
+      ],
+    },
+    {
+      label: `${t(`sidebar.parentRoute.route5`)}`,
+      icon: <HiSpeakerphone />,
+      route: "result",
+    },
+  ];
   const { language } = useLanguage();
   const [open, setOpen] = useState<boolean>(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);

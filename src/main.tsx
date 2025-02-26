@@ -18,19 +18,19 @@ i18next.init({
   lng: "en",
   resources: {
     en: {
-      global: global_en,
+      global: global_en, // Inggris
     },
     id: {
-      global: global_id,
+      global: global_id, // Indonesia
     },
     ko: {
-      global: global_ko,
+      global: global_ko, // Korea Selatan
     },
     zh: {
-      global: global_zh,
+      global: global_zh, // Cina
     },
     hi: {
-      global: global_hi,
+      global: global_hi, // India
     },
   },
 });

@@ -63,5 +63,29 @@
       "input2": "enter a new password",
       "input3": "confirm new password"
     }
+  },
+  "sidebar": {
+    "parentRoute": {
+      "route1": "dashboard",
+      "route2": "user",
+      "route3": "incident",
+      "route4": "task",
+      "route5": "result"
+    },
+    "childRoute": {
+      "user": {
+        "child1": "user management",
+        "child2": "user alerts"
+      },
+      "incident": {
+        "child1": "incident report",
+        "child2": "my incident report",
+        "child3": "history my incident report"
+      },
+      "task": {
+        "child1": "task incident report",
+        "child2": "history task incident report"
+      }
+    }
   }
 }

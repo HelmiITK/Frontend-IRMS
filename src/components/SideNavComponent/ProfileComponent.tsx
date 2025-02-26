@@ -30,7 +30,7 @@ const ProfileComponent: React.FC<ProfileComponentProps> = ({
         <h1 className="text-white text-sm mb-1 text-center bg-black rounded-md py-1 w-full">
           Admin
         </h1>
-        <div className="z-50">
+        <div className="z-50 block lg:hidden">
           <LanguageSwitcherComponent
             language={language}
             handleLanguageChange={handleLanguageChange}

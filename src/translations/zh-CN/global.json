@@ -63,5 +63,29 @@
       "input2": "输入新密码",
       "input3": "确认新密码"
     }
+  },
+  "sidebar": {
+    "parentRoute": {
+      "route1": "仪表板",
+      "route2": "用户",
+      "route3": "事件",
+      "route4": "任务",
+      "route5": "结果"
+    },
+    "childRoute": {
+      "user": {
+        "child1": "用户管理",
+        "child2": "用户警报"
+      },
+      "incident": {
+        "child1": "事件报告",
+        "child2": "我的事件报告",
+        "child3": "我的事件报告历史"
+      },
+      "task": {
+        "child1": "事件报告任务",
+        "child2": "事件报告任务历史"
+      }
+    }
   }
 }

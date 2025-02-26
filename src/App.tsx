@@ -33,7 +33,7 @@ function App() {
 
           <Route
             path="/dashboard"
-            element={<Layout handleLanguageChange={changeLanguage} />}
+            element={<Layout handleLanguageChange={changeLanguage} t={t}/>}
           >
             <Route index element={<DashboardPage t={t} />} />
             <Route path="profile_user" element={<ProfileUserPage t={t}/>} />
