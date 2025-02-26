@@ -36,7 +36,78 @@
       "c": "成为每位员工都引以为豪的最佳企业"
     }
   },
-  "table": "事件报告矩阵表",
+  "table": {
+    "header": "表格矩阵事件报告",
+    "headerColumn": {
+      "m": "人类",
+      "a": "资产",
+      "l": "环境",
+      "r": "声誉",
+      "sf": "物理安全",
+      "ss": "网络安全"
+    },
+    "fieldTable": {
+      "Insignificant": {
+        "manusia": "急救案例（无需医疗治疗）",
+        "asset": "工厂正常运行，仅有轻微干扰",
+        "lingkungan": "工作场所污染",
+        "reputasi": "工厂正常运行，仅有轻微干扰",
+        "securityFisik": "未经授权的进入，无损失",
+        "securitySiber": "使用未经登记的硬件，但无公司数据损失"
+      },
+      "minor": {
+        "manusia": "急救案例（含医疗治疗）",
+        "asset": "工厂正常运行，但需要现场维修",
+        "lingkungan": "公司场地内污染",
+        "reputasi": "工厂正常运行，但需要现场维修",
+        "securityFisik": "未经授权的进入，无损失，但造成不便",
+        "securitySiber": "系统宕机少于2小时"
+      },
+      "moderate": {
+        "manusia": "医疗治疗案例",
+        "asset": {
+          "a1": "工厂运行异常，需要降低生产速率进行维修",
+          "a2": "损失 < USD 50,000"
+        },
+        "lingkungan": "影响社区的污染",
+        "reputasi": {
+          "r1": "地方媒体（Kaltim Post）报道",
+          "r2": "公众对损害提出投诉"
+        },
+        "securityFisik": "未经授权的进入，丢失1件物品",
+        "securitySiber": "系统宕机2-8小时，导致公司数据永久丢失"
+      },
+      "major": {
+        "manusia": "失去工作能力或永久残疾",
+        "asset": {
+          "a1": "工厂停工，维修时间最长5天",
+          "a2": "损失 USD 50,000 - 100,000"
+        },
+        "lingkungan": "影响社区的污染，引发公众抗议",
+        "reputasi": {
+          "r1": "国家媒体报道",
+          "r2": "社区/非政府组织（NGO）提出法律索赔",
+          "r3": "国家 PROPER RED"
+        },
+        "securityFisik": "未经授权的进入，丢失多件物品",
+        "securitySiber": "系统被黑客入侵，未被检测到，可远程控制"
+      },
+      "Catastrophic": {
+        "manusia": "死亡（1人或以上）",
+        "asset": {
+          "a1": "工厂停工，维修时间超过5天",
+          "a2": "损失 > USD 100,000"
+        },
+        "lingkungan": "导致法律索赔的环境污染",
+        "reputasi": {
+          "r1": "国际媒体报道",
+          "r2": "政府/警方调查"
+        },
+        "securityFisik": "炸弹威胁、工厂劫持、蓄意破坏",
+        "securitySiber": "IT基础设施瘫痪"
+      }
+    }
+  },
   "category": {
     "header": "事故类别",
     "year": "每年",

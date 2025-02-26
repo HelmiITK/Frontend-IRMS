@@ -36,7 +36,78 @@
       "c": "To be the best company, where every employee is proud become part of the company"
     }
   },
-  "table": "table matrix incident report",
+  "table": {
+    "header": "Table Matrix Incident Report",
+    "headerColumn": {
+      "m": "human",
+      "a": "asset",
+      "l": "environment",
+      "r": "reputation",
+      "sf": "physical security",
+      "ss": "cyber security"
+    },
+    "fieldTable": {
+      "Insignificant": {
+        "manusia": "First aid case (without medical treatment)",
+        "asset": "Plant operates normally with insignificant disturbances",
+        "lingkungan": "Pollution in the workplace",
+        "reputasi": "Plant operates normally with insignificant disturbances",
+        "securityFisik": "Unauthorized entry, no loss",
+        "securitySiber": "Use of unregistered hardware without company data loss"
+      },
+      "minor": {
+        "manusia": "First aid case (with medical treatment)",
+        "asset": "Plant operates normally with disturbances requiring on-site repair",
+        "lingkungan": "Pollution within the company premises",
+        "reputasi": "Plant operates normally with disturbances requiring on-site repair",
+        "securityFisik": "Unauthorized entry, no loss, but causing discomfort",
+        "securitySiber": "System down for less than 2 hours"
+      },
+      "moderate": {
+        "manusia": "Medical treatment case",
+        "asset": {
+          "a1": "Plant operates abnormally and requires repair by reducing production rate",
+          "a2": "Loss < USD 50,000"
+        },
+        "lingkungan": "Pollution affecting the community",
+        "reputasi": {
+          "r1": "Coverage by regional media (Kaltim Post)",
+          "r2": "Public complaints about damages"
+        },
+        "securityFisik": "Unauthorized entry, loss of 1 item",
+        "securitySiber": "System down for 2-8 hours, permanent company data loss"
+      },
+      "major": {
+        "manusia": "Lost workday case or permanent disability",
+        "asset": {
+          "a1": "Plant shutdown with repairs required for up to 5 days",
+          "a2": "Loss between USD 50,000 - 100,000"
+        },
+        "lingkungan": "Pollution affecting the community, leading to public protests",
+        "reputasi": {
+          "r1": "Coverage by national media",
+          "r2": "Legal claims from the community/NGOs",
+          "r3": "National PROPER RED"
+        },
+        "securityFisik": "Unauthorized entry, loss of more than 1 item",
+        "securitySiber": "System hacked, undetected, and remotely controllable"
+      },
+      "Catastrophic": {
+        "manusia": "Death (1 or more persons)",
+        "asset": {
+          "a1": "Plant shutdown requiring repairs for more than 5 days",
+          "a2": "Loss > USD 100,000"
+        },
+        "lingkungan": "Environmental pollution leading to legal claims",
+        "reputasi": {
+          "r1": "Coverage by international media",
+          "r2": "Investigation by Government/Police"
+        },
+        "securityFisik": "Bomb threats, plant hijacking, sabotage",
+        "securitySiber": "IT infrastructure paralysis"
+      }
+    }
+  },
   "category": {
     "header": "incident category",
     "year": "per year",

@@ -36,7 +36,78 @@
       "c": "Menjadi perusahaan terbaik, di mana setiap karyawan bangga menjadi bagian dari perusahaan"
     }
   },
-  "table": "tabel matriks laporan kejadian",
+  "table": {
+    "header": "table matrix incident report",
+    "headerColumn": {
+      "m": "manusia",
+      "a": "asset",
+      "l": "lingkungan",
+      "r": "reputasi",
+      "sf": "security fisik",
+      "ss": "security siber"
+    },
+    "fieldTable": {
+      "Insignificant": {
+        "manusia": "First aid case (tanpa tindakan medis)",
+        "asset": "Pabrik beroperasi normal dengan kondisi gangguan tidak berarti",
+        "lingkungan": "Pencemaran di lingkungan kerja",
+        "reputasi": "Pabrik beroperasi normal dengan kondisi gangguan tidak berarti",
+        "securityFisik": "Masuk tanpa izin, tidak ada kehilangan",
+        "securitySiber": "Penggunaan hardware yang tidak terdaftar tanpa kehilangan informasi perusahaan"
+      },
+      "minor": {
+        "manusia": "First aid case (ada tindakan medis)",
+        "asset": "Pabrik beroperasi normal dengan gangguan yang menyebabkan perbaikan di tempat",
+        "lingkungan": "Pencemaran di lingkungan perusahaan",
+        "reputasi": "Pabrik beroperasi normal dengan gangguan yang menyebabkan perbaikan di tempat",
+        "securityFisik": "Masuk tanpa izin, tidak ada kehilangan, dan mengganggu kenyamanan",
+        "securitySiber": "System down kurang dari 2 jam"
+      },
+      "moderate": {
+        "manusia": "Medical treatment case",
+        "asset": {
+          "a1": "Pabrik beroperasi tidak normal dan perlu perbaikan dengan menurunkan rate produksi",
+          "a2": "Kerugian < USD 50.000"
+        },
+        "lingkungan": "Pencemaran ke masyarakat",
+        "reputasi": {
+          "r1": "Liputan oleh media regional (Kaltim Post)",
+          "r2": "Aduan kerusakan oleh masyarakat"
+        },
+        "securityFisik": "Masuk tanpa izin, ada kehilangan 1 barang",
+        "securitySiber": "System down 2-8 jam, kehilangan data perusahaan secara permanen"
+      },
+      "major": {
+        "manusia": "Lost workday case atau cacat permanen",
+        "asset": {
+          "a1": "Pabrik shutdown dengan kerusakan yang harus diperbaiki sampai dengan 5 hari",
+          "a2": "Kerugian USD 50.000 - 100.000"
+        },
+        "lingkungan": "Pencemaran ke masyarakat dan menimbulkan protes masyarakat",
+        "reputasi": {
+          "r1": "Liputan oleh media Nasional",
+          "r2": "Tuntutan hukum oleh masyarakat/LSM",
+          "r3": "PROPER Nasional MERAH"
+        },
+        "securityFisik": "Masuk tanpa izin, ada kehilangan lebih dari 1 barang",
+        "securitySiber": "System diretas, tanpa diketahui, dan sewaktu-waktu dapat dikendalikan dari luar"
+      },
+      "Catastrophic": {
+        "manusia": "Kematian (1 atau lebih orang)",
+        "asset": {
+          "a1": "Pabrik shutdown dengan memerlukan perbaikan lebih dari 5 hari",
+          "a2": "Kerugian > USD 100.000"
+        },
+        "lingkungan": "Pencemaran lingkungan yang menimbulkan tuntutan hukum",
+        "reputasi": {
+          "r1": "Liputan oleh media Internasional",
+          "r2": "Investigasi dari Pemerintah/Kepolisian"
+        },
+        "securityFisik": "Ancaman bom, pembajakan pabrik, sabotase",
+        "securitySiber": "Kelumpuhan infrastruktur IT"
+      }
+    }
+  },
   "category": {
     "header": "kategori insiden",
     "year": "per tahun",

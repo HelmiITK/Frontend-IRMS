@@ -36,7 +36,78 @@
       "c": "모든 직원이 자부심을 느끼는 최고의 기업이 되기"
     }
   },
-  "table": "사건 보고 매트릭스 테이블",
+  "table": {
+    "header": "테이블 매트릭스 사건 보고서",
+    "headerColumn": {
+      "m": "인간",
+      "a": "자산",
+      "l": "환경",
+      "r": "명성",
+      "sf": "물리적 보안",
+      "ss": "사이버 보안"
+    },
+    "fieldTable": {
+      "Insignificant": {
+        "manusia": "응급 처치 사례 (의료 치료 없음)",
+        "asset": "공장이 정상적으로 운영되며 사소한 방해가 있음",
+        "lingkungan": "작업장 내 오염",
+        "reputasi": "공장이 정상적으로 운영되며 사소한 방해가 있음",
+        "securityFisik": "무단 출입, 손실 없음",
+        "securitySiber": "등록되지 않은 하드웨어 사용, 회사 데이터 손실 없음"
+      },
+      "minor": {
+        "manusia": "응급 처치 사례 (의료 치료 포함)",
+        "asset": "공장이 정상적으로 운영되지만 현장 수리가 필요함",
+        "lingkungan": "회사 부지 내 오염",
+        "reputasi": "공장이 정상적으로 운영되지만 현장 수리가 필요함",
+        "securityFisik": "무단 출입, 손실 없음, 그러나 불편함 초래",
+        "securitySiber": "시스템 다운 2시간 미만"
+      },
+      "moderate": {
+        "manusia": "의료 치료 사례",
+        "asset": {
+          "a1": "공장이 비정상적으로 운영되며 생산 속도를 줄여 수리 필요",
+          "a2": "손실 < USD 50,000"
+        },
+        "lingkungan": "지역 사회에 영향을 미치는 오염",
+        "reputasi": {
+          "r1": "지역 언론 (Kaltim Post)의 보도",
+          "r2": "손상에 대한 대중 불만"
+        },
+        "securityFisik": "무단 출입, 1개 품목 손실",
+        "securitySiber": "시스템 2~8시간 다운, 영구적인 회사 데이터 손실"
+      },
+      "major": {
+        "manusia": "작업 손실 사례 또는 영구 장애",
+        "asset": {
+          "a1": "공장 폐쇄 및 최대 5일간 수리 필요",
+          "a2": "손실 USD 50,000 - 100,000"
+        },
+        "lingkungan": "지역 사회에 영향을 미치는 오염, 공공 시위 유발",
+        "reputasi": {
+          "r1": "국가 언론 보도",
+          "r2": "지역 사회/NGO의 법적 청구",
+          "r3": "국가 PROPER RED"
+        },
+        "securityFisik": "무단 출입, 1개 이상의 품목 손실",
+        "securitySiber": "시스템 해킹됨, 감지되지 않음, 원격 제어 가능"
+      },
+      "Catastrophic": {
+        "manusia": "사망 (1명 이상)",
+        "asset": {
+          "a1": "공장 폐쇄 및 5일 이상 수리 필요",
+          "a2": "손실 > USD 100,000"
+        },
+        "lingkungan": "법적 청구를 초래하는 환경 오염",
+        "reputasi": {
+          "r1": "국제 언론 보도",
+          "r2": "정부/경찰 조사"
+        },
+        "securityFisik": "폭탄 위협, 공장 점거, 사보타주",
+        "securitySiber": "IT 인프라 마비"
+      }
+    }
+  },
   "category": {
     "header": "사고 유형",
     "year": "연간",
