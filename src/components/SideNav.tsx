@@ -13,6 +13,7 @@ import { FaBuildingUser } from "react-icons/fa6";
 import { PiBellRingingFill } from "react-icons/pi";
 import { BiTask } from "react-icons/bi";
 import { useLanguage } from "../translations/LanguageProvider";
+
 interface SideNavProps {
   handleLanguageChange: (lang: string) => void;
   t: (key: string) => string;
@@ -101,7 +102,18 @@ const SideNav: React.FC<SideNavProps> = ({ handleLanguageChange, t }) => {
     setOpen(true);
   };
 
-  const handleDrawerClose = () => {
+  // const handleDrawerClose = () => {
+  //   setOpen(false);
+  //   setOpenDropdown(null);
+  // };
+
+  // Fungsi untuk membuka sidebar saat hover
+  const handleHoverOpen = () => {
+    setOpen(true);
+  };
+
+  // Fungsi untuk menutup sidebar setelah hover
+  const handleHoverClose = () => {
     setOpen(false);
     setOpenDropdown(null);
   };
@@ -127,9 +139,10 @@ const SideNav: React.FC<SideNavProps> = ({ handleLanguageChange, t }) => {
       <SideBarComponent
         open={open}
         openDropdown={openDropdown}
-        handleDrawerClose={handleDrawerClose}
+        handleDrawerClose={handleHoverClose}
         toggleDropdown={toggleDropdown}
         menuSidebar={menuSidebar}
+        handleHoverOpen={handleHoverOpen}
       />
     </Box>
   );

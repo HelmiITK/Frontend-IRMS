@@ -86,6 +86,7 @@ interface SideBarComponentProps {
   open: boolean;
   openDropdown: string | null;
   handleDrawerClose: () => void;
+  handleHoverOpen: () => void;
   toggleDropdown: (label: string) => void;
   menuSidebar: MenuItem[];
 }
@@ -94,6 +95,7 @@ const SideBarComponent: React.FC<SideBarComponentProps> = ({
   open,
   openDropdown,
   handleDrawerClose,
+  handleHoverOpen,
   toggleDropdown,
   menuSidebar,
 }) => {
@@ -109,6 +111,8 @@ const SideBarComponent: React.FC<SideBarComponentProps> = ({
     <Drawer
       variant="permanent"
       open={open}
+      onMouseEnter={handleHoverOpen}
+      // onMouseLeave={handleDrawerClose}
       sx={{
         "& .MuiDrawer-paper": {
           overflowX: "scroll", // Tambahkan ini untuk scroll horizontal
@@ -141,7 +145,7 @@ const SideBarComponent: React.FC<SideBarComponentProps> = ({
         {menuSidebar.map((item, index) => (
           <li
             key={index}
-            className="flex flex-col hover:bg-gray-50 duration-150 ease-linear"
+            className="flex flex-col hover:bg-gray-50 duration-150 ease-linear capitalize"
           >
             {/* Parent route */}
             {item.route ? (
@@ -158,7 +162,7 @@ const SideBarComponent: React.FC<SideBarComponentProps> = ({
                   <>
                     <span
                       className={`mr-3 text-lg ${
-                        isActive ? "text-white" : "text-gray-700"
+                        isActive ? "text-white" : "text-gray-700 "
                       }`}
                     >
                       {item.icon}

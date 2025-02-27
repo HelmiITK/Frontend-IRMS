@@ -74,7 +74,9 @@ const DataFieldTableIncidentComponent: React.FC<
                 {itemList?.basic_cause}
               </p>
             </td>
-            <td className="text-xs text-black">{itemList?.category_incident}</td>
+            <td className="text-xs text-black">
+              {itemList?.category_incident}
+            </td>
             <td>
               <span className="py-1 px-2 text-white bg-black rounded-md text-xs font-normal">
                 {itemList?.classification_incident}
@@ -85,7 +87,9 @@ const DataFieldTableIncidentComponent: React.FC<
             <td className="text-xs text-black">{itemList?.itcr}</td>
             <td>
               {expandedRows.includes(itemList?.no_report) ? (
-                <span className="text-xs text-black">{itemList?.description}</span>
+                <span className="text-xs text-black">
+                  {itemList?.description}
+                </span>
               ) : (
                 <span className="text-xs text-black">
                   {itemList?.description.length > 20
@@ -103,7 +107,11 @@ const DataFieldTableIncidentComponent: React.FC<
               )}
             </td>
             <td>
-              <img src={itemList?.photos} alt="" className="w-10 h-10 object-cover"/>
+              <img
+                src={itemList?.photos}
+                alt=""
+                className="w-10 h-10 object-cover"
+              />
             </td>
             <td className="text-xs text-black">{itemList?.reviewed_by}</td>
             <td className=" sticky right-0 backdrop-blur-sm bg-opacity-55 bg-white flex flex-col gap-[5px] justify-center">
@@ -134,7 +142,7 @@ const DataFieldTableIncidentComponent: React.FC<
       ) : (
         <tr>
           <td
-            colSpan={10}
+            colSpan={15}
             className="text-center text-base text-black font-montserrat font-light py-5"
           >
             <h1 className="italic">Data field is not found</h1>

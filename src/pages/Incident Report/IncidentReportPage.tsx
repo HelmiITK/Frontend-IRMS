@@ -249,7 +249,7 @@ const IncidentReportPage: React.FC = () => {
         {/* <Divider className="h-[0.5px] bg-slate-200 " /> */}
 
         {/* table user management by daisyUI */}
-        <div className="w-full shadow-md rounded-md mb-8 mt-2 border">
+        <div className="w-full shadow-lg rounded-lg mb-8 mt-2 border">
           <table className="table table-zebra table-xs">
             {/* head */}
             <HeaderTableIncidentComponent
