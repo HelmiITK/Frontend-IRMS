@@ -131,11 +131,48 @@ const UserManagementPage: React.FC = () => {
 
   //fungsi hapus field yang diselect
   const handleDeleteSelected = () => {
-    console.log("gua diklik - delete selected");
-    setUserListField((prevList) =>
-      prevList.filter((user) => !selectedUsers.includes(user.id))
-    );
-    setSelectedUsers([]); // Kosongkan pilihan setelah menghapus
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+      position: "center", // Menentukan posisi di atas
+      toast: false, // Menghindari penggunaan toast untuk memastikan SweetAlert muncul sebagai pop-up biasa
+      didOpen: () => {
+        // Mengakses container SweetAlert dan menambahkan z-index
+        const swalModal = document.querySelector(
+          ".swal2-container"
+        ) as HTMLElement;
+        if (swalModal) {
+          swalModal.style.zIndex = "9999"; // Pastikan nilai z-index cukup tinggi
+        }
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+          position: "center", // Tetap posisi di atas setelah penghapusan
+          didOpen: () => {
+            const swalModal = document.querySelector(
+              ".swal2-container"
+            ) as HTMLElement;
+            if (swalModal) {
+              swalModal.style.zIndex = "9999";
+            }
+          },
+        });
+
+        setUserListField((prevList) =>
+          prevList.filter((user) => !selectedUsers.includes(user.id))
+        );
+        setSelectedUsers([]); // Kosongkan pilihan setelah menghapus
+      }
+    });
   };
 
   // Fungsi hapus row user with SweetAlert2

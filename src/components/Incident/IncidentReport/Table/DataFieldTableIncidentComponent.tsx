@@ -70,7 +70,7 @@ const DataFieldTableIncidentComponent: React.FC<
               {itemList?.origin_department}
             </td>
             <td>
-              <p className="bg-orange-600 py-1 px-2 rounded-md text-white text-center text-xs font-normal">
+              <p className="bg-orange-600 py-1 px-2 text-center rounded-md text-white text-xs font-normal">
                 {itemList?.basic_cause}
               </p>
             </td>
