@@ -25,7 +25,7 @@ const HeaderTableComponent: React.FC<HeaderTableComponentProps> = ({
 }) => {
   return (
     <thead>
-      <tr className="bg-gray-50">
+      <tr>
         {/* show dropdown */}
         <th className="flex flex-row items-center gap-1 justify-center">
           <label htmlFor="show" className="text-sm text-black">

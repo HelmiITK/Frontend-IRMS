@@ -1,4 +1,4 @@
-import { Divider } from "@mui/material";
+// import { Divider } from "@mui/material";
 import { useState } from "react";
 import FooterComponent from "../../components/Footer/FooterComponent";
 import Swal from "sweetalert2";
@@ -7,6 +7,7 @@ import HeaderTableComponent from "../../components/UserManagement/Table/HeaderTa
 import DataFieldTableComponent from "../../components/UserManagement/Table/DataFieldTableComponent";
 import PaginationTableComponent from "../../components/UserManagement/Table/PaginationTableComponent";
 import HeaderUserManagemenComponent from "../../components/UserManagement/HeaderUserManagemenComponent";
+import { useSearchParams } from "react-router-dom";
 
 interface User {
   id: number;
@@ -84,18 +85,43 @@ const userList: User[] = [
 
 const UserManagementPage: React.FC = () => {
   // NOTE: perhatikan posisi state pastikan berada di atas fungsi agar dideklarasi terlebih dahulu
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const searchQuery = searchParams.get("search") || "";
+
   const [sortField, setSortField] = useState<keyof User | null>(null);
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
   const [selectedUsers, setSelectedUsers] = useState<number[]>([]);
 
   const [userListField, setUserListField] = useState<User[]>(userList);
   const [currentPage, setCurrentPage] = useState(1);
-  const rowsPerPage = 4;
 
-  const totalPages = Math.ceil(userListField.length / rowsPerPage);
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const query = event.target.value;
+    setSearchParams(query ? { search: query } : {});
+  };
+
+  // filter data berdasarkan query pengguna
+  const filteredUsers = userListField.filter(
+    (user) =>
+      user.id.toString().includes(searchQuery) ||
+      user.npk.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.roles.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.job.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.department.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.superior.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const rowsPerPage = 4;
+  const totalPages = Math.ceil(filteredUsers.length / rowsPerPage);
+
+  const safeCurrentPage = Math.min(currentPage, totalPages || 1);
+
   const indexOfLastRow = currentPage * rowsPerPage;
   const indexOfFirstRow = indexOfLastRow - rowsPerPage;
-  const currentUsers = userListField.slice(indexOfFirstRow, indexOfLastRow);
+  const currentUsers = filteredUsers.slice(indexOfFirstRow, indexOfLastRow);
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
@@ -228,7 +254,7 @@ const UserManagementPage: React.FC = () => {
         {/* header */}
         <HeaderUserManagemenComponent />
 
-        <Divider className="w-full h-[0.5px] bg-slate-200" />
+        {/* <Divider className="w-full h-[0.5px] bg-slate-200" /> */}
 
         {/* filtering */}
         <FilterComponent
@@ -237,35 +263,48 @@ const UserManagementPage: React.FC = () => {
           userListField={userListField}
           handleDeselectedAll={handleDeselectedAll}
           handleDeleteSelected={handleDeleteSelected}
+          searchQuery={searchQuery}
+          handleSearch={handleSearch}
         />
 
-        <Divider className="w-full h-[0.5px] bg-slate-200 " />
+        {/* <Divider className="w-full h-[0.5px] bg-slate-200 " /> */}
 
         {/* table user management by daisyUI */}
-        <div className="w-full overflow-hidden rounded-lg shadow-lg bg-white mt-2 lg:mt-4 mb-8">
-          <div className="overflow-auto">
-            <table className="table table-zebra ">
-              {/* head */}
-              <HeaderTableComponent
-                handleSort={handleSort}
-                sortField={sortField}
-                sortOrder={sortOrder}
-              />
+        <div className="w-full shadow-lg rounded-lg mb-8 mt-2 pt-2 border">
+          <table className="table table-zebra table-xs">
+            {/* head */}
+            <HeaderTableComponent
+              handleSort={handleSort}
+              sortField={sortField}
+              sortOrder={sortOrder}
+            />
 
-              {/* data field */}
-              <DataFieldTableComponent
-                userListField={currentUsers}
-                selectedUsers={selectedUsers}
-                setSelectedUsers={setSelectedUsers}
-                handleDeleteRowUser={handleDeleteRowUser}
-              />
-            </table>
-          </div>
+            {/* data field */}
+            <tbody>
+              {currentUsers.length > 0 ? (
+                currentUsers.map((user) => (
+                  <DataFieldTableComponent
+                    key={user.id}
+                    userListField={[user]}
+                    selectedUsers={selectedUsers}
+                    setSelectedUsers={setSelectedUsers}
+                    handleDeleteRowUser={handleDeleteRowUser}
+                  />
+                ))
+              ) : (
+                <tr>
+                  <td colSpan={15} className="text-gray-500 text-center py-4">
+                    No results found
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
 
           {/* pagination */}
           <div className="p-4">
             <PaginationTableComponent
-              currentPage={currentPage}
+              currentPage={safeCurrentPage}
               totalPages={totalPages}
               onPageChange={handlePageChange}
             />

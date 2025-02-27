@@ -27,8 +27,8 @@ const HeaderTableIncidentComponent: React.FC<
   HeaderTableIncidentComponentProps
 > = ({ handleSort, sortField, sortOrder }) => {
   return (
-    <thead className="">
-      <tr className="">
+    <thead>
+      <tr>
         {/* show dropdown */}
         <th>
           <div className="flex flex-row items-start gap-1">
@@ -318,7 +318,9 @@ const HeaderTableIncidentComponent: React.FC<
         {/* photos */}
         <th>
           <div className="flex items-center gap-1">
-            <p className="text-black text-xs font-semibold capitalize">photos</p>
+            <p className="text-black text-xs font-semibold capitalize">
+              photos
+            </p>
             <div
               onClick={() => handleSort("photos")}
               className="cursor-pointer"
