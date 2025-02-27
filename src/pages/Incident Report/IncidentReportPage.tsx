@@ -152,10 +152,16 @@ const IncidentReportPage: React.FC = () => {
     (user) =>
       user.no_report.toString().includes(searchQuery) ||
       user.reporter.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      user.origin_department.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.origin_department
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase()) ||
       user.basic_cause.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      user.category_incident.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      user.classification_incident.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.category_incident
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase()) ||
+      user.classification_incident
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase()) ||
       user.area.toLowerCase().includes(searchQuery.toLowerCase()) ||
       user.loaction.toLowerCase().includes(searchQuery.toLowerCase()) ||
       user.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -323,7 +329,7 @@ const IncidentReportPage: React.FC = () => {
 
         {/* table user management by daisyUI */}
         <div className="w-full shadow-lg rounded-lg mb-8 mt-2 border">
-          <table className="table table-zebra table-xs relative">
+          <table className="table table-zebra table-xs">
             {/* head */}
             <HeaderTableIncidentComponent
               handleSort={handleSort}
@@ -332,23 +338,25 @@ const IncidentReportPage: React.FC = () => {
             />
 
             {/* data field */}
-            {currentUsers.length > 0 ? (
-              <tbody>
-                {currentUsers.map((user) => (
+            <tbody>
+              {currentUsers.length > 0 ? (
+                currentUsers.map((user) => (
                   <DataFieldTableIncidentComponent
                     key={user.no_report}
-                    userListField={[user]} // pass sebagai array
+                    userListField={[user]}
                     selectedUsers={selectedUsers}
                     setSelectedUsers={setSelectedUsers}
                     handleDeleteRowUser={handleDeleteRowUser}
                   />
-                ))}
-              </tbody>
-            ) : (
-              <p className="text-gray-500 text-center absolute right-[46%] ">
-                No results found
-              </p>
-            )}
+                ))
+              ) : (
+                <tr>
+                  <td colSpan={15} className="text-gray-500 text-center py-4">
+                    No results found
+                  </td>
+                </tr>
+              )}
+            </tbody>
           </table>
 
           {/* pagination */}
