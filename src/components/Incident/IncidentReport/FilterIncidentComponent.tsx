@@ -5,6 +5,7 @@ import { RiFileExcel2Line } from "react-icons/ri";
 import { FaRegFilePdf } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { Divider } from "@mui/material";
+import { ChangeEvent } from "react";
 
 interface User {
   no_report: number;
@@ -12,14 +13,14 @@ interface User {
   reporter: string;
   origin_department: string;
   basic_cause: string;
-  // category_incident: string;
-  // classification_incident: string;
-  // area: string;
-  // loaction: string;
-  // itcr: string;
-  // description: string;
-  // photos: string;
-  // reviewed_by: string;
+  category_incident: string;
+  classification_incident: string;
+  area: string;
+  loaction: string;
+  itcr: string;
+  description: string;
+  photos: string;
+  reviewed_by: string;
 }
 
 interface FilterIncidentComponentProps {
@@ -28,6 +29,8 @@ interface FilterIncidentComponentProps {
   userListField: User[];
   handleDeselectedAll: () => void;
   handleDeleteSelected: () => void;
+  searchQuery: string;
+  handleSearch: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const FilterIncidentComponent: React.FC<FilterIncidentComponentProps> = ({
@@ -36,6 +39,8 @@ const FilterIncidentComponent: React.FC<FilterIncidentComponentProps> = ({
   handleDeleteSelected,
   handleSelectedAll,
   handleDeselectedAll,
+  searchQuery,
+  handleSearch,
 }) => {
   return (
     <div className="py-2 flex flex-col gap-2 lg:flex lg:flex-row lg:gap-4 w-full lg:justify-between">
@@ -110,18 +115,27 @@ const FilterIncidentComponent: React.FC<FilterIncidentComponentProps> = ({
         </div>
       </div>
 
-      {/*searching   end feature */}
+      {/*searching */}
       <div className=" flex flex-row gap-1 items-center sticky right-2">
         <label htmlFor="search">
-          <IoSearch className="hidden lg:block text-xl text-slate-400 absolute top-2 right-3" />
+          <IoSearch className="hidden lg:block text-xl text-slate-400 absolute top-[10px] right-3" />
         </label>
-        <input
-          type="text"
-          name="search"
-          id="search"
-          className="px-3  py-[6px] text-sm placeholder:text-sm placeholder:font-light placeholder:font-poppins placeholder:tracking-wider placeholder:text-slate-400 border border-slate-400 rounded-sm shadow-sm"
-          placeholder="search"
-        />
+        <div className="flex flex-col gap-2">
+          <input
+            type="text"
+            name="search"
+            id="search"
+            placeholder="search"
+            value={searchQuery}
+            onChange={handleSearch}
+            className="px-3  py-[6px] text-sm placeholder:text-sm placeholder:font-light placeholder:font-poppins placeholder:tracking-wider placeholder:text-slate-400 border border-slate-400 rounded-sm shadow-sm"
+          />
+          {searchQuery && (
+            <p className="text-gray-600 font-light text-sm">
+              Hasil Pencarian : {searchQuery}
+            </p>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -21,6 +21,7 @@ import { useLanguage } from "./translations/LanguageProvider";
 import AddIncidentReportComponent from "./components/Incident/IncidentReport/Action/AddIncident/AddIncidentReportComponent";
 import DetailIncidentReportComponent from "./components/Incident/IncidentReport/Action/DetailIncident/DetailIncidentReportComponent";
 import EditIncidentReportComponent from "./components/Incident/IncidentReport/Action/EditIncident/EditIncidentReportComponent";
+import SearchParamsPage from "./pages/SearchParamsPage";
 
 function App() {
   const [t] = useTranslation("global");
@@ -33,6 +34,7 @@ function App() {
           {/* nested routes  */}
           <Route path="/" element={<LoginPage />} />
           <Route path="/forget-password" element={<ForgetPasswordPage />} />
+          <Route path="/search" element={<SearchParamsPage />} />
 
           <Route
             path="/dashboard"

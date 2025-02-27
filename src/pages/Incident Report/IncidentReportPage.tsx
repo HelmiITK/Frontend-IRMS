@@ -9,6 +9,7 @@ import FilterIncidentComponent from "../../components/Incident/IncidentReport/Fi
 import HeaderTableIncidentComponent from "../../components/Incident/IncidentReport/Table/HeaderTableIncidentComponent";
 import DataFieldTableIncidentComponent from "../../components/Incident/IncidentReport/Table/DataFieldTableIncidentComponent";
 import PaginationTableIncidentComponent from "../../components/Incident/IncidentReport/Table/PaginationTableIncidentComponent";
+import { useSearchParams } from "react-router-dom";
 
 // Definisikan tipe data User
 interface User {
@@ -128,18 +129,50 @@ const userList: User[] = [
 
 const IncidentReportPage: React.FC = () => {
   // NOTE: perhatikan posisi state pastikan berada di atas fungsi agar dideklarasi terlebih dahulu
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // ambil nilai search dari URL
+  const searchQuery = searchParams.get("search") || "";
+
   const [sortField, setSortField] = useState<keyof User | null>(null);
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
   const [selectedUsers, setSelectedUsers] = useState<number[]>([]);
 
   const [userListField, setUserListField] = useState<User[]>(userList);
   const [currentPage, setCurrentPage] = useState(1);
-  const rowsPerPage = 4;
 
-  const totalPages = Math.ceil(userListField.length / rowsPerPage);
+  // handle search by params
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const query = event.target.value;
+    setSearchParams(query ? { search: query } : {});
+  };
+
+  // filter data berdasarkan query pengguna
+  const filteredUsers = userListField.filter(
+    (user) =>
+      user.no_report.toString().includes(searchQuery) ||
+      user.reporter.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.origin_department.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.basic_cause.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.category_incident.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.classification_incident.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.area.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.loaction.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.reviewed_by.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  // Hitung jumlah total halaman berdasarkan filteredUsers
+  const rowsPerPage = 4;
+  const totalPages = Math.ceil(filteredUsers.length / rowsPerPage);
+
+  // Pastikan currentPage tidak lebih dari totalPages (untuk edge case ketika hasil filter sedikit)
+  const safeCurrentPage = Math.min(currentPage, totalPages || 1);
+
+  // Ambil data sesuai halaman
   const indexOfLastRow = currentPage * rowsPerPage;
   const indexOfFirstRow = indexOfLastRow - rowsPerPage;
-  const currentUsers = userListField.slice(indexOfFirstRow, indexOfLastRow);
+  const currentUsers = filteredUsers.slice(indexOfFirstRow, indexOfLastRow);
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
@@ -278,17 +311,19 @@ const IncidentReportPage: React.FC = () => {
         {/* filter */}
         <FilterIncidentComponent
           selectedUsers={selectedUsers}
-          userListField={userListField}
+          userListField={filteredUsers}
           handleDeselectedAll={handleDeselectedAll}
           handleSelectedAll={handleSelectedAll}
           handleDeleteSelected={handleDeleteSelected}
+          searchQuery={searchQuery}
+          handleSearch={handleSearch}
         />
 
         {/* <Divider className="h-[0.5px] bg-slate-200 " /> */}
 
         {/* table user management by daisyUI */}
         <div className="w-full shadow-lg rounded-lg mb-8 mt-2 border">
-          <table className="table table-zebra table-xs">
+          <table className="table table-zebra table-xs relative">
             {/* head */}
             <HeaderTableIncidentComponent
               handleSort={handleSort}
@@ -297,18 +332,29 @@ const IncidentReportPage: React.FC = () => {
             />
 
             {/* data field */}
-            <DataFieldTableIncidentComponent
-              userListField={currentUsers}
-              selectedUsers={selectedUsers}
-              setSelectedUsers={setSelectedUsers}
-              handleDeleteRowUser={handleDeleteRowUser}
-            />
+            {currentUsers.length > 0 ? (
+              <tbody>
+                {currentUsers.map((user) => (
+                  <DataFieldTableIncidentComponent
+                    key={user.no_report}
+                    userListField={[user]} // pass sebagai array
+                    selectedUsers={selectedUsers}
+                    setSelectedUsers={setSelectedUsers}
+                    handleDeleteRowUser={handleDeleteRowUser}
+                  />
+                ))}
+              </tbody>
+            ) : (
+              <p className="text-gray-500 text-center absolute right-[46%] ">
+                No results found
+              </p>
+            )}
           </table>
 
           {/* pagination */}
           <div className="p-4">
             <PaginationTableIncidentComponent
-              currentPage={currentPage}
+              currentPage={safeCurrentPage}
               totalPages={totalPages}
               onPageChange={handlePageChange}
             />

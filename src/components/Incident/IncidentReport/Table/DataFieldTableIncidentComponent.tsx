@@ -41,7 +41,7 @@ const DataFieldTableIncidentComponent: React.FC<
   };
 
   return (
-    <tbody>
+    <>
       {userListField.length > 0 ? (
         userListField.map((itemList, index) => (
           <tr key={index}>
@@ -150,7 +150,7 @@ const DataFieldTableIncidentComponent: React.FC<
           </td>
         </tr>
       )}
-    </tbody>
+    </>
   );
 };
 
