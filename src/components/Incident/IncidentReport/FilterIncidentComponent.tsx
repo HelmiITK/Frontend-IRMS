@@ -43,7 +43,7 @@ const FilterIncidentComponent: React.FC<FilterIncidentComponentProps> = ({
         {/* left feature */}
         <div className="flex items-center gap-2 lg:flex lg:flex-row lg:gap-4">
           {/* Create user  */}
-          <Link to={"add_user"}>
+          <Link to={"add_incident_report"}>
             <button className="capitalize text-xs lg:text-sm bg-green-500 py-1 px-2 lg:py-1 lg:px-4 rounded-sm shadow-md text-white border border-green-700 hover:scale-105 duration-150 ease-in-out hover:shadow-lg">
               add incident report
             </button>

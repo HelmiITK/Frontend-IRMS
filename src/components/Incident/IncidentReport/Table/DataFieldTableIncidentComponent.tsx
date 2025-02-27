@@ -116,14 +116,14 @@ const DataFieldTableIncidentComponent: React.FC<
             <td className="text-xs text-black">{itemList?.reviewed_by}</td>
             <td className=" sticky right-0 backdrop-blur-sm bg-opacity-55 bg-white flex flex-col gap-[5px] justify-center">
               <Link
-                to="detail_user"
+                to="detail_incident_report"
                 type="button"
                 className="text-xs border border-blue-700 px-2 py-1 rounded-sm bg-blue-500 text-white capitalize hover:bg-blue-700 duration-150 text-center"
               >
                 View
               </Link>
               <Link
-                to="edit_user"
+                to="edit_incident_report"
                 type="button"
                 className="text-xs border border-sky-500 px-2 py-1 rounded-sm bg-sky-300 text-white capitalize hover:bg-sky-700 duration-150 text-center"
               >

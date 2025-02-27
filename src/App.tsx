@@ -18,6 +18,9 @@ import Layout from "./layout/Layout";
 import ForgetPasswordPage from "./pages/Auth/ForgetPasswordPage";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "./translations/LanguageProvider";
+import AddIncidentReportComponent from "./components/Incident/IncidentReport/Action/AddIncident/AddIncidentReportComponent";
+import DetailIncidentReportComponent from "./components/Incident/IncidentReport/Action/DetailIncident/DetailIncidentReportComponent";
+import EditIncidentReportComponent from "./components/Incident/IncidentReport/Action/EditIncident/EditIncidentReportComponent";
 
 function App() {
   const [t] = useTranslation("global");
@@ -33,10 +36,10 @@ function App() {
 
           <Route
             path="/dashboard"
-            element={<Layout handleLanguageChange={changeLanguage} t={t}/>}
+            element={<Layout handleLanguageChange={changeLanguage} t={t} />}
           >
             <Route index element={<DashboardPage t={t} />} />
-            <Route path="profile_user" element={<ProfileUserPage t={t}/>} />
+            <Route path="profile_user" element={<ProfileUserPage t={t} />} />
 
             <Route path="user_management">
               <Route index element={<UserManagementPage />} />
@@ -46,7 +49,22 @@ function App() {
             </Route>
 
             <Route path="user_alerts" element={<UserAlertsPage />} />
-            <Route path="incident_report" element={<IncidentReportPage />} />
+            <Route path="incident_report">
+              <Route index element={<IncidentReportPage />} />
+              <Route
+                path="add_incident_report"
+                element={<AddIncidentReportComponent />}
+              />
+              <Route
+                path="detail_incident_report"
+                element={<DetailIncidentReportComponent />}
+              />
+              <Route
+                path="edit_incident_report"
+                element={<EditIncidentReportComponent />}
+              />
+            </Route>
+
             <Route
               path="my_incident_report"
               element={<MyIncidentReportPage />}
