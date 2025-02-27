@@ -4,7 +4,7 @@ import { AiFillHome } from "react-icons/ai";
 
 const HeaderIncidentReportComponent = () => {
   return (
-    <div className="flex flex-col gap-2 mb-4">
+    <div className="flex flex-col gap-2 mb-2">
       <h1 className="mt-2 lg:mt-3 text-xl font-montserrat capitalize">
         incident report list
       </h1>

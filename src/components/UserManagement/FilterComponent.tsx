@@ -25,11 +25,11 @@ interface FilterComponentProps {
 }
 
 const FilterComponent: React.FC<FilterComponentProps> = ({
+  selectedUsers,
+  userListField,
   handleDeleteSelected,
   handleDeselectedAll,
   handleSelectedAll,
-  selectedUsers,
-  userListField,
 }) => {
   return (
     <div className="py-2 flex flex-col gap-2 lg:flex lg:flex-row lg:gap-4">

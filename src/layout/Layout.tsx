@@ -4,7 +4,7 @@ import SideNav from "../components/SideNav";
 
 interface LayoutProps {
   handleLanguageChange: (lang: string) => void;
-  t: (key: string) => string; 
+  t: (key: string) => string;
 }
 
 const Layout: React.FC<LayoutProps> = ({ handleLanguageChange, t }) => {
@@ -12,13 +12,13 @@ const Layout: React.FC<LayoutProps> = ({ handleLanguageChange, t }) => {
     <Box
       sx={{
         display: "flex",
-        backgroundColor: "#f9fafb",
+        // backgroundColor: "#f9fafb",
         minHeight: "100vh",
         width: "100%",
         maxWidth: "100vw",
       }}
     >
-      <SideNav handleLanguageChange={handleLanguageChange} t={t}/>
+      <SideNav handleLanguageChange={handleLanguageChange} t={t} />
       <Box
         component="main"
         sx={{
@@ -28,6 +28,7 @@ const Layout: React.FC<LayoutProps> = ({ handleLanguageChange, t }) => {
           marginLeft: { xs: "0px" },
           marginTop: "50px",
           width: "100%",
+          backgroundColor: "#f9fafb",
         }}
       >
         <Outlet />
