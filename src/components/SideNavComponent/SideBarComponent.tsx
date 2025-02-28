@@ -11,6 +11,7 @@ import { motion } from "framer-motion";
 import { FaChevronUp, FaChevronDown } from "react-icons/fa";
 import { IoLogOut } from "react-icons/io5";
 import { Link } from "react-router-dom";
+// import Bumi from "../../pages/Three/Bumi";
 
 const drawerWidth = 275; // Default drawer width for larger screens
 const mobileDrawerWidth = 220; // Drawer width for mobile screens
@@ -135,6 +136,8 @@ const SideBarComponent: React.FC<SideBarComponentProps> = ({
         </IconButton>
       </DrawerHeader>
       <Divider />
+
+      {/* <Bumi /> */}
 
       {/* live clock */}
       <div className="flex items-center justify-center py-4">
