@@ -101,12 +101,7 @@ const SideNav: React.FC<SideNavProps> = ({ handleLanguageChange, t }) => {
   const handleDrawerOpen = () => {
     setOpen(true);
   };
-
-  // const handleDrawerClose = () => {
-  //   setOpen(false);
-  //   setOpenDropdown(null);
-  // };
-
+  
   // Fungsi untuk membuka sidebar saat hover
   const handleHoverOpen = () => {
     setOpen(true);

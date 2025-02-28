@@ -33,7 +33,6 @@ const AddIncidentReportComponent: React.FC = () => {
     upload_file: null,
     description: "",
   });
-
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
