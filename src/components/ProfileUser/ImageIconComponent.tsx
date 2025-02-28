@@ -1,6 +1,6 @@
 import UserIcon from "../../assets/user.png";
 
-const ImageIconComponent = () => {
+const ImageIconComponent: React.FC = () => {
   return (
     <img
       src={UserIcon}
