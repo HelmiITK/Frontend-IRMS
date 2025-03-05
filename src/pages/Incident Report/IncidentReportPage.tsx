@@ -1,5 +1,3 @@
-// import { Divider } from "@mui/material";
-
 import { useState } from "react";
 import FooterComponent from "../../components/Footer/FooterComponent";
 import Swal from "sweetalert2";

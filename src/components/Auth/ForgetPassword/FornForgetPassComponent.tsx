@@ -20,6 +20,7 @@ const FormForgetPassComponent: React.FC<FormForgetPassComponentProps> = ({
         forgot <br className="hidden lg:block" /> your{" "}
         <br className="block lg:hidden" /> password ?
       </h1>
+      
       <form className="flex flex-col gap-5 w-full px-10 lg:gap-6">
         <div className="relative w-full">
           <label

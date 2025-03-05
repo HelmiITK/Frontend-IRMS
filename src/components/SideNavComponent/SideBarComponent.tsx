@@ -89,9 +89,9 @@ interface SideBarComponentProps {
   open: boolean;
   openDropdown: string | null;
   handleDrawerClose: () => void;
-  handleHoverOpen: () => void;
   toggleDropdown: (label: string) => void;
   menuSidebar: MenuItem[];
+  handleHoverOpen: () => void;
 }
 
 const SideBarComponent: React.FC<SideBarComponentProps> = ({
