@@ -8,6 +8,13 @@ const BroadcastPage: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [subject, setSubject] = useState<string>("Pilih Subjek");
   const [message, setMessage] = useState<string>("");
+  const [requestNo, setRequestNo] = useState<string>("");
+  const [classification, setClassification] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+  const [requestedBy, setRequestedBy] = useState<string>("");
+  const [requestDate, setRequestDate] = useState<string>(
+    new Date().toLocaleString()
+  );
 
   // Fungsi untuk menangani perubahan subject
   const handleSubjectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -15,11 +22,15 @@ const BroadcastPage: React.FC = () => {
     setSubject(selectedSubject);
 
     // Update pesan berdasarkan subject yang dipilih
-    if (selectedSubject === "Laporan Disetujui") {
+    if (
+      selectedSubject === "[Approved] Laporan Disetujui - PT.KPI - IRMS System"
+    ) {
       setMessage(
         "Laporan insiden Anda telah disetujui. Terima kasih telah melaporkan."
       );
-    } else if (selectedSubject === "Peringatan Insiden") {
+    } else if (
+      selectedSubject === "[Reminder] Peringatan Insiden - PT.KPI - IRMS System"
+    ) {
       setMessage(
         "Harap berhati-hati! Kami telah mendeteksi insiden di lokasi Anda."
       );
@@ -29,26 +40,119 @@ const BroadcastPage: React.FC = () => {
   };
 
   // handle submit to email
-  const handleSendBroadcast = () => {
-    if (!email) {
+  const handleSendBroadcast = async () => {
+    if (!email.trim()) {
       toast.error("Email tujuan wajib diisi!", { position: "top-right" });
       return;
     }
-    if (subject === "Pilih Subjek") {
-      toast.error("Silakan pilih subjek!", { position: "top-right" });
+    if (subject.toLowerCase() === "pilih subjek") {
+      toast.error("Silakan pilih subjek yang valid!", {
+        position: "top-right",
+      });
+      return;
+    }
+    if (!message.trim()) {
+      toast.error("Pesan tidak boleh kosong!", { position: "top-right" });
+      return;
+    }
+    if (
+      !requestNo.trim() ||
+      !classification.trim() ||
+      !description.trim() ||
+      !requestedBy.trim() ||
+      !requestDate.trim()
+    ) {
+      toast.error("Semua field wajib diisi!", { position: "top-right" });
       return;
     }
 
-    console.log("Mengirim email ke:", email);
-    console.log("Subjek:", subject);
-    console.log("Pesan:", message);
+    // Ambil nama sebelum @ dari email
+    const userName = email.split("@")[0];
 
-    toast.success("Broadcast berhasil dikirim!", { position: "top-right" });
+    // HTML Template Email (React JSX ke string HTML)
+    const emailTemplate = `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border-radius: 10px; background-color: #f5f5f5; text-align: center;">
+        <h2 style="background-color: #1D8000; color: white; padding: 15px; border-radius: 10px 10px 0 0;">
+          Incident Report Monitoring System (IRMS)
+        </h2>
+        <div style="padding: 20px; background: white; border-radius: 0 0 10px 10px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); text-align: left;">
+          <p style="font-size: 16px;">Dear <strong>${userName}</strong>,</p>
+          <p style="font-size: 14px; color: #333;">${message}</p>
 
-    // Reset form setelah berhasil mengirim
-    setEmail("");
-    setSubject("");
-    setMessage("");
+          <hr style="margin: 10px 0; border: 0; border-top: 1px solid #ddd;" />
+
+          <p><strong>Request No:</strong> ${requestNo}</p>
+          <p><strong>Classification Incident:</strong> ${classification}</p>
+          <p><strong>Description:</strong> ${description}</p>
+          <p><strong>Requested By:</strong> ${requestedBy}</p>
+          <p><strong>Request Date:</strong> ${requestDate}</p>
+
+          <a href="https://irms.vercel.app/" style="display: block; margin-top: 15px; padding: 10px 20px; background-color: #1D8000; color: white; text-decoration: none; border-radius: 5px; text-align: center;">
+            View Detail
+          </a>
+
+          <p style="font-size: 12px; color: #777; margin-top: 15px; text-align: center;">
+            or link to: <a href="https://irms.vercel.app" style="color: #1D8000; text-decoration: none;">https://irms.vercel.app</a>
+          </p>
+
+          <p style="font-size: 12px; color: #777; margin-top: 10px; text-align: center; font-weight: bold;">
+            - IRMS System
+          </p>
+        </div>
+      </div>
+    `;
+
+    try {
+      const response = await fetch("http://localhost:5000/api/email/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          subject,
+          message: emailTemplate,
+          requestNo,
+          classification,
+          description,
+          requestedBy,
+          requestDate,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        toast.success("Broadcast berhasil dikirim!", { position: "top-right" });
+        // Reset form setelah sukses
+        setEmail("");
+        setSubject("Pilih Subjek");
+        setMessage("");
+        setRequestNo("");
+        setClassification("");
+        setDescription("");
+        setRequestedBy("");
+        setRequestDate("");
+      } else {
+        toast.error(`Gagal mengirim: ${data.message}`, {
+          position: "top-right",
+        });
+      }
+
+      console.log("Data yang dikirim:", {
+        to: email,
+        subject: subject,
+        message: message,
+        requestNo: requestNo,
+        classification: classification,
+        description: description,
+        requestedBy: requestedBy,
+        requestDate: requestDate,
+      });
+    } catch (error) {
+      console.error("Error saat mengirim email:", error);
+      toast.error("Terjadi kesalahan, coba lagi!", { position: "top-right" });
+    }
   };
 
   return (
@@ -64,8 +168,9 @@ const BroadcastPage: React.FC = () => {
       <ToastContainer />
 
       {/* form broadcast */}
+      {/* Form Broadcast */}
       <div className="bg-white p-6 rounded-lg shadow-md max-w-lg mx-auto mt-4">
-        {/* header */}
+        {/* Header Form */}
         <div className="flex flex-col gap-2 items-center justify-center">
           <img src={iconBroadcast} alt="icon broadcast" className="w-16 h-16" />
           <h2 className="text-lg font-semibold mb-4 capitalize">
@@ -98,8 +203,12 @@ const BroadcastPage: React.FC = () => {
             className="w-full p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-green-300"
           >
             <option value="pilih subjek">Pilih Subjek</option>
-            <option value="Laporan Disetujui">Laporan Disetujui</option>
-            <option value="Peringatan Insiden">Peringatan Insiden</option>
+            <option value="[Approved] Laporan Disetujui - PT.KPI - IRMS System">
+              Laporan Disetujui
+            </option>
+            <option value="[Reminder] Peringatan Insiden - PT.KPI - IRMS System">
+              Peringatan Insiden
+            </option>
           </select>
         </div>
 
@@ -116,10 +225,81 @@ const BroadcastPage: React.FC = () => {
           />
         </div>
 
+        {/* Input Request No */}
+        <div className="mb-3">
+          <label className="block text-sm font-medium text-gray-700">
+            Request No
+          </label>
+          <input
+            type="text"
+            placeholder="Masukkan nomor permintaan"
+            value={requestNo}
+            onChange={(e) => setRequestNo(e.target.value)}
+            className="w-full p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-green-300"
+          />
+        </div>
+
+        {/* Pilihan Classification */}
+        <div className="mb-3">
+          <label className="block text-sm font-medium text-gray-700">
+            Classification Incident
+          </label>
+          <select
+            value={classification}
+            onChange={(e) => setClassification(e.target.value)}
+            className="w-full p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-green-300"
+          >
+            <option value="Minor">Minor</option>
+            <option value="Major">Major</option>
+            <option value="Critical">Critical</option>
+          </select>
+        </div>
+
+        {/* Input Description */}
+        <div className="mb-3">
+          <label className="block text-sm font-medium text-gray-700">
+            Description
+          </label>
+          <textarea
+            rows={3}
+            placeholder="Masukkan kronologi kejadian"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            className="w-full p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-green-300"
+          />
+        </div>
+
+        {/* Input Requested By */}
+        <div className="mb-3">
+          <label className="block text-sm font-medium text-gray-700">
+            Requested By
+          </label>
+          <input
+            type="text"
+            placeholder="Masukkan nama pelapor"
+            value={requestedBy}
+            onChange={(e) => setRequestedBy(e.target.value)}
+            className="w-full p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-green-300"
+          />
+        </div>
+
+        {/* Input Request Date (Read-only) */}
+        <div className="mb-3">
+          <label className="block text-sm font-medium text-gray-700">
+            Request Date
+          </label>
+          <input
+            type="text"
+            value={requestDate}
+            readOnly
+            className="w-full p-2 border bg-gray-100 rounded-md focus:outline-none"
+          />
+        </div>
+
         {/* Tombol Kirim */}
         <button
           onClick={handleSendBroadcast}
-          className=" capitalize bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 w-full"
+          className="capitalize bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 w-full"
         >
           submit Broadcast
         </button>
