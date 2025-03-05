@@ -1,13 +1,12 @@
 import { useState } from "react";
-import FooterComponent from "../../components/Footer/FooterComponent";
 import Swal from "sweetalert2";
 import contohImage from "../../assets/KPI_logo_2.png";
-import HeaderIncidentReportComponent from "../../components/Incident/IncidentReport/HeaderIncidentReportComponent";
 import FilterIncidentComponent from "../../components/Incident/IncidentReport/FilterIncidentComponent";
 import HeaderTableIncidentComponent from "../../components/Incident/IncidentReport/Table/HeaderTableIncidentComponent";
 import DataFieldTableIncidentComponent from "../../components/Incident/IncidentReport/Table/DataFieldTableIncidentComponent";
 import PaginationTableIncidentComponent from "../../components/Incident/IncidentReport/Table/PaginationTableIncidentComponent";
 import { useSearchParams } from "react-router-dom";
+import HeaderComponent from "../../components/HeaderComponent";
 
 // Definisikan tipe data User
 interface User {
@@ -305,71 +304,67 @@ const IncidentReportPage: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col w-full h-full justify-between">
-      <div className="">
-        {/* header */}
-        <HeaderIncidentReportComponent />
+    <>
+      {/* header */}
+      <HeaderComponent
+        title="incident report"
+        routeOne="dashboard"
+        routeTwo="incident report"
+      />
 
-        {/* <Divider className=" h-[0.5px] bg-slate-200" /> */}
+      {/* filter */}
+      <FilterIncidentComponent
+        selectedUsers={selectedUsers}
+        userListField={filteredUsers}
+        handleDeselectedAll={handleDeselectedAll}
+        handleSelectedAll={handleSelectedAll}
+        handleDeleteSelected={handleDeleteSelected}
+        searchQuery={searchQuery}
+        handleSearch={handleSearch}
+      />
 
-        {/* filter */}
-        <FilterIncidentComponent
-          selectedUsers={selectedUsers}
-          userListField={filteredUsers}
-          handleDeselectedAll={handleDeselectedAll}
-          handleSelectedAll={handleSelectedAll}
-          handleDeleteSelected={handleDeleteSelected}
-          searchQuery={searchQuery}
-          handleSearch={handleSearch}
-        />
+      {/* table user management by daisyUI */}
+      <div className="w-full shadow-lg rounded-lg mb-8 mt-2 border">
+        <table className="table table-zebra table-xs">
+          {/* head */}
+          <HeaderTableIncidentComponent
+            handleSort={handleSort}
+            sortField={sortField}
+            sortOrder={sortOrder}
+          />
 
-        {/* <Divider className="h-[0.5px] bg-slate-200 " /> */}
+          {/* data field */}
+          <tbody>
+            {currentUsers.length > 0 ? (
+              currentUsers.map((user) => (
+                <DataFieldTableIncidentComponent
+                  key={user.no_report}
+                  userListField={[user]}
+                  selectedUsers={selectedUsers}
+                  setSelectedUsers={setSelectedUsers}
+                  handleDeleteRowUser={handleDeleteRowUser}
+                />
+              ))
+            ) : (
+              <tr>
+                <td colSpan={15} className="text-gray-500 text-center py-4">
+                  No results found
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
 
-        {/* table user management by daisyUI */}
-        <div className="w-full shadow-lg rounded-lg mb-8 mt-2 border">
-          <table className="table table-zebra table-xs">
-            {/* head */}
-            <HeaderTableIncidentComponent
-              handleSort={handleSort}
-              sortField={sortField}
-              sortOrder={sortOrder}
-            />
-
-            {/* data field */}
-            <tbody>
-              {currentUsers.length > 0 ? (
-                currentUsers.map((user) => (
-                  <DataFieldTableIncidentComponent
-                    key={user.no_report}
-                    userListField={[user]}
-                    selectedUsers={selectedUsers}
-                    setSelectedUsers={setSelectedUsers}
-                    handleDeleteRowUser={handleDeleteRowUser}
-                  />
-                ))
-              ) : (
-                <tr>
-                  <td colSpan={15} className="text-gray-500 text-center py-4">
-                    No results found
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-
-          {/* pagination */}
-          <div className="p-4">
-            <PaginationTableIncidentComponent
-              currentPage={safeCurrentPage}
-              totalPages={totalPages}
-              onPageChange={handlePageChange}
-            />
-          </div>
+        {/* pagination */}
+        <div className="p-4">
+          <PaginationTableIncidentComponent
+            currentPage={safeCurrentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
         </div>
       </div>
-
-      <FooterComponent />
-    </div>
+    </>
   );
 };
 

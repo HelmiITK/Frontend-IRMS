@@ -1,7 +1,6 @@
 import { useState } from "react";
-import FooterComponent from "../../../../Footer/FooterComponent";
-import HeaderAddIncidentComponent from "./AddComp/HeaderAddIncidentComponent";
 import FormAddIncidentReportComponent from "./AddComp/FormAddIncidentReportComponent";
+import HeaderComponent from "../../../../HeaderComponent";
 
 interface IncidentForm {
   area: string;
@@ -55,10 +54,15 @@ const AddIncidentReportComponent: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col h-full justify-between gap-10">
+    <>
       <div className="flex flex-col w-full">
         {/* header */}
-        <HeaderAddIncidentComponent />
+        <HeaderComponent
+          title="create incident report"
+          routeOne="dashboard"
+          routeTwo="incident report"
+          routeThree="add incident report"
+        />
         {/* form create incident report */}
         <FormAddIncidentReportComponent
           formData={formData}
@@ -67,8 +71,7 @@ const AddIncidentReportComponent: React.FC = () => {
           handleSubmit={handleSubmit}
         />
       </div>
-      <FooterComponent />
-    </div>
+    </>
   );
 };
 

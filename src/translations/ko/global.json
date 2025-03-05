@@ -148,7 +148,8 @@
       "route2": "사용자",
       "route3": "사건",
       "route4": "업무",
-      "route5": "결과"
+      "route5": "결과",
+      "route6": "방송"
     },
     "childRoute": {
       "user": {

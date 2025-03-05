@@ -148,7 +148,8 @@
       "route2": "pengguna",
       "route3": "insiden",
       "route4": "tugas",
-      "route5": "hasil"
+      "route5": "hasil",
+      "route6": "siaran"
     },
     "childRoute": {
       "user": {

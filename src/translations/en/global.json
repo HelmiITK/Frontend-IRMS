@@ -148,7 +148,8 @@
       "route2": "user",
       "route3": "incident",
       "route4": "task",
-      "route5": "result"
+      "route5": "result",
+      "route6": "broadcast"
     },
     "childRoute": {
       "user": {

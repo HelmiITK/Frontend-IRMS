@@ -1,6 +1,5 @@
-import FooterComponent from "../../../Footer/FooterComponent";
+import HeaderComponent from "../../../HeaderComponent";
 import CardDetailComponent from "./DetailComp/CardDetailComponent";
-import HeaderDetailComponent from "./DetailComp/HeaderDetailComponent";
 
 const DetailUserComponent: React.FC = () => {
   const user = {
@@ -14,15 +13,19 @@ const DetailUserComponent: React.FC = () => {
     superior: "Daniel",
   };
   return (
-    <div className="flex flex-col h-full justify-between gap-10">
+    <>
       <div className="flex flex-col w-full">
         {/* header top */}
-        <HeaderDetailComponent />
+        <HeaderComponent
+          title="detail user"
+          routeOne="dashboard"
+          routeTwo="user management"
+          routeThree="detail user"
+        />
         {/* Card Detail User */}
-        <CardDetailComponent user={user}/>
+        <CardDetailComponent user={user} />
       </div>
-      <FooterComponent />
-    </div>
+    </>
   );
 };
 

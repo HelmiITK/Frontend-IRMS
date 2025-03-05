@@ -148,7 +148,8 @@
       "route2": "用户",
       "route3": "事件",
       "route4": "任务",
-      "route5": "结果"
+      "route5": "结果",
+      "route6": "播送"
     },
     "childRoute": {
       "user": {

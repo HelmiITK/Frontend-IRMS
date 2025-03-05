@@ -1,12 +1,9 @@
 import { Divider } from "@mui/material";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import FooterComponent from "../../../Footer/FooterComponent";
 import Select from "react-select";
 import { FaAngleDown } from "react-icons/fa6";
-import { MdChevronRight } from "react-icons/md";
-import { AiFillHome } from "react-icons/ai";
+import HeaderComponent from "../../../HeaderComponent";
 
 type OptionType = { value: string; label: string };
 const options = [
@@ -28,36 +25,19 @@ const AddUserComponent: React.FC = () => {
     setPasswordVisible(!passwordVisible);
   };
   return (
-    <div className="flex flex-col h-full justify-between gap-10">
+    <>
       <div className="flex flex-col w-full">
-        {/* header top */}
-        <div className="flex flex-col gap-2 mb-2">
-          <h1 className="mt-2 lg:mt-3 text-xl font-montserrat capitalize">
-            create user
-          </h1>
-          <div className="flex items-center gap-1">
-            <Link
-              to={"/dashboard"}
-              className="flex items-center gap-1 cursor-pointer text-gray-500 hover:text-black"
-            >
-              <AiFillHome className="text-sm " />
-              <h1 className=" text-sm capitalize">dashboard</h1>
-            </Link>
-            <MdChevronRight className="text-gray-500" />
-            <Link
-              to={"../"}
-              className="text-sm capitalize cursor-pointer text-gray-500 hover:text-black"
-            >
-              user management
-            </Link>
-            <MdChevronRight className="text-gray-500" />
-            <h1 className="text-sm capitalize text-black">add user</h1>
-          </div>
-        </div>
+        {/* header */}
+        <HeaderComponent
+          title="create user"
+          routeOne="dashboard"
+          routeTwo="user management"
+          routeThree="add user"
+        />
         {/* form create user */}
         <form
           action=""
-          className="p-4 mt-3 bg-white rounded-sm shadow-sm shadow-slate-400 flex flex-col gap-3 border border-t-2 border-t-green-500"
+          className="p-4 mt-1 bg-white rounded-sm shadow-sm shadow-slate-400 flex flex-col gap-3 border border-t-2 border-t-green-500"
         >
           {/* address */}
           <div className="flex flex-col gap-2 mb-2 lg:flex lg:flex-row lg:gap-4 lg:mb-4 lg:mt-2">
@@ -333,8 +313,7 @@ const AddUserComponent: React.FC = () => {
           </div>
         </form>
       </div>
-      <FooterComponent />
-    </div>
+    </>
   );
 };
 

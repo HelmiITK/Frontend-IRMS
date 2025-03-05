@@ -1,13 +1,11 @@
-// import { Divider } from "@mui/material";
 import { useState } from "react";
-import FooterComponent from "../../components/Footer/FooterComponent";
 import Swal from "sweetalert2";
 import FilterComponent from "../../components/UserManagement/FilterComponent";
 import HeaderTableComponent from "../../components/UserManagement/Table/HeaderTableComponent";
 import DataFieldTableComponent from "../../components/UserManagement/Table/DataFieldTableComponent";
 import PaginationTableComponent from "../../components/UserManagement/Table/PaginationTableComponent";
-import HeaderUserManagemenComponent from "../../components/UserManagement/HeaderUserManagemenComponent";
 import { useSearchParams } from "react-router-dom";
+import HeaderComponent from "../../components/HeaderComponent";
 
 interface User {
   id: number;
@@ -249,71 +247,67 @@ const UserManagementPage: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen w-full justify-between bg-gray-50">
-      <div className="w-full">
-        {/* header */}
-        <HeaderUserManagemenComponent />
+    <>
+      {/* header */}
+      <HeaderComponent
+        title="user management"
+        routeOne="dashboard"
+        routeTwo="user management"
+      />
 
-        {/* <Divider className="w-full h-[0.5px] bg-slate-200" /> */}
+      {/* filtering */}
+      <FilterComponent
+        handleSelectedAll={handleSelectedAll}
+        selectedUsers={selectedUsers}
+        userListField={userListField}
+        handleDeselectedAll={handleDeselectedAll}
+        handleDeleteSelected={handleDeleteSelected}
+        searchQuery={searchQuery}
+        handleSearch={handleSearch}
+      />
 
-        {/* filtering */}
-        <FilterComponent
-          handleSelectedAll={handleSelectedAll}
-          selectedUsers={selectedUsers}
-          userListField={userListField}
-          handleDeselectedAll={handleDeselectedAll}
-          handleDeleteSelected={handleDeleteSelected}
-          searchQuery={searchQuery}
-          handleSearch={handleSearch}
-        />
+      {/* table user management by daisyUI */}
+      <div className="w-full shadow-lg rounded-lg mb-8 mt-2 pt-2 border">
+        <table className="table table-zebra table-xs">
+          {/* head */}
+          <HeaderTableComponent
+            handleSort={handleSort}
+            sortField={sortField}
+            sortOrder={sortOrder}
+          />
 
-        {/* <Divider className="w-full h-[0.5px] bg-slate-200 " /> */}
+          {/* data field */}
+          <tbody>
+            {currentUsers.length > 0 ? (
+              currentUsers.map((user) => (
+                <DataFieldTableComponent
+                  key={user.id}
+                  userListField={[user]}
+                  selectedUsers={selectedUsers}
+                  setSelectedUsers={setSelectedUsers}
+                  handleDeleteRowUser={handleDeleteRowUser}
+                />
+              ))
+            ) : (
+              <tr>
+                <td colSpan={15} className="text-gray-500 text-center py-4">
+                  No results found
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
 
-        {/* table user management by daisyUI */}
-        <div className="w-full shadow-lg rounded-lg mb-8 mt-2 pt-2 border">
-          <table className="table table-zebra table-xs">
-            {/* head */}
-            <HeaderTableComponent
-              handleSort={handleSort}
-              sortField={sortField}
-              sortOrder={sortOrder}
-            />
-
-            {/* data field */}
-            <tbody>
-              {currentUsers.length > 0 ? (
-                currentUsers.map((user) => (
-                  <DataFieldTableComponent
-                    key={user.id}
-                    userListField={[user]}
-                    selectedUsers={selectedUsers}
-                    setSelectedUsers={setSelectedUsers}
-                    handleDeleteRowUser={handleDeleteRowUser}
-                  />
-                ))
-              ) : (
-                <tr>
-                  <td colSpan={15} className="text-gray-500 text-center py-4">
-                    No results found
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-
-          {/* pagination */}
-          <div className="p-4">
-            <PaginationTableComponent
-              currentPage={safeCurrentPage}
-              totalPages={totalPages}
-              onPageChange={handlePageChange}
-            />
-          </div>
+        {/* pagination */}
+        <div className="p-4">
+          <PaginationTableComponent
+            currentPage={safeCurrentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
         </div>
       </div>
-
-      <FooterComponent />
-    </div>
+    </>
   );
 };
 

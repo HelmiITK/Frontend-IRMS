@@ -1,7 +1,6 @@
 import { useState } from "react";
-import HeaderEditIncidentComponent from "./EditComp/HeaderEditIncidentComponent";
 import FormEditincidentComponent from "./EditComp/FormEditincidentComponent";
-import FooterComponent from "../../../../Footer/FooterComponent";
+import HeaderComponent from "../../../../HeaderComponent";
 
 interface IncidentForm {
   area: string;
@@ -55,10 +54,15 @@ const EditIncidentReportComponent: React.FC = () => {
   };
 
   return (
-    <div className=" flex flex-col h-full justify-between gap-10">
+    <>
       <div className="flex flex-col w-full">
         {/* header */}
-        <HeaderEditIncidentComponent />
+        <HeaderComponent
+          title="edit incident report"
+          routeOne="dashboard"
+          routeTwo="incident report"
+          routeThree="edit incident report"
+        />
         {/* form edit */}
         <FormEditincidentComponent
           formData={formData}
@@ -67,8 +71,7 @@ const EditIncidentReportComponent: React.FC = () => {
           handleSubmit={handleSubmit}
         />
       </div>
-      <FooterComponent />
-    </div>
+    </>
   );
 };
 

@@ -1,16 +1,18 @@
-import HeaderMyIncidentReportComponent from "../../components/Incident/MyIncidentReport/HeaderMyIncidentReportComponent";
-import FooterComponent from "../../components/Footer/FooterComponent";
+import HeaderComponent from "../../components/HeaderComponent";
 
 const MyIncidentReportPage: React.FC = () => {
   return (
-    <div className="flex flex-col w-full h-full justify-between bg-gray-50">
+    <>
       {/* header */}
-      <HeaderMyIncidentReportComponent />
+      <HeaderComponent
+        title="my incident report"
+        routeOne="dashboard"
+        routeTwo="my incident report"
+      />
 
       {/* filter */}
       {/* table user management by daisyUI */}
-      <FooterComponent />
-    </div>
+    </>
   );
 };
 

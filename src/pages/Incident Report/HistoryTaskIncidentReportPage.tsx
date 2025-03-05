@@ -1,16 +1,18 @@
-import FooterComponent from "../../components/Footer/FooterComponent";
-import HeaderHistoryTaskIncidentReportComponent from "../../components/Task/HistoryTaskIncidentReport/HeaderHistoryTaskIncidentReportComponent";
+import HeaderComponent from "../../components/HeaderComponent";
 
 const HistoryTaskIncidentReportPage: React.FC = () => {
   return (
-    <div className="flex flex-col w-full h-full justify-between bg-gray-50">
+    <>
       {/* header */}
-      <HeaderHistoryTaskIncidentReportComponent />
+      <HeaderComponent
+        title="history task incident report"
+        routeOne="dashboard"
+        routeTwo="history task"
+      />
 
       {/* filter */}
       {/* table user management by daisyUI */}
-      <FooterComponent />
-    </div>
+    </>
   );
 };
 

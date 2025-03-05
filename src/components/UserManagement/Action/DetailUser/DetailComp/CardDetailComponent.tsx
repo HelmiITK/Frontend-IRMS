@@ -23,7 +23,7 @@ interface CardDetailComponentProps {
 
 const CardDetailComponent: React.FC<CardDetailComponentProps> = ({ user }) => {
   return (
-    <div className="bg-white shadow-lg rounded-lg p-6 mt-3">
+    <div className="bg-white shadow-lg rounded-lg p-6 mt-1">
       <h2 className="text-xl font-semibold text-gray-800 mb-4">User Details</h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

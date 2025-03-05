@@ -22,6 +22,7 @@ import AddIncidentReportComponent from "./components/Incident/IncidentReport/Act
 import DetailIncidentReportComponent from "./components/Incident/IncidentReport/Action/DetailIncident/DetailIncidentReportComponent";
 import EditIncidentReportComponent from "./components/Incident/IncidentReport/Action/EditIncident/EditIncidentReportComponent";
 import SearchParamsPage from "./pages/SearchParamsPage";
+import BroadcastPage from "./pages/Broadcast/BroadcastPage";
 
 function App() {
   const [t] = useTranslation("global");
@@ -85,6 +86,8 @@ function App() {
             />
 
             <Route path="result" element={<ResultPage />} />
+
+            <Route path="broadcast" element={<BroadcastPage />} />
           </Route>
 
           <Route path="*" element={<NotFoundPage />} />

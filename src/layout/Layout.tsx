@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Box from "@mui/material/Box";
 import SideNav from "../components/SideNav";
+import FooterComponent from "../components/Footer/FooterComponent";
 
 interface LayoutProps {
   handleLanguageChange: (lang: string) => void;
@@ -12,26 +13,44 @@ const Layout: React.FC<LayoutProps> = ({ handleLanguageChange, t }) => {
     <Box
       sx={{
         display: "flex",
-        // backgroundColor: "#f9fafb",
         minHeight: "100vh",
-        width: "100%",
+        backgroundColor: "#f9fafb",
         maxWidth: "100vw",
       }}
     >
       <SideNav handleLanguageChange={handleLanguageChange} t={t} />
       <Box
-        component="main"
         sx={{
           flexGrow: 1,
-          padding: { xs: "10px", md: "15px" },
-          transition: "margin-left 0.3s ease-in-out",
-          marginLeft: { xs: "0px" },
-          marginTop: "50px",
+          display: "flex",
+          flexDirection: "column",
           width: "100%",
-          backgroundColor: "#f9fafb",
+          minHeight: "100vh",
         }}
       >
-        <Outlet />
+        <Box
+          component="main"
+          sx={{
+            flexGrow: 1, // Memastikan Outlet memenuhi ruang yang ada
+            padding: { xs: "10px", md: "15px" },
+            transition: "margin-left 0.3s ease-in-out",
+            marginLeft: { xs: "0px" },
+            marginTop: "60px",
+            width: "100%",
+          }}
+        >
+          <Outlet />
+        </Box>
+        <Box
+          component="footer"
+          sx={{
+            padding: { xs: "10px", md: "0px" },
+            transition: "margin-left 0.3s ease-in-out",
+            width: "100%",
+          }}
+        >
+          <FooterComponent />
+        </Box>
       </Box>
     </Box>
   );

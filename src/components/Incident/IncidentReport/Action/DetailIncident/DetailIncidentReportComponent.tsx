@@ -1,7 +1,6 @@
-import FooterComponent from "../../../../Footer/FooterComponent";
-import HeaderDetailIncidentReportComponent from "./DetailComp/HeaderDetailIncidentReportComponent";
 import contohImage from "../../../../../assets/BgDashboard.png";
 import CardDetailIncidentReportComponent from "./DetailComp/CardDetailIncidentReportComponent";
+import HeaderComponent from "../../../../HeaderComponent";
 
 const DetailIncidentReportComponent: React.FC = () => {
   const incident = {
@@ -22,15 +21,19 @@ const DetailIncidentReportComponent: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col h-full justify-between gap-10">
+    <>
       <div className="flex flex-col w-full">
-        {/* header top */}
-        <HeaderDetailIncidentReportComponent />
+        {/* header */}
+        <HeaderComponent
+          title="detail incident report"
+          routeOne="dashboard"
+          routeTwo="incident report"
+          routeThree="detail incident report"
+        />
         {/* Card Detail User */}
         <CardDetailIncidentReportComponent incident={incident} />
       </div>
-      <FooterComponent />
-    </div>
+    </>
   );
 };
 

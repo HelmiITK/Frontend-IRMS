@@ -13,6 +13,7 @@ import { FaBuildingUser } from "react-icons/fa6";
 import { PiBellRingingFill } from "react-icons/pi";
 import { BiTask } from "react-icons/bi";
 import { useLanguage } from "../translations/LanguageProvider";
+import { TbBuildingBroadcastTower } from "react-icons/tb";
 
 interface SideNavProps {
   handleLanguageChange: (lang: string) => void;
@@ -82,7 +83,7 @@ const SideNav: React.FC<SideNavProps> = ({ handleLanguageChange, t }) => {
           icon: <IoWarning />,
         },
         {
-          label: `${t(`sidebar.childRoute.task.child1`)}`,
+          label: `${t(`sidebar.childRoute.task.child2`)}`,
           route: "history_task_incident_report",
           icon: <IoWarning />,
         },
@@ -93,6 +94,11 @@ const SideNav: React.FC<SideNavProps> = ({ handleLanguageChange, t }) => {
       icon: <HiSpeakerphone />,
       route: "result",
     },
+    {
+      label: `${t(`sidebar.parentRoute.route6`)}`,
+      icon: <TbBuildingBroadcastTower />,
+      route: "broadcast",
+    },
   ];
   const { language } = useLanguage();
   const [open, setOpen] = useState<boolean>(false);
@@ -101,7 +107,7 @@ const SideNav: React.FC<SideNavProps> = ({ handleLanguageChange, t }) => {
   const handleDrawerOpen = () => {
     setOpen(true);
   };
-  
+
   // Fungsi untuk membuka sidebar saat hover
   const handleHoverOpen = () => {
     setOpen(true);
