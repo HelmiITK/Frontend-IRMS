@@ -3,6 +3,7 @@ import HeaderComponent from "../../components/HeaderComponent";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/ReactToastify.css";
 import iconBroadcast from "../../assets/broadcast.png";
+import LoaderComponent from "../../Loader/LoaderComponent";
 
 const BroadcastPage: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -17,7 +18,6 @@ const BroadcastPage: React.FC = () => {
   const [requestDate, setRequestDate] = useState<string>(
     new Date().toLocaleString()
   );
-
   const [loading, setLoading] = useState<boolean>(false);
 
   // Fungsi untuk menangani perubahan subject
@@ -172,12 +172,10 @@ const BroadcastPage: React.FC = () => {
         routeOne="dashboard"
         routeTwo="broadcast"
       />
-
       {/* Toast Container */}
       <ToastContainer />
-
       {/* Form Broadcast */}
-      <div className="bg-white p-6 rounded-lg shadow-md max-w-lg mx-auto mt-4">
+      <div className="relative bg-white p-6 rounded-lg shadow-md shadow-gray-300 max-w-lg mx-auto mt-4">
         {/* Header Form */}
         <div className="flex flex-col gap-2 items-center justify-center">
           <img src={iconBroadcast} alt="icon broadcast" className="w-16 h-16" />
@@ -185,7 +183,6 @@ const BroadcastPage: React.FC = () => {
             broadcast alert
           </h2>
         </div>
-
         {/* Input Email */}
         <div className="mb-3">
           <label className="block text-sm font-medium text-gray-700">
@@ -199,7 +196,6 @@ const BroadcastPage: React.FC = () => {
             className="w-full p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-green-300"
           />
         </div>
-
         {/* Pilihan Subject */}
         <div className="mb-3">
           <label className="block text-sm font-medium text-gray-700">
@@ -219,7 +215,6 @@ const BroadcastPage: React.FC = () => {
             </option>
           </select>
         </div>
-
         {/* Input Pesan */}
         <div className="mb-3">
           <label className="block text-sm font-medium text-gray-700">
@@ -232,7 +227,6 @@ const BroadcastPage: React.FC = () => {
             className="w-full p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-green-300"
           />
         </div>
-
         {/* Input Request No */}
         <div className="mb-3">
           <label className="block text-sm font-medium text-gray-700">
@@ -246,7 +240,6 @@ const BroadcastPage: React.FC = () => {
             className="w-full p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-green-300"
           />
         </div>
-
         {/* Pilihan Classification */}
         <div className="mb-3">
           <label className="block text-sm font-medium text-gray-700">
@@ -265,7 +258,6 @@ const BroadcastPage: React.FC = () => {
             <option value="Critical">Critical</option>
           </select>
         </div>
-
         {/* Input Description */}
         <div className="mb-3">
           <label className="block text-sm font-medium text-gray-700">
@@ -279,7 +271,6 @@ const BroadcastPage: React.FC = () => {
             className="w-full p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-green-300"
           />
         </div>
-
         {/* Input Requested By */}
         <div className="mb-3">
           <label className="block text-sm font-medium text-gray-700">
@@ -293,7 +284,6 @@ const BroadcastPage: React.FC = () => {
             className="w-full p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-green-300"
           />
         </div>
-
         {/* Input Request Date */}
         <div className="mb-3">
           <label
@@ -311,32 +301,15 @@ const BroadcastPage: React.FC = () => {
             className="w-full p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-green-300"
           />
         </div>
-
-        {/* Input Request Date (Read-only) */}
-        {/* <div className="mb-3">
-          <label className="block text-sm font-medium text-gray-700">
-            Request Date
-          </label>
-          <input
-            type="text"
-            value={requestDate}
-            readOnly
-            className="w-full p-2 border bg-gray-100 rounded-md focus:outline-none"
-          />
-        </div> */}
-
         {/* Tombol Kirim */}
         <button
           onClick={handleSendBroadcast}
           disabled={loading}
-          className={`capitalize bg-green-600 text-white px-4 py-2 rounded-md w-full ${
-            loading
-              ? "opacity-50 cursor-not-allowed animate-pulse"
-              : "hover:bg-green-700"
-          }`}
+          className="capitalize bg-green-600 text-white px-4 py-2 rounded-md w-full disabled:opacity-50 disabled:cursor-not-allowed hover:bg-green-700"
         >
-          {loading ? "Mengirim..." : "Submit Broadcast"}
+          Submit Broadcast
         </button>
+        <LoaderComponent loading={loading} />
       </div>
     </>
   );
