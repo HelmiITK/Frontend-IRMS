@@ -9,12 +9,16 @@ const BroadcastPage: React.FC = () => {
   const [subject, setSubject] = useState<string>("Pilih Subjek");
   const [message, setMessage] = useState<string>("");
   const [requestNo, setRequestNo] = useState<string>("");
-  const [classification, setClassification] = useState<string>("");
+  const [classification, setClassification] = useState<string>(
+    "Pilih Klasifikasi Insiden"
+  );
   const [description, setDescription] = useState<string>("");
   const [requestedBy, setRequestedBy] = useState<string>("");
   const [requestDate, setRequestDate] = useState<string>(
     new Date().toLocaleString()
   );
+
+  const [loading, setLoading] = useState<boolean>(false);
 
   // Fungsi untuk menangani perubahan subject
   const handleSubjectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -65,6 +69,9 @@ const BroadcastPage: React.FC = () => {
       toast.error("Semua field wajib diisi!", { position: "top-right" });
       return;
     }
+
+    // loading sent data
+    setLoading(true);
 
     // Ambil nama sebelum @ dari email
     const userName = email.split("@")[0];
@@ -129,7 +136,7 @@ const BroadcastPage: React.FC = () => {
         setSubject("Pilih Subjek");
         setMessage("");
         setRequestNo("");
-        setClassification("");
+        setClassification("Pilih Klasifikasi Insiden");
         setDescription("");
         setRequestedBy("");
         setRequestDate("");
@@ -152,6 +159,8 @@ const BroadcastPage: React.FC = () => {
     } catch (error) {
       console.error("Error saat mengirim email:", error);
       toast.error("Terjadi kesalahan, coba lagi!", { position: "top-right" });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -167,7 +176,6 @@ const BroadcastPage: React.FC = () => {
       {/* Toast Container */}
       <ToastContainer />
 
-      {/* form broadcast */}
       {/* Form Broadcast */}
       <div className="bg-white p-6 rounded-lg shadow-md max-w-lg mx-auto mt-4">
         {/* Header Form */}
@@ -249,6 +257,9 @@ const BroadcastPage: React.FC = () => {
             onChange={(e) => setClassification(e.target.value)}
             className="w-full p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-green-300"
           >
+            <option value="Pilih Klasifikasi Insiden">
+              Pilih Klasifikasi Insiden
+            </option>
             <option value="Minor">Minor</option>
             <option value="Major">Major</option>
             <option value="Critical">Critical</option>
@@ -283,8 +294,26 @@ const BroadcastPage: React.FC = () => {
           />
         </div>
 
-        {/* Input Request Date (Read-only) */}
+        {/* Input Request Date */}
         <div className="mb-3">
+          <label
+            htmlFor="requestDate"
+            className="block mb-2 text-sm font-medium text-gray-700"
+          >
+            Request Date & Time
+          </label>
+          <input
+            type="datetime-local"
+            name="requestDate"
+            id="requestDate"
+            value={requestDate}
+            onChange={(e) => setRequestDate(e.target.value)}
+            className="w-full p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-green-300"
+          />
+        </div>
+
+        {/* Input Request Date (Read-only) */}
+        {/* <div className="mb-3">
           <label className="block text-sm font-medium text-gray-700">
             Request Date
           </label>
@@ -294,14 +323,19 @@ const BroadcastPage: React.FC = () => {
             readOnly
             className="w-full p-2 border bg-gray-100 rounded-md focus:outline-none"
           />
-        </div>
+        </div> */}
 
         {/* Tombol Kirim */}
         <button
           onClick={handleSendBroadcast}
-          className="capitalize bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 w-full"
+          disabled={loading}
+          className={`capitalize bg-green-600 text-white px-4 py-2 rounded-md w-full ${
+            loading
+              ? "opacity-50 cursor-not-allowed animate-pulse"
+              : "hover:bg-green-700"
+          }`}
         >
-          submit Broadcast
+          {loading ? "Mengirim..." : "Submit Broadcast"}
         </button>
       </div>
     </>
