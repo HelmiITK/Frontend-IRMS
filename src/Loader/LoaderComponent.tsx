@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Loader2 } from "lucide-react";
+import { LuLoaderCircle } from "react-icons/lu";
 
 interface LoaderComponentProps {
   loading: boolean;
@@ -14,10 +14,10 @@ const LoaderComponent: React.FC<LoaderComponentProps> = ({ loading }) => {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             exit={{ scale: 0 }}
-            className="bg-white p-6 rounded-lg shadow-lg flex flex-col items-center"
+            className="flex flex-col items-center"
           >
-            <Loader2 className="animate-spin text-green-600 w-10 h-10 mb-3" />
-            <p className="text-gray-700">Mengirim...</p>
+            <LuLoaderCircle className="animate-spin text-white w-10 h-10 mb-3" />
+            <p className="text-white animate-pulse">Please wait...</p>
           </motion.div>
         </div>
       )}

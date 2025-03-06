@@ -1,5 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { IoMdEye } from "react-icons/io";
+import { MdOutlineModeEditOutline } from "react-icons/md";
+import { MdOutlineDelete } from "react-icons/md";
 
 interface User {
   id: number;
@@ -59,27 +62,30 @@ const DataFieldTableComponent: React.FC<DataFieldTableComponentProps> = ({
           <td>{itemList.job}</td>
           <td>{itemList.department}</td>
           <td>{itemList.superior}</td>
-          <td className="sticky right-0 flex flex-col gap-[5px] justify-center ">
+          <td className="sticky right-0 bg-white flex flex-col gap-[5px] items-center justify-center ">
             <Link
               to="detail_user"
               type="button"
-              className="text-xs border border-blue-700 px-2 py-1 rounded-sm bg-blue-500 text-white capitalize hover:bg-blue-700 duration-150 text-center"
+              className="text-xs border p-1  border-blue-700 lg:px-2 lg:py-1 lg:w-full rounded-sm bg-blue-500 text-white capitalize hover:bg-blue-700 duration-150 text-center"
             >
-              View
+              <IoMdEye className="text-sm md:hidden" />
+              <span className="hidden md:block ">View</span>
             </Link>
             <Link
               to="edit_user"
               type="button"
-              className="text-xs border border-sky-500 px-2 py-1 rounded-sm bg-sky-300 text-white capitalize hover:bg-sky-700 duration-150 text-center"
+              className="text-xs border p-1 border-sky-500 lg:px-2 lg:py-1 lg:w-full rounded-sm bg-sky-300 text-white capitalize hover:bg-sky-700 duration-150 text-center"
             >
-              Edit
+              <MdOutlineModeEditOutline className="text-sm md:hidden" />
+              <span className="hidden md:block">Edit</span>
             </Link>
             <button
               onClick={() => handleDeleteRowUser(itemList.id)}
               type="button"
-              className="text-xs border border-red-700 px-2 py-1 rounded-sm bg-red-500 text-white capitalize hover:bg-red-700 duration-150"
+              className="text-xs border p-1 border-red-700 lg:px-2 lg:py-1 lg:w-full rounded-sm bg-red-500 text-white capitalize hover:bg-red-700 duration-150"
             >
-              Delete
+              <MdOutlineDelete className="text-sm md:hidden" />
+              <span className="hidden md:block">Delete</span>
             </button>
           </td>
         </tr>

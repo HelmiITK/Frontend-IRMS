@@ -38,7 +38,7 @@ const FilterComponent: React.FC<FilterComponentProps> = ({
 }) => {
   return (
     <div className="flex flex-col gap-2 lg:flex lg:flex-row lg:gap-4 w-full lg:justify-between">
-      <div className="w-full flex items-center gap-4">
+      <div className="w-full flex flex-col lg:flex lg:flex-row lg:items-center gap-4">
         {/* left feature */}
         <div className="flex items-center gap-2 lg:flex lg:flex-row lg:gap-4">
           {/* Create user  */}

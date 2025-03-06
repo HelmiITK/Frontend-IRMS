@@ -208,7 +208,9 @@ const HeaderTableComponent: React.FC<HeaderTableComponentProps> = ({
             </div>
           </div>
         </th>
-        <th></th>
+        <th className="sticky right-0 text-black text-center bg-white capitalize text-xs lg:text-sm">
+          action
+        </th>
       </tr>
     </thead>
   );

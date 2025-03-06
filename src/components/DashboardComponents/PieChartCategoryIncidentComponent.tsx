@@ -27,7 +27,7 @@ const PieChartCategoryIncidentComponent: React.FC<
   ];
 
   return (
-    <div className=" flex flex-col gap-2 bg-white border-t-2 border-red-500 rounded-sm shadow-md shadow-slate-200">
+    <div className="flex flex-col gap-2 bg-white border-t-2 border-red-500 rounded-sm shadow-md shadow-slate-200">
       {/* Header */}
       <div className="flex justify-between items-center px-2 border border-t-0 border-x-0 border-b-0 py-1">
         <h1 className="font-montserrat font-medium text-base lg:text-lg capitalize">
@@ -69,6 +69,7 @@ const PieChartCategoryIncidentComponent: React.FC<
                   label={({ name, percent }) =>
                     `${name}: ${(percent * 100).toFixed(1)} %`
                   }
+                  className="text-xs"
                 >
                   {data.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={entry.color} />

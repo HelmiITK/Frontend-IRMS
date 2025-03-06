@@ -175,7 +175,7 @@ const BroadcastPage: React.FC = () => {
       {/* Toast Container */}
       <ToastContainer />
       {/* Form Broadcast */}
-      <div className="relative bg-white p-6 rounded-lg shadow-md shadow-gray-300 max-w-lg mx-auto mt-4">
+      <div className="relative bg-white p-6 rounded-lg shadow-md shadow-gray-300 max-w-xl mx-auto mt-4">
         {/* Header Form */}
         <div className="flex flex-col gap-2 items-center justify-center">
           <img src={iconBroadcast} alt="icon broadcast" className="w-16 h-16" />
@@ -185,26 +185,26 @@ const BroadcastPage: React.FC = () => {
         </div>
         {/* Input Email */}
         <div className="mb-3">
-          <label className="block text-sm font-medium text-gray-700">
-            Email Tujuan
+          <label className="block text-sm font-medium text-gray-700 capitalize">
+            destination email
           </label>
           <input
             type="email"
-            placeholder="Masukkan email pelapor"
+            placeholder="Enter the reporter's email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-green-300"
+            className="w-full p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-green-300 placeholder:text-sm"
           />
         </div>
         {/* Pilihan Subject */}
         <div className="mb-3">
-          <label className="block text-sm font-medium text-gray-700">
-            Subjek
+          <label className="block text-sm font-medium text-gray-700 capitalize">
+            subject
           </label>
           <select
             value={subject}
             onChange={handleSubjectChange}
-            className="w-full p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-green-300"
+            className="w-full p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-green-300 text-sm"
           >
             <option value="pilih subjek">Pilih Subjek</option>
             <option value="[Approved] Laporan Disetujui - PT.KPI - IRMS System">
@@ -217,8 +217,8 @@ const BroadcastPage: React.FC = () => {
         </div>
         {/* Input Pesan */}
         <div className="mb-3">
-          <label className="block text-sm font-medium text-gray-700">
-            Pesan
+          <label className="block text-sm font-medium text-gray-700 capitalize">
+            message
           </label>
           <textarea
             rows={4}
@@ -229,26 +229,26 @@ const BroadcastPage: React.FC = () => {
         </div>
         {/* Input Request No */}
         <div className="mb-3">
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-sm font-medium text-gray-700 capitalize">
             Request No
           </label>
           <input
             type="text"
-            placeholder="Masukkan nomor permintaan"
+            placeholder="Enter the request number"
             value={requestNo}
             onChange={(e) => setRequestNo(e.target.value)}
-            className="w-full p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-green-300"
+            className="w-full p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-green-300 placeholder:text-sm"
           />
         </div>
         {/* Pilihan Classification */}
         <div className="mb-3">
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-sm font-medium text-gray-700 capitalize">
             Classification Incident
           </label>
           <select
             value={classification}
             onChange={(e) => setClassification(e.target.value)}
-            className="w-full p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-green-300"
+            className="w-full p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-green-300 text-sm"
           >
             <option value="Pilih Klasifikasi Insiden">
               Pilih Klasifikasi Insiden
@@ -260,35 +260,35 @@ const BroadcastPage: React.FC = () => {
         </div>
         {/* Input Description */}
         <div className="mb-3">
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-sm font-medium text-gray-700 capitalize">
             Description
           </label>
           <textarea
             rows={3}
-            placeholder="Masukkan kronologi kejadian"
+            placeholder="Enter the chronology of events"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="w-full p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-green-300"
+            className="w-full p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-green-300 placeholder:text-sm"
           />
         </div>
         {/* Input Requested By */}
         <div className="mb-3">
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-sm font-medium text-gray-700 capitalize">
             Requested By
           </label>
           <input
             type="text"
-            placeholder="Masukkan nama pelapor"
+            placeholder="Enter the reporter's name"
             value={requestedBy}
             onChange={(e) => setRequestedBy(e.target.value)}
-            className="w-full p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-green-300"
+            className="w-full p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-green-300 placeholder:text-sm"
           />
         </div>
         {/* Input Request Date */}
         <div className="mb-3">
           <label
             htmlFor="requestDate"
-            className="block mb-2 text-sm font-medium text-gray-700"
+            className="block mb-2 text-sm font-medium text-gray-700 capitalize"
           >
             Request Date & Time
           </label>
@@ -305,7 +305,7 @@ const BroadcastPage: React.FC = () => {
         <button
           onClick={handleSendBroadcast}
           disabled={loading}
-          className="capitalize bg-green-600 text-white px-4 py-2 rounded-md w-full disabled:opacity-50 disabled:cursor-not-allowed hover:bg-green-700"
+          className="capitalize bg-green-600 text-white px-4 py-2 rounded-md w-full disabled:opacity-50 disabled:cursor-not-allowed hover:bg-green-700 hover:shadow-lg hover:shadow-green-200 duration-200 ease-in-out transition-all"
         >
           Submit Broadcast
         </button>

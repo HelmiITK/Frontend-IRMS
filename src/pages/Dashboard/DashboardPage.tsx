@@ -25,12 +25,12 @@ const DashboardPage: React.FC<DashboardPageProps> = ({ t }) => {
         <CorporateValueComponent t={t} />
         <div className="w-full h-[1px] bg-slate-200 mt-4 mb-4"></div>
 
-        {/* Table matrix incident report */}
-        <TableMatrixIncidentReportComponent t={t} />
-        <div className="w-full h-[1px] bg-slate-200 mt-4 mb-2"></div>
-
-        {/* Pie chart kategory incident*/}
-        <PieChartCategoryIncidentComponent t={t} />
+        {/* Table matrix incident report and pie chart */}
+        <div className="max-w-xs lg:max-w-full">
+          <TableMatrixIncidentReportComponent t={t} />
+          <div className="w-full h-[1px] bg-slate-200 mt-4 mb-2"></div>
+          <PieChartCategoryIncidentComponent t={t} />
+        </div>
       </div>
     </div>
   );
