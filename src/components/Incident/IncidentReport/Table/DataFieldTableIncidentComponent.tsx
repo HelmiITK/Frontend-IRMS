@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { IoMdEye } from "react-icons/io";
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import { MdOutlineDelete } from "react-icons/md";
+import PhotoComponent from "../../../PhotoComponent";
 interface User {
   no_report: number;
   data_incident: string;
@@ -35,6 +36,7 @@ const DataFieldTableIncidentComponent: React.FC<
   handleDeleteRowUser,
 }) => {
   const [expandedRows, setExpandedRows] = useState<number[]>([]);
+  const [openImage, setOpenImage] = useState<boolean>(false);
 
   const toggleMore = (id: number) => {
     setExpandedRows((prev) =>
@@ -104,11 +106,19 @@ const DataFieldTableIncidentComponent: React.FC<
             )}
           </td>
           <td>
-            <img
-              src={itemList?.photos}
-              alt=""
-              className="w-10 h-10 object-cover"
-            />
+            <div>
+              <img
+                src={itemList?.photos}
+                alt="image incident"
+                className="w-10 h-10 object-cover cursor-pointer"
+                onClick={() => setOpenImage(true)}
+              />
+              <PhotoComponent
+                openImage={openImage}
+                setOpenImage={setOpenImage}
+                photo={itemList.photos}
+              />
+            </div>
           </td>
           <td className="text-xs text-black">{itemList?.reviewed_by}</td>
           <td className=" sticky right-0 backdrop-blur-sm bg-opacity-55 bg-white flex flex-col gap-[5px] justify-center items-center">

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Swal from "sweetalert2";
-import contohImage from "../../assets/KPI_logo_2.png";
+import contohImage from "../../assets/bgLogin.jpg";
 import FilterIncidentComponent from "../../components/Incident/IncidentReport/FilterIncidentComponent";
 import HeaderTableIncidentComponent from "../../components/Incident/IncidentReport/Table/HeaderTableIncidentComponent";
 import DataFieldTableIncidentComponent from "../../components/Incident/IncidentReport/Table/DataFieldTableIncidentComponent";
