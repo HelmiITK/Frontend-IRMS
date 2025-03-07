@@ -11,6 +11,9 @@ import {
   FaFileAlt,
   FaUserCheck,
 } from "react-icons/fa";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { IoClose } from "react-icons/io5";
 
 interface Incident {
   no_report: number;
@@ -35,12 +38,14 @@ interface CardDetailIncidentReportComponentProps {
 const CardDetailIncidentReportComponent: React.FC<
   CardDetailIncidentReportComponentProps
 > = ({ incident }) => {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
   return (
     <div className="bg-white shadow-lg rounded-lg p-6 mt-1">
       <h2 className="text-xl font-semibold text-gray-800 mb-4">
         Detail Incident #{incident.no_report}
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="flex flex-col lg:grid lg:grid-cols-2 gap-4">
         <DetailItem
           icon={<FaCalendarAlt />}
           label="Tanggal"
@@ -100,10 +105,33 @@ const CardDetailIncidentReportComponent: React.FC<
           <img
             src={incident.photos}
             alt="Incident"
-            className="w-full rounded-md shadow"
+            className="w-full rounded-md shadow cursor-pointer"
+            onClick={() => setIsModalOpen(true)}
           />
         </div>
       </div>
+      {isModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-[9998]">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            className="bg-white p-4 rounded-lg shadow-lg relative"
+          >
+            <button
+              className="absolute top-2 right-2 text-red-600 hover:text-gray-700 bg-white rounded-md lg:p-2"
+              onClick={() => setIsModalOpen(false)}
+            >
+              <IoClose size={23} />
+            </button>
+            <img
+              src={incident.photos}
+              alt="Incident"
+              className="max-w-full max-h-screen rounded"
+            />
+          </motion.div>
+        </div>
+      )}
     </div>
   );
 };
