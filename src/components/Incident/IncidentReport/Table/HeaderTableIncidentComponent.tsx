@@ -27,7 +27,7 @@ const HeaderTableIncidentComponent: React.FC<
   HeaderTableIncidentComponentProps
 > = ({ handleSort, sortField, sortOrder }) => {
   return (
-    <thead>
+    <thead className="overflow-x-auto">
       <tr>
         {/* show dropdown */}
         <th>
@@ -365,7 +365,6 @@ const HeaderTableIncidentComponent: React.FC<
             </div>
           </div>
         </th>
-
         {/* action */}
         <th className="text-black capitalize sticky right-0 bg-white text-center backdrop-blur-sm bg-opacity-50">
           action

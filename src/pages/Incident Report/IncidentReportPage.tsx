@@ -304,7 +304,7 @@ const IncidentReportPage: React.FC = () => {
   };
 
   return (
-    <>
+    <div className="bg-gray-50">
       {/* header */}
       <HeaderComponent
         title="incident report"
@@ -324,8 +324,8 @@ const IncidentReportPage: React.FC = () => {
       />
 
       {/* table user management by daisyUI */}
-      <div className="w-full overflow-x-auto max-w-xs shadow-lg rounded-lg mb-8 mt-2 border">
-        <table className="table table-zebra table-xs">
+      <div className="max-w-xs overflow-x-auto lg:overflow-visible lg:max-w-full shadow-lg rounded-lg mb-8 mt-2 border">
+        <table className=" table table-zebra table-xs">
           {/* head */}
           <HeaderTableIncidentComponent
             handleSort={handleSort}
@@ -364,7 +364,7 @@ const IncidentReportPage: React.FC = () => {
           />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
