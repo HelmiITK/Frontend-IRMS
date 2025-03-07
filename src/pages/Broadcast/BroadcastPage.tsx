@@ -4,6 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/ReactToastify.css";
 import iconBroadcast from "../../assets/broadcast.png";
 import LoaderComponent from "../../Loader/LoaderComponent";
+import { AiOutlineCalendar } from "react-icons/ai";
 
 const BroadcastPage: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -285,21 +286,35 @@ const BroadcastPage: React.FC = () => {
           />
         </div>
         {/* Input Request Date */}
-        <div className="mb-3">
+        <div className="mb-3 relative">
           <label
             htmlFor="requestDate"
             className="block mb-2 text-sm font-medium text-gray-700 capitalize"
           >
             Request Date & Time
           </label>
-          <input
-            type="datetime-local"
-            name="requestDate"
-            id="requestDate"
-            value={requestDate}
-            onChange={(e) => setRequestDate(e.target.value)}
-            className="w-full p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-green-300"
-          />
+          <div className=" w-full relative">
+            <input
+              type="datetime-local"
+              name="requestDate"
+              id="requestDate"
+              value={requestDate}
+              onChange={(e) => setRequestDate(e.target.value)}
+              className="w-full flex-none pl-11 p-2 pr-10 border rounded-md focus:outline-none focus:ring-1 focus:ring-green-300 [&::-webkit-calendar-picker-indicator]:hidden"
+            />
+            <AiOutlineCalendar
+              className="absolute  left-3 top-2 transform text-green-700 cursor-pointer hover:scale-105 hover:bg-green-500 hover:text-white hover:rounded-md duration-200 ease-in-out"
+              size={24}
+              onClick={() => {
+                const input = document.getElementById(
+                  "requestDate"
+                ) as HTMLInputElement;
+                if (input) {
+                  input.showPicker();
+                }
+              }}
+            />
+          </div>
         </div>
         {/* Tombol Kirim */}
         <button
