@@ -12,8 +12,7 @@ import {
   FaUserCheck,
 } from "react-icons/fa";
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { IoClose } from "react-icons/io5";
+import PhotoComponent from "../../../../../PhotoComponent";
 
 interface Incident {
   no_report: number;
@@ -108,30 +107,13 @@ const CardDetailIncidentReportComponent: React.FC<
             className="w-full rounded-md shadow cursor-pointer"
             onClick={() => setIsModalOpen(true)}
           />
+          <PhotoComponent
+            openImage={isModalOpen}
+            setOpenImage={setIsModalOpen}
+            photo={incident.photos}
+          />
         </div>
       </div>
-      {isModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-[9998]">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            className="bg-white p-4 rounded-lg shadow-lg relative"
-          >
-            <button
-              className="absolute top-2 right-2 text-red-600 hover:text-gray-700 bg-white rounded-md lg:p-2"
-              onClick={() => setIsModalOpen(false)}
-            >
-              <IoClose size={23} />
-            </button>
-            <img
-              src={incident.photos}
-              alt="Incident"
-              className="max-w-full max-h-screen rounded"
-            />
-          </motion.div>
-        </div>
-      )}
     </div>
   );
 };
