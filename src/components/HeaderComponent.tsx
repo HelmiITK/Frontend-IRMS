@@ -22,7 +22,7 @@ const HeaderComponent: React.FC<HeaderComponentProps> = ({
         {/* Route one */}
         <Link
           to={"/dashboard"}
-          className="flex items-center  gap-1 cursor-pointer text-gray-500 hover:text-black"
+          className="flex items-center gap-1 cursor-pointer text-gray-500 hover:text-black"
         >
           <AiFillHome className="text-sm " />
           <h1 className=" text-sm capitalize">{routeOne}</h1>
@@ -34,7 +34,9 @@ const HeaderComponent: React.FC<HeaderComponentProps> = ({
         <Link
           to={"../"}
           className={`text-sm capitalize ${
-            routeThree ? "text-gray-500" : "text-black"
+            routeThree
+              ? "cursor-pointer text-gray-500 hover:text-black"
+              : "text-black"
           }`}
         >
           {routeTwo}

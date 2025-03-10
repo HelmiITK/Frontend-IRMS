@@ -10,7 +10,7 @@ interface User {
   category_incident: string;
   classification_incident: string;
   area: string;
-  loaction: string;
+  location: string;
   itcr: string;
   description: string;
   photos: string;
@@ -249,10 +249,10 @@ const HeaderTableIncidentComponent: React.FC<
               location
             </p>
             <div
-              onClick={() => handleSort("loaction")}
+              onClick={() => handleSort("location")}
               className="cursor-pointer"
             >
-              {sortField === "loaction" ? (
+              {sortField === "location" ? (
                 sortOrder === "asc" ? (
                   <RxDoubleArrowUp className="text-black w-4 h-4" />
                 ) : (

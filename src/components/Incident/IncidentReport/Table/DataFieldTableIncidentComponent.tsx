@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { IoMdEye } from "react-icons/io";
-import { MdOutlineModeEditOutline } from "react-icons/md";
-import { MdOutlineDelete } from "react-icons/md";
 import PhotoComponent from "../../../PhotoComponent";
+import ViewButtonComponent from "../../../ViewButtonComponent";
+import EditButtonComponent from "../../../EditButtonComponent";
+import DeleteButtonComponent from "../../../DeleteButtonComponent";
 interface User {
   no_report: number;
   data_incident: string;
@@ -13,7 +12,7 @@ interface User {
   category_incident: string;
   classification_incident: string;
   area: string;
-  loaction: string;
+  location: string;
   itcr: string;
   description: string;
   photos: string;
@@ -82,7 +81,7 @@ const DataFieldTableIncidentComponent: React.FC<
             </span>
           </td>
           <td className="text-xs text-black">{itemList?.area}</td>
-          <td className="text-xs text-black">{itemList?.loaction}</td>
+          <td className="text-xs text-black">{itemList?.location}</td>
           <td className="text-xs text-black">{itemList?.itcr}</td>
           <td>
             {expandedRows.includes(itemList?.no_report) ? (
@@ -122,30 +121,13 @@ const DataFieldTableIncidentComponent: React.FC<
           </td>
           <td className="text-xs text-black">{itemList?.reviewed_by}</td>
           <td className=" sticky right-0 backdrop-blur-sm bg-opacity-55 bg-white flex flex-col gap-[5px] justify-center items-center">
-            <Link
-              to="detail_incident_report"
-              type="button"
-              className="text-xs border w-fit lg:w-full border-blue-700 px-2 py-1 rounded-sm bg-blue-500 text-white capitalize hover:bg-blue-700 duration-150 text-center"
-            >
-              <IoMdEye className="text-sm md:hidden" />
-              <span className="hidden md:block">View</span>
-            </Link>
-            <Link
-              to="edit_incident_report"
-              type="button"
-              className="text-xs border w-fit lg:w-full border-sky-500 px-2 py-1 rounded-sm bg-sky-300 text-white capitalize hover:bg-sky-700 duration-150 text-center"
-            >
-              <MdOutlineModeEditOutline className="text-sm md:hidden" />
-              <span className="hidden md:block">Edit</span>
-            </Link>
-            <button
-              onClick={() => handleDeleteRowUser(itemList?.no_report)}
-              type="button"
-              className="text-xs border w-fit lg:w-full border-red-700 px-2 py-1 rounded-sm bg-red-500 text-white capitalize hover:bg-red-700 duration-150"
-            >
-              <MdOutlineDelete className="text-sm md:hidden" />
-              <span className="hidden md:block">Delete</span>
-            </button>
+            <ViewButtonComponent title="view" link="detail_incident_report" />
+            <EditButtonComponent title="edit" link="edit_incident_report" />
+            <DeleteButtonComponent
+              title="delete"
+              handleDelete={handleDeleteRowUser}
+              itemList={itemList.no_report}
+            />
           </td>
         </tr>
       ))}

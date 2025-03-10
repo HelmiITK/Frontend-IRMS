@@ -18,7 +18,7 @@ interface User {
   category_incident: string;
   classification_incident: string;
   area: string;
-  loaction: string;
+  location: string;
   itcr: string;
   description: string;
   photos: string;
@@ -35,7 +35,7 @@ const userList: User[] = [
     category_incident: "Asset/Produksi",
     classification_incident: "Minor",
     area: "Plant",
-    loaction: "Graha Parna",
+    location: "Graha Parna",
     itcr: "No",
     description:
       "Sebelum kejadian saya melihat ada anomali el goat hijau berasal dari Brazil memutar-mutar si kulit bundar",
@@ -51,7 +51,7 @@ const userList: User[] = [
     category_incident: "Keselamatan",
     classification_incident: "Moderate",
     area: "Warehouse",
-    loaction: "Gudang A",
+    location: "Gudang A",
     itcr: "Yes",
     description:
       "Operator tidak sengaja menjatuhkan beban berat saat proses pemindahan dengan forklift.",
@@ -67,7 +67,7 @@ const userList: User[] = [
     category_incident: "Keamanan",
     classification_incident: "Major",
     area: "Control Room",
-    loaction: "Gedung Utama",
+    location: "Gedung Utama",
     itcr: "No",
     description:
       "Tiba-tiba terjadi lonjakan tegangan listrik yang menyebabkan pemadaman di seluruh gedung.",
@@ -83,7 +83,7 @@ const userList: User[] = [
     category_incident: "Lingkungan",
     classification_incident: "Catastrophic",
     area: "Storage",
-    loaction: "Area Penyimpanan Kimia",
+    location: "Area Penyimpanan Kimia",
     itcr: "Yes",
     description:
       "Tumpahan bahan kimia beracun terdeteksi di area penyimpanan karena kebocoran drum.",
@@ -99,7 +99,7 @@ const userList: User[] = [
     category_incident: "Kesehatan",
     classification_incident: "Minor",
     area: "Laboratorium",
-    loaction: "Lab QC",
+    location: "Lab QC",
     itcr: "No",
     description:
       "Seorang teknisi mengalami iritasi mata karena tidak menggunakan APD saat menangani bahan uji.",
@@ -115,7 +115,7 @@ const userList: User[] = [
     category_incident: "Asset/Produksi",
     classification_incident: "Moderate",
     area: "Workshop",
-    loaction: "Bengkel Mekanik",
+    location: "Bengkel Mekanik",
     itcr: "Yes",
     description:
       "Mesin mengalami kegagalan fungsi akibat kurangnya pelumasan yang memicu panas berlebih.",
@@ -160,7 +160,8 @@ const IncidentReportPage: React.FC = () => {
         .toLowerCase()
         .includes(searchQuery.toLowerCase()) ||
       user.area.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      user.loaction.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.itcr.toLowerCase().includes(searchQuery.toLowerCase()) ||
       user.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       user.reviewed_by.toLowerCase().includes(searchQuery.toLowerCase())
   );

@@ -1,11 +1,10 @@
-import { IoSearch } from "react-icons/io5";
 import { FaRegCopy } from "react-icons/fa";
 import { GrDocumentCsv } from "react-icons/gr";
 import { RiFileExcel2Line } from "react-icons/ri";
 import { FaRegFilePdf } from "react-icons/fa6";
 import { Divider } from "@mui/material";
-import { Link } from "react-router-dom";
-import { ChangeEvent } from "react";
+import AddButtonComponent from "../AddButtonComponent";
+import SearchButtonComponent from "../SearchButtonComponent";
 
 interface User {
   id: number;
@@ -24,7 +23,7 @@ interface FilterComponentProps {
   handleDeselectedAll: () => void;
   handleDeleteSelected: () => void;
   searchQuery: string;
-  handleSearch: (event: ChangeEvent<HTMLInputElement>) => void;
+  handleSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const FilterComponent: React.FC<FilterComponentProps> = ({
@@ -40,18 +39,12 @@ const FilterComponent: React.FC<FilterComponentProps> = ({
     <div className="flex flex-col gap-2 lg:flex lg:flex-row lg:gap-4 w-full lg:justify-between">
       <div className="w-full flex flex-col lg:flex lg:flex-row lg:items-center gap-4">
         {/* left feature */}
-        <div className="flex items-center gap-2 lg:flex lg:flex-row lg:gap-4">
-          {/* Create user  */}
-          <Link to={"add_user"}>
-            <button className="capitalize text-xs lg:text-sm bg-green-500 py-1 px-2 lg:py-1 lg:px-4 rounded-sm shadow-md text-white border border-green-700 hover:scale-105 duration-150 ease-in-out hover:shadow-lg">
-              add user
-            </button>
-          </Link>
-          <Divider className="hidden lg:block h-8 w-[0.7px] bg-black" />
-        </div>
+        <AddButtonComponent title="add user" link="add_user" />
+        <Divider className="hidden lg:block h-8 w-[0.7px] bg-black" />
+
         {/* right feature */}
         <div className="flex flex-col gap-2 items-start lg:flex lg:flex-row lg:gap-2 lg:items-center">
-          {/* Middle button */}
+          {/* Selected button */}
           <div className="flex flex-row gap-2 lg:flex lg:flex-row lg:gap-2 lg:mr-2">
             {selectedUsers.length === userListField.length ? (
               <button
@@ -83,7 +76,6 @@ const FilterComponent: React.FC<FilterComponentProps> = ({
               Delete selected
             </button>
           </div>
-
           <Divider className="hidden lg:block h-8 w-[0.7px] bg-black" />
 
           {/* dokumen button */}
@@ -109,27 +101,10 @@ const FilterComponent: React.FC<FilterComponentProps> = ({
       </div>
 
       {/*searching */}
-      <div className=" flex flex-row gap-1 items-center sticky right-2">
-        <label htmlFor="search">
-          <IoSearch className="hidden lg:block text-xl text-slate-400 absolute top-[10px] right-3" />
-        </label>
-        <div className="flex flex-col gap-2">
-          <input
-            type="text"
-            name="search"
-            id="search"
-            placeholder="search"
-            value={searchQuery}
-            onChange={handleSearch}
-            className="px-3  py-[6px] text-sm placeholder:text-sm placeholder:font-light placeholder:font-poppins placeholder:tracking-wider placeholder:text-slate-400 border border-slate-400 rounded-sm shadow-sm"
-          />
-          {searchQuery && (
-            <p className="text-gray-600 font-light text-sm">
-              Hasil Pencarian : {searchQuery}
-            </p>
-          )}
-        </div>
-      </div>
+      <SearchButtonComponent
+        searchQuery={searchQuery}
+        handleSearch={handleSearch}
+      />
     </div>
   );
 };

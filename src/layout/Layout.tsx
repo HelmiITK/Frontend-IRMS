@@ -14,7 +14,6 @@ const Layout: React.FC<LayoutProps> = ({ handleLanguageChange, t }) => {
       sx={{
         display: "flex",
         minHeight: "100vh",
-        backgroundColor: "#f9fafb",
         maxWidth: "100vw",
       }}
     >
@@ -26,6 +25,7 @@ const Layout: React.FC<LayoutProps> = ({ handleLanguageChange, t }) => {
           flexDirection: "column",
           width: "100%",
           minHeight: "100vh",
+          backgroundColor: "#f9fafb",
         }}
       >
         <Box

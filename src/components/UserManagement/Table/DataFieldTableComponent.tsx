@@ -1,8 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { IoMdEye } from "react-icons/io";
-import { MdOutlineModeEditOutline } from "react-icons/md";
-import { MdOutlineDelete } from "react-icons/md";
+import ViewButtonComponent from "../../ViewButtonComponent";
+import EditButtonComponent from "../../EditButtonComponent";
+import DeleteButtonComponent from "../../DeleteButtonComponent";
 
 interface User {
   id: number;
@@ -63,30 +62,21 @@ const DataFieldTableComponent: React.FC<DataFieldTableComponentProps> = ({
           <td>{itemList.department}</td>
           <td>{itemList.superior}</td>
           <td className="sticky right-0 bg-white flex flex-col gap-[5px] items-center justify-center ">
-            <Link
-              to="detail_user"
-              type="button"
-              className="text-xs border p-1  border-blue-700 lg:px-2 lg:py-1 lg:w-full rounded-sm bg-blue-500 text-white capitalize hover:bg-blue-700 duration-150 text-center"
-            >
-              <IoMdEye className="text-sm md:hidden" />
-              <span className="hidden md:block ">View</span>
-            </Link>
-            <Link
-              to="edit_user"
-              type="button"
-              className="text-xs border p-1 border-sky-500 lg:px-2 lg:py-1 lg:w-full rounded-sm bg-sky-300 text-white capitalize hover:bg-sky-700 duration-150 text-center"
-            >
-              <MdOutlineModeEditOutline className="text-sm md:hidden" />
-              <span className="hidden md:block">Edit</span>
-            </Link>
-            <button
+            <ViewButtonComponent title="view" link="detail_user" />
+            <EditButtonComponent title="edit" link="edit_user" />
+            <DeleteButtonComponent
+              title="delete"
+              handleDelete={handleDeleteRowUser}
+              itemList={itemList.id}
+            />
+            {/* <button
               onClick={() => handleDeleteRowUser(itemList.id)}
               type="button"
               className="text-xs border p-1 border-red-700 lg:px-2 lg:py-1 lg:w-full rounded-sm bg-red-500 text-white capitalize hover:bg-red-700 duration-150"
             >
               <MdOutlineDelete className="text-sm md:hidden" />
               <span className="hidden md:block">Delete</span>
-            </button>
+            </button> */}
           </td>
         </tr>
       ))}
