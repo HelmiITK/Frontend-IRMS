@@ -14,9 +14,9 @@ import {
 import { useState } from "react";
 import PhotoComponent from "../../../../../PhotoComponent";
 import { IoTimerSharp } from "react-icons/io5"; // in progress
-import { IoCheckmarkCircleSharp } from "react-icons/io5"; // approved
-import { IoMdCloseCircle } from "react-icons/io"; // rejected
-import { BsClipboardCheckFill } from "react-icons/bs"; // resolved
+// import { IoCheckmarkCircleSharp } from "react-icons/io5"; // approved
+// import { IoMdCloseCircle } from "react-icons/io"; // rejected
+// import { BsClipboardCheckFill } from "react-icons/bs"; // resolved
 interface Incident {
   no_report: number;
   data_incident: string;
@@ -44,17 +44,17 @@ const CardDetailIncidentReportComponent: React.FC<
 
   return (
     <div className="bg-white shadow-lg rounded-lg p-6 mt-1">
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex flex-col lg:flex lg:flex-row lg:items-center lg:justify-between mb-4">
         <h2 className="text-xl font-semibold text-gray-800">
           Detail Incident #{incident.no_report}
         </h2>
-        <div className="flex items-center gap-1">
+        <div className="flex flex-row items-center gap-1 mt-2">
           <h2 className="text-sm text-gray-500 font-montserrat ">status :</h2>
           <div className="flex items-center gap-1 py-1 px-3 text-white rounded-md text-xs lg:text-base font-semibold  tracking-wide capitalize whitespace-nowrap bg-yellow-500">
             <IoTimerSharp className="text-xl text-yellow-700" />
             <p>In Progress</p>
           </div>
-          <div className="flex items-center gap-1 py-1 px-3 text-white rounded-md text-xs lg:text-base font-semibold  tracking-wide capitalize whitespace-nowrap bg-green-500">
+          {/* <div className="flex items-center gap-1 py-1 px-3 text-white rounded-md text-xs lg:text-base font-semibold  tracking-wide capitalize whitespace-nowrap bg-green-500">
             <IoCheckmarkCircleSharp className="text-xl text-green-700" />
             <p>Approved</p>
           </div>
@@ -65,7 +65,7 @@ const CardDetailIncidentReportComponent: React.FC<
           <div className="flex items-center gap-1 py-1 px-3 text-white rounded-md text-xs lg:text-base font-semibold  tracking-wide capitalize whitespace-nowrap bg-blue-500">
             <BsClipboardCheckFill className="text-xl text-blue-700" />
             <p>Resolved</p>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="flex flex-col lg:grid lg:grid-cols-2 gap-4">
@@ -152,7 +152,7 @@ const DetailItem: React.FC<{
     <div className="text-gray-600 text-lg">{icon}</div>
     <div>
       <p className="text-gray-500 text-sm">{label}</p>
-      <p className="text-gray-800 font-semibold">{value}</p>
+      <p className="text-gray-800 font-semibold text-sm">{value}</p>
     </div>
   </div>
 );
