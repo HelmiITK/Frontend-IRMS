@@ -95,31 +95,31 @@ const UserAlertsPage: React.FC = () => {
                     <h1 className="text-xl font-semibold text-white font-montserrat">
                       #
                     </h1>
-                    <h2 className="text-white font-montserrat font-medium">
+                    <h2 className="text-white font-montserrat font-medium text-sm">
                       {item.no_report}
                     </h2>
                   </div>
                   <div className="p-3  border border-green-300 w-full flex flex-row items-center gap-8">
                     {/* Pelapor */}
-                    <div className="whitespace-nowrap">
-                      <h1 className="text-gray-500 text-sm capitalize">
+                    <div className="whitespace-nowrap flex flex-col gap-1">
+                      <h1 className="text-gray-500 text-xs capitalize">
                         Pelapor
                       </h1>
-                      <h2>{item.pelapor}</h2>
+                      <h2 className="text-sm">{item.pelapor}</h2>
                     </div>
                     {/* Departement */}
-                    <div className="whitespace-nowrap">
-                      <h1 className="text-gray-500 text-sm capitalize">
+                    <div className="whitespace-nowrap flex flex-col gap-1">
+                      <h1 className="text-gray-500 text-xs capitalize">
                         Departement
                       </h1>
-                      <h2>{item.department}</h2>
+                      <h2 className="text-sm">{item.department}</h2>
                     </div>
                     {/* class incident */}
-                    <div className="whitespace-nowrap">
-                      <h1 className="text-gray-500 text-sm capitalize">
+                    <div className="whitespace-nowrap flex flex-col gap-1">
+                      <h1 className="text-gray-500 text-xs capitalize">
                         Classfication Incident
                       </h1>
-                      <h2>{item.class_incident}</h2>
+                      <h2 className="text-sm">{item.class_incident}</h2>
                     </div>
                     {/* detail */}
                     <ViewButtonComponent
