@@ -20,7 +20,7 @@ const FormLoginComponent: React.FC<FormLoginComponentProps> = ({
 }) => {
   return (
     <div className="mx-4">
-      <div className="w-full max-w-sm p-6 bg-white bg-opacity-55 rounded-2xl shadow-md backdrop-blur-md">
+      <div className="w-full max-w-sm p-6 bg-white bg-opacity-55 rounded-2xl shadow-xl drop-shadow-xl backdrop-blur-md">
         {/* header */}
         <div className="flex flex-col items-center gap-2">
           <img src={WarningIcon} alt="icon" className="w-12 h-12" />
