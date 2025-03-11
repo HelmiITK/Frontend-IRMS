@@ -7,6 +7,8 @@ import FullScreenComponent from "./FullScreenComponent";
 import ProfileComponent from "./ProfileComponent";
 import LogoKPI from "../../assets/KPI_logo_2.png";
 import { styled } from "@mui/material/styles";
+import { PiBellRingingFill } from "react-icons/pi";
+import { Link } from "react-router-dom";
 
 const drawerWidth = 275; // Default drawer width for larger screens
 const mobileDrawerWidth = 220;
@@ -65,9 +67,11 @@ const AppBarComponent: React.FC<AppBarComponentProps> = ({
         >
           <MenuIcon />
         </IconButton>
+       
         {/* left header nav  */}
         {!open ? (
           <div className="flex flex-row items-center gap-2">
+            <div className="text-transparent block lg:hidden">---</div>
             <img
               src={LogoKPI}
               alt="logo"
@@ -92,6 +96,14 @@ const AppBarComponent: React.FC<AppBarComponentProps> = ({
               handleLanguageChange={handleLanguageChange}
             />
           </div>
+          {/* user alert */}
+          <Link
+            to={"incident_report/detail_incident_report"}
+            className="indicator hover:scale-110 ease-linear duration-150"
+          >
+            <span className="indicator-item badge-xs badge badge-primary py-1 px-0">12</span>
+            <PiBellRingingFill className="text-lg text-white" />
+          </Link>
           {/* fullscreen  */}
           <FullScreenComponent />
           {/* profile  */}

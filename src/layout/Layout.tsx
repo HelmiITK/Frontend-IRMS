@@ -10,13 +10,7 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ handleLanguageChange, t }) => {
   return (
-    <Box
-      sx={{
-        display: "flex",
-        minHeight: "100vh",
-        maxWidth: "100vw",
-      }}
-    >
+    <Box sx={{ display: "flex" }}>
       <SideNav handleLanguageChange={handleLanguageChange} t={t} />
       <Box
         sx={{

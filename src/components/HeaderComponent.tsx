@@ -22,9 +22,9 @@ const HeaderComponent: React.FC<HeaderComponentProps> = ({
         {/* Route one */}
         <Link
           to={"/dashboard"}
-          className="flex items-center gap-1 cursor-pointer text-gray-500 hover:text-black"
+          className="flex items-center gap-1 cursor-pointer text-gray-500 hover:text-black whitespace-nowrap"
         >
-          <AiFillHome className="text-sm " />
+          <AiFillHome className="text-sm" />
           <h1 className=" text-sm capitalize">{routeOne}</h1>
         </Link>
 
@@ -33,7 +33,7 @@ const HeaderComponent: React.FC<HeaderComponentProps> = ({
         {/* Route two */}
         <Link
           to={"../"}
-          className={`text-sm capitalize ${
+          className={`text-sm capitalize whitespace-nowrap ${
             routeThree
               ? "cursor-pointer text-gray-500 hover:text-black"
               : "text-black"
@@ -42,12 +42,11 @@ const HeaderComponent: React.FC<HeaderComponentProps> = ({
           {routeTwo}
         </Link>
 
+        <MdChevronRight className="text-gray-500" />
+
         {/* Route three */}
         {routeThree && (
-          <>
-            <MdChevronRight className="text-gray-500" />
-            <h2 className="text-sm capitalize text-black">{routeThree}</h2>
-          </>
+          <h2 className="text-sm capitalize text-black ">{routeThree}</h2>
         )}
       </div>
     </div>
