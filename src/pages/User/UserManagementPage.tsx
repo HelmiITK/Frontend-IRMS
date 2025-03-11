@@ -93,6 +93,9 @@ const UserManagementPage: React.FC = () => {
 
   const [userListField, setUserListField] = useState<User[]>(userList);
   const [currentPage, setCurrentPage] = useState(1);
+  const [displayCount, setDisplayCount] = useState<number>(
+    userListField.length > 0 ? 3 : userListField.length
+  );
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const query = event.target.value;
@@ -112,17 +115,21 @@ const UserManagementPage: React.FC = () => {
       user.superior.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const rowsPerPage = 4;
-  const totalPages = Math.ceil(filteredUsers.length / rowsPerPage);
-
+  // const rowsPerPage = 4;
+  const totalPages = Math.ceil(filteredUsers.length / displayCount);
   const safeCurrentPage = Math.min(currentPage, totalPages || 1);
-
-  const indexOfLastRow = currentPage * rowsPerPage;
-  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+  const indexOfLastRow = currentPage * displayCount;
+  const indexOfFirstRow = indexOfLastRow - displayCount;
   const currentUsers = filteredUsers.slice(indexOfFirstRow, indexOfLastRow);
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
+  };
+
+  // Fungsi untuk mengubah jumlah item yang ditampilkan
+  const handleDisplayCountChange = (count: number) => {
+    setDisplayCount(count);
+    setCurrentPage(1); // Reset ke halaman pertama saat jumlah item berubah
   };
 
   // funsgi sorting ascending & descending
@@ -274,6 +281,8 @@ const UserManagementPage: React.FC = () => {
             handleSort={handleSort}
             sortField={sortField}
             sortOrder={sortOrder}
+            handleDisplayCount={handleDisplayCountChange}
+            placeholderShow={displayCount}
           />
 
           {/* data field */}
