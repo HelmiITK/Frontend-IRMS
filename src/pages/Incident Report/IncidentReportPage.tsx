@@ -134,16 +134,15 @@ const userList: User[] = [
 const IncidentReportPage: React.FC = () => {
   // NOTE: perhatikan posisi state pastikan berada di atas fungsi agar dideklarasi terlebih dahulu
   const [searchParams, setSearchParams] = useSearchParams();
-
-  // ambil nilai search dari URL
-  const searchQuery = searchParams.get("search") || "";
-
+  const searchQuery = searchParams.get("search") || ""; // ambil nilai search dari URL
   const [sortField, setSortField] = useState<keyof User | null>(null);
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
   const [selectedUsers, setSelectedUsers] = useState<number[]>([]);
-
   const [userListField, setUserListField] = useState<User[]>(userList);
   const [currentPage, setCurrentPage] = useState(1);
+  const [displayCount, setDisplayCount] = useState<number>(
+    userListField.length > 0 ? 3 : userListField.length
+  );
 
   // handle search by params
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -175,19 +174,23 @@ const IncidentReportPage: React.FC = () => {
   );
 
   // Hitung jumlah total halaman berdasarkan filteredUsers
-  const rowsPerPage = 4;
-  const totalPages = Math.ceil(filteredUsers.length / rowsPerPage);
-
+  // const rowsPerPage = 4;
+  const totalPages = Math.ceil(filteredUsers.length / displayCount);
   // Pastikan currentPage tidak lebih dari totalPages (untuk edge case ketika hasil filter sedikit)
   const safeCurrentPage = Math.min(currentPage, totalPages || 1);
-
   // Ambil data sesuai halaman
-  const indexOfLastRow = currentPage * rowsPerPage;
-  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+  const indexOfLastRow = currentPage * displayCount;
+  const indexOfFirstRow = indexOfLastRow - displayCount;
   const currentUsers = filteredUsers.slice(indexOfFirstRow, indexOfLastRow);
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
+  };
+
+  // Fungsi untuk mengubah jumlah item yang ditampilkan
+  const handleDisplayCountChange = (count: number) => {
+    setDisplayCount(count);
+    setCurrentPage(1); // Reset ke halaman pertama saat jumlah item berubah
   };
 
   // funsgi sorting ascending & descending
@@ -341,6 +344,8 @@ const IncidentReportPage: React.FC = () => {
             handleSort={handleSort}
             sortField={sortField}
             sortOrder={sortOrder}
+            handleDisplayCount={handleDisplayCountChange}
+            placeholderShow={displayCount}
           />
 
           {/* data field */}

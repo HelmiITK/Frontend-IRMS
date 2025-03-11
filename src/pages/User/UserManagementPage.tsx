@@ -94,6 +94,7 @@ const UserManagementPage: React.FC = () => {
     userListField.length > 0 ? 3 : userListField.length
   );
 
+  // handle search by params
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const query = event.target.value;
     setSearchParams(query ? { search: query } : {});

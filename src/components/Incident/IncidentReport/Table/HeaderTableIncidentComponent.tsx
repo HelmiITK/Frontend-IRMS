@@ -22,30 +22,53 @@ interface HeaderTableIncidentComponentProps {
   handleSort: (field: keyof User) => void;
   sortField: keyof User | null;
   sortOrder: "asc" | "desc";
+  handleDisplayCount: (count: number) => void;
+  placeholderShow: number;
 }
 
 const HeaderTableIncidentComponent: React.FC<
   HeaderTableIncidentComponentProps
-> = ({ handleSort, sortField, sortOrder }) => {
+> = ({
+  handleSort,
+  sortField,
+  sortOrder,
+  handleDisplayCount,
+  placeholderShow,
+}) => {
   return (
     <thead className="overflow-x-auto">
       <tr>
         {/* show dropdown */}
-        <th>
-          <div className="flex flex-row items-start gap-1">
-            <label htmlFor="show" className="text-xs text-black font-semibold">
-              Show :
-            </label>
-            <select
-              name="show"
-              id="show"
-              className=" rounded-sm shadow-sm border border-1 border-slate-900 w-[52px]"
-            >
-              <option value="volvo">5</option>
-              <option value="saab">10</option>
-              <option value="mercedes">50</option>
-              <option value="audi">100</option>
-            </select>
+        <th className="flex flex-row items-center gap-1 justify-start">
+          <div className=" flex flex-row items-center  gap-2">
+            <div className="relative flex items-center text-center">
+              <label
+                htmlFor="displayCount"
+                className="text-sm text-center flex items-center gap-1"
+              >
+                <p>Show</p>
+                <p>:</p>
+              </label>
+              <input
+                id="displayCount"
+                type="number"
+                min="0"
+                className="border ml-1 py-2 rounded-md text-center w-12"
+                placeholder={`${placeholderShow}`}
+                onChange={(e) => {
+                  let value = e.target.value.replace(/^0+/, ""); // Hapus leading zero
+                  if (value === "" || Number(value) < 0) {
+                    value = "0"; // Set 0 jika kosong atau negatif
+                  }
+                  handleDisplayCount(Number(value));
+                }}
+                onBlur={(e) => {
+                  if (!e.target.value || Number(e.target.value) < 0) {
+                    handleDisplayCount(0);
+                  }
+                }}
+              />
+            </div>
           </div>
         </th>
         {/* status incident */}
