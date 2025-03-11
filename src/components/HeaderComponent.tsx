@@ -42,11 +42,12 @@ const HeaderComponent: React.FC<HeaderComponentProps> = ({
           {routeTwo}
         </Link>
 
-        <MdChevronRight className="text-gray-500" />
-
         {/* Route three */}
         {routeThree && (
-          <h2 className="text-sm capitalize text-black ">{routeThree}</h2>
+          <>
+            <MdChevronRight className="text-gray-500" />
+            <h2 className="text-sm capitalize text-black ">{routeThree}</h2>
+          </>
         )}
       </div>
     </div>
