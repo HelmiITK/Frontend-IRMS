@@ -68,10 +68,10 @@ const DataFieldTableIncidentComponent: React.FC<
           </th>
           <td>
             <p
-              className={`py-1 px-2 text-white bg-black rounded-md text-xs font-normal text-center capitalize
+              className={`py-1 px-2 text-white bg-black rounded-md text-xs font-normal text-center capitalize whitespace-nowrap
               ${
                 itemList?.status_incident === "in progress"
-                  ? "bg-yellow-500"
+                  ? "bg-yellow-500  "
                   : itemList?.status_incident === "approved"
                   ? "bg-green-500"
                   : itemList?.status_incident === "rejected"
@@ -85,13 +85,14 @@ const DataFieldTableIncidentComponent: React.FC<
               {itemList?.status_incident}
             </p>
           </td>
-          <td className="text-xs text-black">{itemList?.no_report}</td>
-          <td className="text-xs text-black">{itemList?.data_incident}</td>
+          <td className="text-xs text-black pl-4">{itemList?.no_report}</td>
+          <td className="text-xs text-black whitespace-nowrap">
+            {itemList?.data_incident}
+          </td>
           <td className="text-xs text-black">{itemList?.reporter}</td>
           <td className="text-xs text-black">{itemList?.origin_department}</td>
-
           <td>
-            <p className="bg-orange-600 py-1 px-2 text-center rounded-md text-white text-xs font-normal">
+            <p className="bg-orange-600 whitespace-nowrap py-1 px-2 text-center rounded-md text-white text-xs font-normal">
               {itemList?.basic_cause}
             </p>
           </td>
@@ -102,8 +103,10 @@ const DataFieldTableIncidentComponent: React.FC<
             </span>
           </td>
           <td className="text-xs text-black">{itemList?.area}</td>
-          <td className="text-xs text-black">{itemList?.location}</td>
-          <td className="text-xs text-black">{itemList?.itcr}</td>
+          <td className="text-xs text-black whitespace-nowrap">
+            {itemList?.location}
+          </td>
+          <td className="text-xs text-black pl-6">{itemList?.itcr}</td>
           <td>
             {expandedRows.includes(itemList?.no_report) ? (
               <span className="text-xs text-black">
@@ -141,7 +144,7 @@ const DataFieldTableIncidentComponent: React.FC<
             </div>
           </td>
           <td className="text-xs text-black">{itemList?.reviewed_by}</td>
-          <td className=" sticky right-0 backdrop-blur-sm bg-opacity-55 bg-white flex flex-col gap-[5px] justify-center items-center">
+          <td className="sticky right-0 backdrop-blur-sm bg-opacity-55 bg-white flex flex-col gap-[5px] justify-center items-center">
             <ViewButtonComponent title="view" link="detail_incident_report" />
             <EditButtonComponent title="edit" link="edit_incident_report" />
             <DeleteButtonComponent

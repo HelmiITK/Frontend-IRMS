@@ -23,7 +23,7 @@ const Layout: React.FC<LayoutProps> = ({ handleLanguageChange, t }) => {
           flexGrow: 1,
           display: "flex",
           flexDirection: "column",
-          width: "100%",
+          width: "screen",
           minHeight: "100vh",
           backgroundColor: "#f9fafb",
         }}

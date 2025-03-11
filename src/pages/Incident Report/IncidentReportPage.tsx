@@ -313,7 +313,7 @@ const IncidentReportPage: React.FC = () => {
   };
 
   return (
-    <div className="bg-gray-50">
+    <>
       {/* header */}
       <HeaderComponent
         title="incident report"
@@ -333,8 +333,8 @@ const IncidentReportPage: React.FC = () => {
       />
 
       {/* table user management by daisyUI */}
-      <div className="max-w-xs overflow-x-auto lg:overflow-visible lg:max-w-full shadow-lg rounded-lg mb-8 mt-2 border">
-        <table className=" table table-zebra table-xs">
+      <div className="max-w-xs overflow-x-auto py-2 pl-2d lg:overflow-visible lg:max-w-full shadow-lg rounded-lg mb-8 mt-2 border">
+        <table className="table table-zebra table-xs">
           {/* head */}
           <HeaderTableIncidentComponent
             handleSort={handleSort}
@@ -356,7 +356,7 @@ const IncidentReportPage: React.FC = () => {
               ))
             ) : (
               <tr>
-                <td colSpan={15} className="text-gray-500 text-center py-4">
+                <td colSpan={16} className="text-gray-500 text-center py-4">
                   No results found
                 </td>
               </tr>
@@ -373,7 +373,7 @@ const IncidentReportPage: React.FC = () => {
           />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -175,9 +175,9 @@ const HeaderTableIncidentComponent: React.FC<
         </th>
         {/* basic cause */}
         <th>
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1 justify-between">
             <p className="text-black text-xs font-semibold capitalize">
-              basic <br /> cause
+              basic cause
             </p>
             <div
               onClick={() => handleSort("basic_cause")}
@@ -317,8 +317,8 @@ const HeaderTableIncidentComponent: React.FC<
           </div>
         </th>
         {/* description */}
-        <th>
-          <div className="flex items-center gap-1">
+        <th className="min-w-[150px]">
+          <div className="flex items-center gap-1 justify-between">
             <p className="text-black text-xs font-semibold capitalize">
               description
             </p>
