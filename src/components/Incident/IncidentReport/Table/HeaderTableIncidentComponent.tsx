@@ -6,6 +6,7 @@ interface User {
   data_incident: string;
   reporter: string;
   origin_department: string;
+  status_incident: string;
   basic_cause: string;
   category_incident: string;
   classification_incident: string;
@@ -45,6 +46,31 @@ const HeaderTableIncidentComponent: React.FC<
               <option value="mercedes">50</option>
               <option value="audi">100</option>
             </select>
+          </div>
+        </th>
+        {/* status incident */}
+        <th>
+          <div className="flex items-center gap-4 md:gap-10 ">
+            <p className="text-black text-xs font-semibold capitalize">
+              status <br /> incident
+            </p>
+            <div
+              onClick={() => handleSort("status_incident")}
+              className="cursor-pointer"
+            >
+              {sortField === "status_incident" ? (
+                sortOrder === "asc" ? (
+                  <RxDoubleArrowUp className="text-black w-4 h-4" />
+                ) : (
+                  <RxDoubleArrowDown className="text-black w-4 h-4" />
+                )
+              ) : (
+                <div className="flex flex-row">
+                  <RxDoubleArrowUp className="text-slate-500" />
+                  <RxDoubleArrowDown className="text-slate-500" />
+                </div>
+              )}
+            </div>
           </div>
         </th>
         {/* No report */}

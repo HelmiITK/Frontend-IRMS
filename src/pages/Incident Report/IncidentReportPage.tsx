@@ -14,6 +14,7 @@ interface User {
   data_incident: string;
   reporter: string;
   origin_department: string;
+  status_incident: string;
   basic_cause: string;
   category_incident: string;
   classification_incident: string;
@@ -31,6 +32,7 @@ const userList: User[] = [
     data_incident: "27-02-2025",
     reporter: "Helmi",
     origin_department: "Information Technology",
+    status_incident: "in progress",
     basic_cause: "Kegagalan alat",
     category_incident: "Asset/Produksi",
     classification_incident: "Minor",
@@ -47,6 +49,7 @@ const userList: User[] = [
     data_incident: "28-02-2025",
     reporter: "Budi",
     origin_department: "Mechanical Engineering",
+    status_incident: "approved",
     basic_cause: "Human Error",
     category_incident: "Keselamatan",
     classification_incident: "Moderate",
@@ -63,6 +66,7 @@ const userList: User[] = [
     data_incident: "01-03-2025",
     reporter: "Siti",
     origin_department: "Electrical Engineering",
+    status_incident: "rejected",
     basic_cause: "Gangguan Listrik",
     category_incident: "Keamanan",
     classification_incident: "Major",
@@ -79,6 +83,7 @@ const userList: User[] = [
     data_incident: "02-03-2025",
     reporter: "Andi",
     origin_department: "Safety Department",
+    status_incident: "in progress",
     basic_cause: "Kurangnya Pengawasan",
     category_incident: "Lingkungan",
     classification_incident: "Catastrophic",
@@ -95,6 +100,7 @@ const userList: User[] = [
     data_incident: "03-03-2025",
     reporter: "Rina",
     origin_department: "Production",
+    status_incident: "resolved",
     basic_cause: "Kelalaian Prosedur",
     category_incident: "Kesehatan",
     classification_incident: "Minor",
@@ -111,6 +117,7 @@ const userList: User[] = [
     data_incident: "04-03-2025",
     reporter: "Joko",
     origin_department: "Maintenance",
+    status_incident: "approved",
     basic_cause: "Kurangnya Pemeliharaan",
     category_incident: "Asset/Produksi",
     classification_incident: "Moderate",
@@ -152,6 +159,7 @@ const IncidentReportPage: React.FC = () => {
       user.origin_department
         .toLowerCase()
         .includes(searchQuery.toLowerCase()) ||
+      user.status_incident.toLowerCase().includes(searchQuery.toLowerCase()) ||
       user.basic_cause.toLowerCase().includes(searchQuery.toLowerCase()) ||
       user.category_incident
         .toLowerCase()

@@ -8,6 +8,7 @@ interface User {
   data_incident: string;
   reporter: string;
   origin_department: string;
+  status_incident: string;
   basic_cause: string;
   category_incident: string;
   classification_incident: string;
@@ -65,10 +66,30 @@ const DataFieldTableIncidentComponent: React.FC<
               />
             </label>
           </th>
+          <td>
+            <p
+              className={`py-1 px-2 text-white bg-black rounded-md text-xs font-normal text-center capitalize
+              ${
+                itemList?.status_incident === "in progress"
+                  ? "bg-yellow-500"
+                  : itemList?.status_incident === "approved"
+                  ? "bg-green-500"
+                  : itemList?.status_incident === "rejected"
+                  ? "bg-red-500"
+                  : itemList?.status_incident === "resolved"
+                  ? "bg-blue-500"
+                  : "bg-gray-400"
+              }
+              `}
+            >
+              {itemList?.status_incident}
+            </p>
+          </td>
           <td className="text-xs text-black">{itemList?.no_report}</td>
           <td className="text-xs text-black">{itemList?.data_incident}</td>
           <td className="text-xs text-black">{itemList?.reporter}</td>
           <td className="text-xs text-black">{itemList?.origin_department}</td>
+
           <td>
             <p className="bg-orange-600 py-1 px-2 text-center rounded-md text-white text-xs font-normal">
               {itemList?.basic_cause}
