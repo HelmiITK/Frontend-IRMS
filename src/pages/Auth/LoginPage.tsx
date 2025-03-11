@@ -31,26 +31,28 @@ const LoginPage: React.FC = () => {
     navigate("/forget-password");
   };
   return (
-    <div className="container mx-auto min-h-screen w-full overflow-hidden">
+    <>
       {/* image */}
       <ImageLoginComponent />
-      <div className="relative z-10 min-h-screen bg-opacity-25 lg:flex lg:flex-col lg:items-center lg:justify-center">
-        {/* header */}
+
+      {/* header */}
+      <div className="flex flex-col justify-center items-center mb-10">
         <HeaderOneLoginComponent />
 
-        {/* header 2 */}
-        <HeaderTwoLoginComponent />
-
-        {/* form login */}
-        <FormLoginComponent
-          onClickLogin={onClickLogin}
-          togglePasswordVisibility={togglePasswordVisibility}
-          handleLogin={handleLogin}
-          handleForgetPass={handleForgetPass}
-          passwordVisible={passwordVisible}
-        />
+        <div className="flex flex-col items-center justify-center w-full gap-4 mx-4 lg:mx-0">
+          {/* type animation */}
+          <HeaderTwoLoginComponent />
+          {/* form login */}
+          <FormLoginComponent
+            onClickLogin={onClickLogin}
+            togglePasswordVisibility={togglePasswordVisibility}
+            handleLogin={handleLogin}
+            handleForgetPass={handleForgetPass}
+            passwordVisible={passwordVisible}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

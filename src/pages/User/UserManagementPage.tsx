@@ -84,13 +84,10 @@ const userList: User[] = [
 const UserManagementPage: React.FC = () => {
   // NOTE: perhatikan posisi state pastikan berada di atas fungsi agar dideklarasi terlebih dahulu
   const [searchParams, setSearchParams] = useSearchParams();
-
   const searchQuery = searchParams.get("search") || "";
-
   const [sortField, setSortField] = useState<keyof User | null>(null);
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
   const [selectedUsers, setSelectedUsers] = useState<number[]>([]);
-
   const [userListField, setUserListField] = useState<User[]>(userList);
   const [currentPage, setCurrentPage] = useState(1);
   const [displayCount, setDisplayCount] = useState<number>(
@@ -102,7 +99,7 @@ const UserManagementPage: React.FC = () => {
     setSearchParams(query ? { search: query } : {});
   };
 
-  // filter data berdasarkan query pengguna
+  // filter data berdasarkan query search pengguna
   const filteredUsers = userListField.filter(
     (user) =>
       user.id.toString().includes(searchQuery) ||

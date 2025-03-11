@@ -2,7 +2,7 @@ import { TypeAnimation } from "react-type-animation";
 
 const HeaderTwoLoginComponent: React.FC = () => {
   return (
-    <div className="relative z-10 flex flex-col justify-center items-center mt-3">
+    <div className="relative z-10 flex flex-col justify-center items-start mt-3 lg:mt-0">
       <TypeAnimation
         sequence={[
           1000,
@@ -16,7 +16,7 @@ const HeaderTwoLoginComponent: React.FC = () => {
         wrapper="span"
         cursor={false}
         repeat={Infinity}
-        className="text-white text-base font-poppins"
+        className="text-white text-sm font-poppins"
       />
     </div>
   );
