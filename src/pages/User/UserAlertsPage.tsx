@@ -133,7 +133,7 @@ const UserAlertsPage: React.FC = () => {
         </div>
 
         {/* list alert */}
-        <div className="w-full flex flex-row pl-4 lg:pl-0">
+        <div className="w-full flex flex-row pl-[11px] lg:pl-0">
           <div className="w-full flex flex-col gap-5 lg:grid lg:grid-rows-1 lg:space-y-10 ">
             {data.map((item) => (
               <div
