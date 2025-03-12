@@ -44,18 +44,23 @@ const FormEditincidentComponent: React.FC<FormEditincidentComponentProps> = ({
       >
         {/* col 1 */}
         <div className=" flex flex-col gap-4">
-          {/* area */}
-          <select
-            name="area"
-            value={formData.area}
-            onChange={handleChange}
-            className="p-2 border rounded"
-            required
-          >
-            <option value="">Select Area</option>
-            <option value="Area 1">Area 1</option>
-            <option value="Area 2">Area 2</option>
-          </select>
+          <div className="flex flex-col gap-1">
+            <label htmlFor="area" className="text-sm text-gray-500 capitalize">
+              area
+            </label>
+            {/* area */}
+            <select
+              name="area"
+              value={formData.area}
+              onChange={handleChange}
+              className="p-2 border rounded"
+              required
+            >
+              <option value="">Select Area</option>
+              <option value="Area 1">Area 1</option>
+              <option value="Area 2">Area 2</option>
+            </select>
+          </div>
           {/* location */}
           <input
             type="text"
