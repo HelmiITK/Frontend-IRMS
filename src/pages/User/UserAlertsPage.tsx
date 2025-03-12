@@ -44,7 +44,7 @@ const dummyData: Data[] = [
     id: 4,
     no_report: "li200-569-703",
     pelapor: "Heri Muskianto",
-    department: "Operation",
+    department: "Quality Safety Health and Environment (QSHE)",
     class_incident: "Minor",
     time: "22 Juni 2025 - 10.23 WITA",
   },
@@ -110,47 +110,52 @@ const UserAlertsPage: React.FC = () => {
 
       <div className="flex flex-col items-center justify-center gap-8 mb-4">
         {/* card notif */}
-        <div className="relative flex flex-col gap-2 bg-white shadow-lg shadow-gray-200 drop-shadow-md rounded-2xl px-6 pb-6 pt-12 justify-center items-center">
+        <div className="relative flex flex-col gap-2 bg-white shadow-lg shadow-gray-200 drop-shadow-md rounded-2xl px-6 pb-6 mt-7 pt-10 lg:mt-0 lg:pt-12 justify-center items-center">
           <img
             src={iconALert}
             alt="icon user alert"
-            className="w-24 p-3 -top-14 absolute bg-white rounded-full shadow-lg shadow-gray-200 "
+            className="w-16 lg:w-24 p-3 -top-8 lg:-top-14 absolute bg-white rounded-full shadow-lg shadow-gray-200 "
           />
           <div className="flex flex-col gap-4 items-center">
             <div className="flex flex-col gap-2 items-center">
-              <h1 className="capitalize text-xl font-semibold tracking-wide">
+              <h1 className="capitalize text-lg lg:text-xl font-semibold tracking-wide">
                 user alerts
               </h1>
-              <p className="text-xs text-gray-400 ">
-                You have 4 new alert into will be approved or rejected
+              <p className="text-xs text-gray-400 text-center">
+                You have {data.length} new alert into will be{" "}
+                <br className="block lg:hidden" /> approved or rejected
               </p>
             </div>
-            <h2 className="capitalize text-xl rounded-lg bg-yellow-400 shadow-md shadow-yellow-100 text-white py-2 px-4 w-fit text-center font-semibold">
+            <h2 className="capitalize text-lg lg:text-xl rounded-lg bg-yellow-400 shadow-md shadow-yellow-100 text-white py-1 lg:py-2 px-4 w-fit text-center font-semibold">
               {data.length} data
             </h2>
           </div>
         </div>
 
         {/* list alert */}
-        <div className=" w-full flex flex-row">
-          <div className="w-full lg:grid lg:grid-rows-1 lg:space-y-10 ">
+        <div className="w-full flex flex-row pl-4 lg:pl-0">
+          <div className="w-full flex flex-col gap-5 lg:grid lg:grid-rows-1 lg:space-y-10 ">
             {data.map((item) => (
               <div
                 key={item.id}
-                className="w-full flex flex-col gap-4 lg:flex lg:flex-row lg:justify-between lg:items-center"
+                className="w-full relative flex flex-col gap-3 lg:flex lg:flex-row lg:justify-between lg:items-center"
               >
                 {/* date time */}
                 <div className=" flex items-center gap-2">
-                  <GrDocumentTime className="text-xl text-black" />
+                  <GrDocumentTime className="text-lg lg:text-xl text-black" />
                   <div className=" whitespace-nowrap text-gray-500 tracking-wide text-xs lg:text-sm">
                     {item.time}
                   </div>
                 </div>
 
-                <div className="w-full h-[1px] bg-green-400 mx-3"></div>
+                {/* line */}
+                <div className="hidden lg:block w-full h-[1px] bg-green-400 mx-3"></div>
+                <div className="block lg:hidden absolute bg-green-400 h-[45px] w-[1px] -left-3 top-2"></div>
+                <div className="block lg:hidden absolute bg-green-400 w-[13px] h-[1px] top-2 -left-3"></div>
+                <div className="block lg:hidden absolute bg-green-400 w-[13px] h-[1px] top-[52px] -left-3"></div>
 
-                {/* data */}
-                <div className="w-full flex flex-row items-center">
+                {/* data alert*/}
+                <div className="w-full flex flex-col lg:flex lg:flex-row lg:items-center">
                   {/* no Report */}
                   <div className="flex flex-row items-center bg-green-500 py-2 gap-2 whitespace-nowrap px-4">
                     <h1 className="text-xl font-semibold text-white font-montserrat">
@@ -160,30 +165,32 @@ const UserAlertsPage: React.FC = () => {
                       {item.no_report}
                     </h2>
                   </div>
-                  <div className="p-3  border border-green-300 w-full flex flex-row items-center gap-8">
+                  <div className="w-full p-3 flex flex-col gap-2 border border-green-300 lg:flex lg:flex-row lg:items-center lg:gap-8">
                     {/* Pelapor */}
                     <div className="whitespace-nowrap flex flex-col gap-1">
                       <h1 className="text-gray-500 text-xs capitalize">
                         Pelapor
                       </h1>
-                      <h2 className="text-sm">{item.pelapor}</h2>
+                      <h2 className="text-sm capitalize">{item.pelapor}</h2>
                     </div>
                     {/* Departement */}
-                    <div className="whitespace-nowrap flex flex-col gap-1">
+                    <div className="lg:whitespace-nowrap flex flex-col gap-1">
                       <h1 className="text-gray-500 text-xs capitalize">
                         Departement
                       </h1>
-                      <h2 className="text-sm">{item.department}</h2>
+                      <h2 className="text-sm capitalize">{item.department}</h2>
                     </div>
                     {/* class incident */}
                     <div className="whitespace-nowrap flex flex-col gap-1">
                       <h1 className="text-gray-500 text-xs capitalize">
                         Classfication Incident
                       </h1>
-                      <h2 className="text-sm">{item.class_incident}</h2>
+                      <strong className="text-sm text-red-700 capitalize">
+                        {item.class_incident}
+                      </strong>
                     </div>
                     {/* action */}
-                    <div className="flex flex-col gap-1 items-center">
+                    <div className="flex flex-row lg:flex lg:flex-col gap-1 items-center">
                       <ViewButtonComponent
                         title="detail"
                         link="/dashboard/incident_report/detail_incident_report"
