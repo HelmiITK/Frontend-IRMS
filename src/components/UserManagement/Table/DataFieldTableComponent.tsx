@@ -61,7 +61,7 @@ const DataFieldTableComponent: React.FC<DataFieldTableComponentProps> = ({
           <td>{itemList.job}</td>
           <td>{itemList.department}</td>
           <td>{itemList.superior}</td>
-          <td className="sticky right-0 bg-white flex flex-col gap-[5px] items-center justify-center ">
+          <td className="sticky right-0 backdrop-blur-sm bg-opacity-55 bg-white flex flex-col  lg:flex lg:flex-row gap-[5px] justify-center items-center ">
             <ViewButtonComponent title="view" link="detail_user" />
             <EditButtonComponent title="edit" link="edit_user" />
             <DeleteButtonComponent

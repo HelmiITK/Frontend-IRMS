@@ -338,7 +338,7 @@ const IncidentReportPage: React.FC = () => {
       {/* table user management by daisyUI */}
       <div className="max-w-xs overflow-x-auto py-2 pl-2 lg:overflow-visible lg:max-w-full shadow-lg rounded-lg mb-8 mt-2 border">
         {/* table */}
-        <table className="table table-zebra table-xs">
+        <table className="table table-zebra table-xs lg:table-md">
           {/* head */}
           <HeaderTableIncidentComponent
             handleSort={handleSort}

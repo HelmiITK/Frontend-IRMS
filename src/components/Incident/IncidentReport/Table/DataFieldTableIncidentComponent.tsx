@@ -144,7 +144,7 @@ const DataFieldTableIncidentComponent: React.FC<
             </div>
           </td>
           <td className="text-xs text-black">{itemList?.reviewed_by}</td>
-          <td className="sticky right-0 backdrop-blur-sm bg-opacity-55 bg-white flex flex-col gap-[5px] justify-center items-center">
+          <td className="sticky right-0 backdrop-blur-sm bg-opacity-55 bg-white flex flex-col lg:flex lg:flex-row gap-[5px] justify-center items-center">
             <ViewButtonComponent title="view" link="detail_incident_report" />
             <EditButtonComponent title="edit" link="edit_incident_report" />
             <DeleteButtonComponent

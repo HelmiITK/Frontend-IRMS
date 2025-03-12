@@ -273,7 +273,7 @@ const UserManagementPage: React.FC = () => {
 
       {/* table user management by daisyUI */}
       <div className="overflow-x-auto lg:overflow-visible max-w-xs md:max-w-full pl-2 py-2 shadow-lg rounded-lg mb-8 mt-2 border">
-        <table className=" table table-zebra table-xs">
+        <table className=" table table-zebra table-xs lg:table-md">
           {/* head */}
           <HeaderTableComponent
             handleSort={handleSort}
