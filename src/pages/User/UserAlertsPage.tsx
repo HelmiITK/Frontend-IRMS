@@ -81,7 +81,7 @@ const UserAlertsPage: React.FC = () => {
                 {/* date time */}
                 <div className=" flex items-center gap-2">
                   <GrDocumentTime className="text-xl text-black" />
-                  <div className=" whitespace-nowrap text-gray-500 tracking-wide text-base">
+                  <div className=" whitespace-nowrap text-gray-500 tracking-wide text-xs lg:text-sm">
                     {item.time}
                   </div>
                 </div>
