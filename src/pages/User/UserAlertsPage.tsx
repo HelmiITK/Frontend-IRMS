@@ -2,42 +2,103 @@ import HeaderComponent from "../../components/HeaderComponent";
 import iconALert from "../../assets/iconAlertUser.png";
 import ViewButtonComponent from "../../components/ViewButtonComponent";
 import { GrDocumentTime } from "react-icons/gr";
+import DeleteButtonComponent from "../../components/DeleteButtonComponent";
+import Swal from "sweetalert2";
+import { useState } from "react";
+
+interface Data {
+  id: number;
+  no_report: string;
+  pelapor: string;
+  department: string;
+  class_incident: string;
+  time: string;
+}
+
+const dummyData: Data[] = [
+  {
+    id: 1,
+    no_report: "li200-567-700",
+    pelapor: "Helmi",
+    department: "Information Technology",
+    class_incident: "Minor",
+    time: "12 Maret 2025 - 16.30 WITA",
+  },
+  {
+    id: 2,
+    no_report: "li200-568-701",
+    pelapor: "Nurliyan",
+    department: "Human Resources",
+    class_incident: "Major",
+    time: "11 Maret 2025 - 12.30 WITA",
+  },
+  {
+    id: 3,
+    no_report: "li200-569-702",
+    pelapor: "Ahmad",
+    department: "Finance",
+    class_incident: "Critical",
+    time: "28 Februari 2025 - 15.00 WITA",
+  },
+  {
+    id: 4,
+    no_report: "li200-569-703",
+    pelapor: "Heri Muskianto",
+    department: "Operation",
+    class_incident: "Minor",
+    time: "22 Juni 2025 - 10.23 WITA",
+  },
+];
 
 const UserAlertsPage: React.FC = () => {
-  const dummyData = [
-    {
-      id: 1,
-      no_report: "li200-567-700",
-      pelapor: "Helmi",
-      department: "Information Technology",
-      class_incident: "Minor",
-      time: "12 Maret 2025 - 16.30 WITA",
-    },
-    {
-      id: 2,
-      no_report: "li200-568-701",
-      pelapor: "Nurliyan",
-      department: "Human Resources",
-      class_incident: "Major",
-      time: "11 Maret 2025 - 12.30 WITA",
-    },
-    {
-      id: 3,
-      no_report: "li200-569-702",
-      pelapor: "Ahmad",
-      department: "Finance",
-      class_incident: "Critical",
-      time: "28 Februari 2025 - 15.00 WITA",
-    },
-    {
-      id: 4,
-      no_report: "li200-569-703",
-      pelapor: "Heri Muskianto",
-      department: "Operation",
-      class_incident: "Minor",
-      time: "22 Juni 2025 - 10.23 WITA",
-    },
-  ];
+  const [data, setData] = useState<Data[]>(dummyData);
+
+  // Fungsi hapus row user with SweetAlert2
+  const handleDeleteAlert = (id: number) => {
+    const report = data.find((item) => item.id === id);
+
+    Swal.fire({
+      title: "Are you sure?",
+      html: `You won't be able to revert this!<br><strong>Report Number:</strong>${report?.no_report}`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+      position: "center", // Menentukan posisi di atas
+      toast: false, // Menghindari penggunaan toast untuk memastikan SweetAlert muncul sebagai pop-up biasa
+      didOpen: () => {
+        // Mengakses container SweetAlert dan menambahkan z-index
+        const swalModal = document.querySelector(
+          ".swal2-container"
+        ) as HTMLElement;
+        if (swalModal) {
+          swalModal.style.zIndex = "9999"; // Pastikan nilai z-index cukup tinggi
+        }
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+          position: "center", // Tetap posisi di atas setelah penghapusan
+          didOpen: () => {
+            const swalModal = document.querySelector(
+              ".swal2-container"
+            ) as HTMLElement;
+            if (swalModal) {
+              swalModal.style.zIndex = "9999";
+            }
+          },
+        });
+
+        // Hapus user dari daftar
+        console.log(`Hapus user dengan ID: ${id}`);
+        setData((prevUsers) => prevUsers.filter((item) => item.id !== id));
+      }
+    });
+  };
   return (
     <>
       {/* header */}
@@ -65,7 +126,7 @@ const UserAlertsPage: React.FC = () => {
               </p>
             </div>
             <h2 className="capitalize text-xl rounded-lg bg-yellow-400 shadow-md shadow-yellow-100 text-white py-2 px-4 w-fit text-center font-semibold">
-              4 data
+              {data.length} data
             </h2>
           </div>
         </div>
@@ -73,7 +134,7 @@ const UserAlertsPage: React.FC = () => {
         {/* list alert */}
         <div className=" w-full flex flex-row">
           <div className="w-full lg:grid lg:grid-rows-1 lg:space-y-10 ">
-            {dummyData.map((item) => (
+            {data.map((item) => (
               <div
                 key={item.id}
                 className="w-full flex flex-col gap-4 lg:flex lg:flex-row lg:justify-between lg:items-center"
@@ -121,11 +182,18 @@ const UserAlertsPage: React.FC = () => {
                       </h1>
                       <h2 className="text-sm">{item.class_incident}</h2>
                     </div>
-                    {/* detail */}
-                    <ViewButtonComponent
-                      title="detail"
-                      link="detail_incident_report"
-                    />
+                    {/* action */}
+                    <div className="flex flex-col gap-1 items-center">
+                      <ViewButtonComponent
+                        title="detail"
+                        link="/dashboard/incident_report/detail_incident_report"
+                      />
+                      <DeleteButtonComponent
+                        title="delete"
+                        handleDelete={handleDeleteAlert}
+                        itemList={item.id}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
