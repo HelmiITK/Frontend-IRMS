@@ -1,13 +1,13 @@
 import contohImage from "../../../../../assets/BgDashboard.png";
-import CardDetailIncidentReportComponent from "./DetailComp/CardDetailIncidentReportComponent";
 import HeaderComponent from "../../../../HeaderComponent";
 import { useParams } from "react-router-dom";
+import CardDetailMyIncidentReportComponent from "./CardDetailMyIncidentReportComponent";
 
-const DetailIncidentReportComponent: React.FC = () => {
+const DetailMyIncidentReportComponent: React.FC = () => {
   const { id } = useParams();
 
   const incident = {
-    id: {id},
+    id: { id },
     no_report: 24,
     data_incident: "27-02-2025",
     reporter: "Helmi",
@@ -29,16 +29,16 @@ const DetailIncidentReportComponent: React.FC = () => {
       <div className="flex flex-col w-full">
         {/* header */}
         <HeaderComponent
-          title="detail incident report"
+          title="detail my incident report"
           routeOne="dashboard"
-          routeTwo="incident report"
-          routeThree="detail incident report"
+          routeTwo="my incident report"
+          routeThree="detail my incident report"
         />
         {/* Card Detail User */}
-        <CardDetailIncidentReportComponent incident={incident} />
+        <CardDetailMyIncidentReportComponent incident={incident} />
       </div>
     </>
   );
 };
 
-export default DetailIncidentReportComponent;
+export default DetailMyIncidentReportComponent;

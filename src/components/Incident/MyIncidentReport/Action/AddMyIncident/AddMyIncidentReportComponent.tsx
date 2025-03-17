@@ -1,10 +1,8 @@
 import { useState } from "react";
-import FormEditincidentComponent from "./EditComp/FormEditincidentComponent";
 import HeaderComponent from "../../../../HeaderComponent";
-import { useParams } from "react-router-dom";
+import FormAddMyIncidentReportComponent from "./FormAddMyIncidentReportComponent";
 
 interface IncidentForm {
-  id: string;
   area: string;
   location: string;
   date_incident: string;
@@ -19,10 +17,8 @@ interface IncidentForm {
   description: string;
 }
 
-const EditIncidentReportComponent: React.FC = () => {
-  const { id } = useParams();
+const AddMyIncidentReportComponent: React.FC = () => {
   const [formData, setFormData] = useState<IncidentForm>({
-    id: `${id}`,
     area: "",
     location: "",
     date_incident: "",
@@ -62,13 +58,13 @@ const EditIncidentReportComponent: React.FC = () => {
       <div className="flex flex-col w-full">
         {/* header */}
         <HeaderComponent
-          title="edit incident report"
+          title="create my incident report"
           routeOne="dashboard"
-          routeTwo="incident report"
-          routeThree="edit incident report"
+          routeTwo="my incident report"
+          routeThree="add my incident report"
         />
-        {/* form edit */}
-        <FormEditincidentComponent
+        {/* form create incident report */}
+        <FormAddMyIncidentReportComponent
           formData={formData}
           handleChange={handleChange}
           handleFileChange={handleFileChange}
@@ -79,4 +75,4 @@ const EditIncidentReportComponent: React.FC = () => {
   );
 };
 
-export default EditIncidentReportComponent;
+export default AddMyIncidentReportComponent;

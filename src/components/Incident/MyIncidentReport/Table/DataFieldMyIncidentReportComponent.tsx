@@ -21,15 +21,15 @@ interface User {
   reviewed_by: string;
 }
 
-interface DataFieldTableIncidentComponentProps {
+interface DataFieldMyTableIncidentComponentProps {
   userListField: User[];
   selectedUsers: number[];
   setSelectedUsers: React.Dispatch<React.SetStateAction<number[]>>;
   handleDeleteRowUser: (id: number) => void;
 }
 
-const DataFieldTableIncidentComponent: React.FC<
-  DataFieldTableIncidentComponentProps
+const DataFieldMyTableIncidentComponent: React.FC<
+  DataFieldMyTableIncidentComponentProps
 > = ({
   userListField,
   selectedUsers,
@@ -148,9 +148,12 @@ const DataFieldTableIncidentComponent: React.FC<
           <td className="sticky right-0 backdrop-blur-sm bg-opacity-55 bg-white flex flex-col lg:flex lg:flex-row gap-[5px] justify-center items-center">
             <ViewButtonComponent
               title="view"
-              link={`detail_incident_report/${itemList.id}`}
+              link={`detail_my_incident_report/${itemList.id}`}
             />
-            <EditButtonComponent title="edit" link={`edit_incident_report/${itemList.id}`} />
+            <EditButtonComponent
+              title="edit"
+              link={`edit_my_incident_report/${itemList.id}`}
+            />
             <DeleteButtonComponent
               title="delete"
               handleDelete={handleDeleteRowUser}
@@ -163,4 +166,4 @@ const DataFieldTableIncidentComponent: React.FC<
   );
 };
 
-export default DataFieldTableIncidentComponent;
+export default DataFieldMyTableIncidentComponent;

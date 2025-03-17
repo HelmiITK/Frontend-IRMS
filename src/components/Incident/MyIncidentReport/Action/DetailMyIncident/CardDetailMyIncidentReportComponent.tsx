@@ -12,7 +12,7 @@ import {
   FaUserCheck,
 } from "react-icons/fa";
 import { useState } from "react";
-import PhotoComponent from "../../../../../PhotoComponent";
+import PhotoComponent from "../../../../PhotoComponent";
 import { IoTimerSharp } from "react-icons/io5"; // in progress
 // import { IoCheckmarkCircleSharp } from "react-icons/io5"; // approved
 // import { IoMdCloseCircle } from "react-icons/io"; // rejected
@@ -35,12 +35,12 @@ interface Incident {
   reviewed_by: string;
 }
 
-interface CardDetailIncidentReportComponentProps {
+interface CardDetailMyIncidentReportComponentProps {
   incident: Incident;
 }
 
-const CardDetailIncidentReportComponent: React.FC<
-  CardDetailIncidentReportComponentProps
+const CardDetailMyIncidentReportComponent: React.FC<
+  CardDetailMyIncidentReportComponentProps
 > = ({ incident }) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
@@ -48,7 +48,7 @@ const CardDetailIncidentReportComponent: React.FC<
     <div className="bg-white shadow-lg rounded-lg p-6 mt-1">
       <div className="flex flex-col lg:flex lg:flex-row lg:items-center lg:justify-between mb-4">
         <h2 className="text-xl font-semibold text-gray-800">
-          Detail Incident #{incident.no_report}
+          My Detail Incident #{incident.no_report}
         </h2>
         <div className="flex flex-row items-center gap-1 mt-2">
           <h2 className="text-sm text-gray-500 font-montserrat ">status :</h2>
@@ -159,4 +159,4 @@ const DetailItem: React.FC<{
   </div>
 );
 
-export default CardDetailIncidentReportComponent;
+export default CardDetailMyIncidentReportComponent;

@@ -19,7 +19,7 @@ interface User {
   reviewed_by: string;
 }
 
-interface HeaderTableIncidentComponentProps {
+interface HeaderTableMyIncidentComponentProps {
   handleSort: (field: keyof User) => void;
   sortField: keyof User | null;
   sortOrder: "asc" | "desc";
@@ -27,8 +27,8 @@ interface HeaderTableIncidentComponentProps {
   placeholderShow: number;
 }
 
-const HeaderTableIncidentComponent: React.FC<
-  HeaderTableIncidentComponentProps
+const HeaderTableMyIncidentComponent: React.FC<
+  HeaderTableMyIncidentComponentProps
 > = ({
   handleSort,
   sortField,
@@ -424,4 +424,4 @@ const HeaderTableIncidentComponent: React.FC<
   );
 };
 
-export default HeaderTableIncidentComponent;
+export default HeaderTableMyIncidentComponent;

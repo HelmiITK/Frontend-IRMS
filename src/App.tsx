@@ -1,4 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { useLanguage } from "./translations/LanguageProvider";
+
 import LoginPage from "./pages/Auth/LoginPage";
 import DashboardPage from "./pages/Dashboard/DashboardPage";
 import UserManagementPage from "./pages/User/UserManagementPage";
@@ -16,13 +19,14 @@ import DetailUserComponent from "./components/UserManagement/Action/DetailUser/D
 import EditUserComponent from "./components/UserManagement/Action/EditUser/EditUserComponent";
 import Layout from "./layout/Layout";
 import ForgetPasswordPage from "./pages/Auth/ForgetPasswordPage";
-import { useTranslation } from "react-i18next";
-import { useLanguage } from "./translations/LanguageProvider";
 import AddIncidentReportComponent from "./components/Incident/IncidentReport/Action/AddIncident/AddIncidentReportComponent";
 import DetailIncidentReportComponent from "./components/Incident/IncidentReport/Action/DetailIncident/DetailIncidentReportComponent";
 import EditIncidentReportComponent from "./components/Incident/IncidentReport/Action/EditIncident/EditIncidentReportComponent";
 import SearchParamsPage from "./pages/SearchParamsPage";
 import BroadcastPage from "./pages/Broadcast/BroadcastPage";
+import AddMyIncidentReportComponent from "./components/Incident/MyIncidentReport/Action/AddMyIncident/AddMyIncidentReportComponent";
+import DetailMyIncidentReportComponent from "./components/Incident/MyIncidentReport/Action/DetailMyIncident/DetailMyIncidentReportComponent";
+import EditMyIncidentReportComponent from "./components/Incident/MyIncidentReport/Action/EditMyIncident/EditMyIncidentReportComponent";
 
 function App() {
   const [t] = useTranslation("global");
@@ -47,11 +51,12 @@ function App() {
             <Route path="user_management">
               <Route index element={<UserManagementPage />} />
               <Route path="add_user" element={<AddUserComponent />} />
-              <Route path="detail_user" element={<DetailUserComponent />} />
-              <Route path="edit_user" element={<EditUserComponent />} />
+              <Route path="detail_user/:id" element={<DetailUserComponent />} />
+              <Route path="edit_user/:id" element={<EditUserComponent />} />
             </Route>
 
             <Route path="user_alerts" element={<UserAlertsPage />} />
+
             <Route path="incident_report">
               <Route index element={<IncidentReportPage />} />
               <Route
@@ -59,19 +64,31 @@ function App() {
                 element={<AddIncidentReportComponent />}
               />
               <Route
-                path="detail_incident_report"
+                path="detail_incident_report/:id"
                 element={<DetailIncidentReportComponent />}
               />
               <Route
-                path="edit_incident_report"
+                path="edit_incident_report/:id"
                 element={<EditIncidentReportComponent />}
               />
             </Route>
 
-            <Route
-              path="my_incident_report"
-              element={<MyIncidentReportPage />}
-            />
+            <Route path="my_incident_report">
+              <Route index element={<MyIncidentReportPage />} />
+              <Route
+                path="add_my_incident_report"
+                element={<AddMyIncidentReportComponent />}
+              />
+              <Route
+                path="detail_my_incident_report/:id"
+                element={<DetailMyIncidentReportComponent />}
+              />
+              <Route
+                path="edit_my_incident_report/:id"
+                element={<EditMyIncidentReportComponent />}
+              />
+            </Route>
+
             <Route
               path="history_my_incident_report"
               element={<HistoryMyIncidentReportPage />}

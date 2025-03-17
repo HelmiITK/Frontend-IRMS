@@ -22,7 +22,7 @@ interface User {
   reviewed_by: string;
 }
 
-interface FilterIncidentComponentProps {
+interface FilterMyIncidentComponentProps {
   handleSelectedAll: () => void;
   selectedUsers: number[];
   userListField: User[];
@@ -30,11 +30,9 @@ interface FilterIncidentComponentProps {
   handleDeleteSelected: () => void;
   searchQuery: string;
   handleSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  title: string;
-  link: string;
 }
 
-const FilterIncidentComponent: React.FC<FilterIncidentComponentProps> = ({
+const FilterMyIncidentComponent: React.FC<FilterMyIncidentComponentProps> = ({
   selectedUsers,
   userListField,
   handleDeleteSelected,
@@ -42,14 +40,15 @@ const FilterIncidentComponent: React.FC<FilterIncidentComponentProps> = ({
   handleDeselectedAll,
   searchQuery,
   handleSearch,
-  title,
-  link,
 }) => {
   return (
     <div className="pb-2 flex flex-col gap-2 lg:flex lg:flex-row lg:gap-4 w-full lg:justify-between">
       <div className="w-full flex flex-col lg:flex lg:flex-row lg:items-center gap-4">
         {/* left feature */}
-        <AddButtonComponent title={title} link={link} />
+        <AddButtonComponent
+          title={"add my incident report"}
+          link={"add_my_incident_report"}
+        />
 
         <Divider className="hidden lg:block h-8 w-[0.7px] bg-black" />
 
@@ -121,4 +120,4 @@ const FilterIncidentComponent: React.FC<FilterIncidentComponentProps> = ({
   );
 };
 
-export default FilterIncidentComponent;
+export default FilterMyIncidentComponent;

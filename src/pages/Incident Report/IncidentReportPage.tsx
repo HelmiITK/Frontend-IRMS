@@ -10,6 +10,7 @@ import HeaderComponent from "../../components/HeaderComponent";
 
 // Definisikan tipe data User
 interface User {
+  id: number;
   no_report: number;
   data_incident: string;
   reporter: string;
@@ -28,6 +29,7 @@ interface User {
 
 const userList: User[] = [
   {
+    id: 1,
     no_report: 24,
     data_incident: "27-02-2025",
     reporter: "Helmi",
@@ -45,6 +47,7 @@ const userList: User[] = [
     reviewed_by: "Anto",
   },
   {
+    id: 2,
     no_report: 25,
     data_incident: "28-02-2025",
     reporter: "Budi",
@@ -62,6 +65,7 @@ const userList: User[] = [
     reviewed_by: "Dewi",
   },
   {
+    id: 3,
     no_report: 26,
     data_incident: "01-03-2025",
     reporter: "Siti",
@@ -79,6 +83,7 @@ const userList: User[] = [
     reviewed_by: "Rizky",
   },
   {
+    id: 4,
     no_report: 27,
     data_incident: "02-03-2025",
     reporter: "Andi",
@@ -96,6 +101,7 @@ const userList: User[] = [
     reviewed_by: "Fauzan",
   },
   {
+    id: 5,
     no_report: 28,
     data_incident: "03-03-2025",
     reporter: "Rina",
@@ -113,6 +119,7 @@ const userList: User[] = [
     reviewed_by: "Lisa",
   },
   {
+    id: 6,
     no_report: 29,
     data_incident: "04-03-2025",
     reporter: "Joko",
@@ -333,6 +340,8 @@ const IncidentReportPage: React.FC = () => {
         handleDeleteSelected={handleDeleteSelected}
         searchQuery={searchQuery}
         handleSearch={handleSearch}
+        title="add incident report"
+        link="add_incident_report"
       />
 
       {/* table user management by daisyUI */}

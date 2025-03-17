@@ -4,6 +4,7 @@ import { useState } from "react";
 import Select from "react-select";
 import { FaAngleDown } from "react-icons/fa6";
 import HeaderComponent from "../../../HeaderComponent";
+import { useParams } from "react-router-dom";
 
 type OptionType = { value: string; label: string };
 const options = [
@@ -15,6 +16,9 @@ const options = [
 ];
 
 const EditUserComponent: React.FC = () => {
+  const { id } = useParams();
+  console.log(`ID User: ${id}`);
+
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
   const [selectedJob, setSelectedJob] = useState<string>("");
   const [selectedDepartment, setSelectedDepartment] = useState<string>("");

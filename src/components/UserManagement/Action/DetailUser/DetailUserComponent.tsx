@@ -1,9 +1,12 @@
+import { useParams } from "react-router-dom";
 import HeaderComponent from "../../../HeaderComponent";
 import CardDetailComponent from "./DetailComp/CardDetailComponent";
 
 const DetailUserComponent: React.FC = () => {
+  const { id } = useParams();
+
   const user = {
-    id: 24,
+    id: id,
     npk: "11211043",
     name: "Helmi",
     email: "helmi123@gmail.com",

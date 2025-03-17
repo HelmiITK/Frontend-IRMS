@@ -7,7 +7,7 @@ import {
 } from "react-icons/fa";
 
 interface User {
-  id: number;
+  id: string | undefined;
   npk: string;
   name: string;
   email: string;
