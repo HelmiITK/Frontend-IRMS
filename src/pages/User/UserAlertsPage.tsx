@@ -5,7 +5,9 @@ import { GrDocumentTime } from "react-icons/gr";
 import DeleteButtonComponent from "../../components/DeleteButtonComponent";
 import Swal from "sweetalert2";
 import { useState } from "react";
-
+import PhotoComponent from "../../components/PhotoComponent";
+import example from "../../assets/bgNotFound.jpg";
+import { FaRegImage } from "react-icons/fa";
 interface Data {
   id: number;
   no_report: string;
@@ -13,6 +15,7 @@ interface Data {
   department: string;
   class_incident: string;
   time: string;
+  photo: string;
 }
 
 const dummyData: Data[] = [
@@ -23,6 +26,7 @@ const dummyData: Data[] = [
     department: "Information Technology",
     class_incident: "Minor",
     time: "12 Maret 2025 - 16.30 WITA",
+    photo: example,
   },
   {
     id: 2,
@@ -31,6 +35,7 @@ const dummyData: Data[] = [
     department: "Human Resources",
     class_incident: "Major",
     time: "11 Maret 2025 - 12.30 WITA",
+    photo: example,
   },
   {
     id: 3,
@@ -39,6 +44,7 @@ const dummyData: Data[] = [
     department: "Finance",
     class_incident: "Critical",
     time: "28 Februari 2025 - 15.00 WITA",
+    photo: example,
   },
   {
     id: 4,
@@ -47,11 +53,13 @@ const dummyData: Data[] = [
     department: "Quality Safety Health and Environment (QSHE)",
     class_incident: "Minor",
     time: "22 Juni 2025 - 10.23 WITA",
+    photo: example,
   },
 ];
 
 const UserAlertsPage: React.FC = () => {
   const [data, setData] = useState<Data[]>(dummyData);
+  const [openImage, setOpenImage] = useState<boolean>(false);
 
   // Fungsi hapus row user with SweetAlert2
   const handleDeleteAlert = (id: number) => {
@@ -188,6 +196,18 @@ const UserAlertsPage: React.FC = () => {
                       <strong className="text-sm text-red-700 capitalize">
                         {item.class_incident}
                       </strong>
+                    </div>
+                    {/* image */}
+                    <div className="mb-3 lg:mb-0">
+                      <FaRegImage
+                        onClick={() => setOpenImage(true)}
+                        className="text-xl hover:scale-110 duration-150 ease-in-out cursor-pointer"
+                      />
+                      <PhotoComponent
+                        openImage={openImage}
+                        setOpenImage={setOpenImage}
+                        photo={item.photo}
+                      />
                     </div>
                     {/* action */}
                     <div className="flex flex-row lg:flex lg:flex-col gap-1 items-center">

@@ -67,10 +67,10 @@ const AppBarComponent: React.FC<AppBarComponentProps> = ({
         >
           <MenuIcon />
         </IconButton>
-       
+
         {/* left header nav  */}
         {!open ? (
-          <div className="flex flex-row items-center gap-2">
+          <Link to={"/dashboard"} className="flex flex-row items-center gap-2">
             <div className="text-transparent block lg:hidden">---</div>
             <img
               src={LogoKPI}
@@ -80,7 +80,7 @@ const AppBarComponent: React.FC<AppBarComponentProps> = ({
             <h1 className="text-white font-montserrat text-xl font-semibold text-start">
               PT KPI
             </h1>
-          </div>
+          </Link>
         ) : (
           <>
             <div className="text-transparent"></div>
@@ -98,10 +98,12 @@ const AppBarComponent: React.FC<AppBarComponentProps> = ({
           </div>
           {/* user alert */}
           <Link
-            to={"incident_report/detail_incident_report"}
-            className="indicator hover:scale-110 ease-linear duration-150"
+            to={"user_alerts"}
+            className="indicator hover:scale-110 ease-linear duration-150 lg:ml-2"
           >
-            <span className="indicator-item badge-xs badge badge-primary py-1 px-0">12</span>
+            <span className="indicator-item badge-xs badge badge-primary py-1 px-0">
+              12
+            </span>
             <PiBellRingingFill className="text-lg text-white" />
           </Link>
           {/* fullscreen  */}
