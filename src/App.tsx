@@ -86,7 +86,6 @@ function App() {
             />
 
             <Route path="result" element={<ResultPage />} />
-
             <Route path="broadcast" element={<BroadcastPage />} />
           </Route>
 
