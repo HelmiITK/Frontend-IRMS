@@ -213,7 +213,7 @@ const UserAlertsPage: React.FC = () => {
                     <div className="flex flex-row lg:flex lg:flex-col gap-1 items-center">
                       <ViewButtonComponent
                         title="detail"
-                        link="/dashboard/incident_report/detail_incident_report"
+                        link={`/dashboard/incident_report/detail_incident_report/${item.id}`}
                       />
                       <DeleteButtonComponent
                         title="delete"
